@@ -8,5 +8,6 @@ app.set('port', process.env.PORT || 4000);
 
 app.use(morgan('dev'))
 
-// Exports
+app.use("/api/users", require('./routes/users.routes'))
+
 module.exports = app;
