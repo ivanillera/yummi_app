@@ -1,5 +1,26 @@
-###
+### Lista
 GET http://localhost:4000/api/users
 
-###
+### Crear usuario
 POST http://localhost:4000/api/users
+Content-Type: application/json
+
+{
+    "name": "Cristina",
+    "id": "10953",
+    "notes": ["AM2", "MatDisc", "SO"]
+}
+
+### Ver usuario (MODIFICAR ID)
+GET http://localhost:4000/api/users/60bea5a65de71f0190afbb42
+
+### Borrar usuario (MODIFICAR ID)
+DELETE http://localhost:4000/api/users/60bea8c2166e3d357417359b
+
+### Actualizar usuario (MODIFICAR ID)
+PUT http://localhost:4000/api/users/60bea984b4cb0206902292c3
+Content-Type: application/json
+
+{
+    "name": "Pepe"
+}

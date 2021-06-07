@@ -1,19 +1,35 @@
 const userCtrl = {}
 
-userCtrl.getUsers = (req, res) => {
-    res.send('Get Users')
+const User = require('../models/User')
+
+userCtrl.getUsers = async (req, res) => {
+    const users = await User.find()
+    res.json(users)
 }
-userCtrl.createUser = (req, res) => {
-    res.send('Create User')
+
+userCtrl.createUser = async (req, res) => {
+    const newUser = new User(req.body)
+    await newUser.save()
+    res.send({ message: 'User created' })
 }
-userCtrl.getUser = (req, res) => {
-    res.send('Get User')
+
+
+userCtrl.getUser = async (req, res) => {
+    const user = await User.findById(req.params.id)
+    res.send(user)
 }
-userCtrl.editUser = (req, res) => {
-    res.send('Edit User')
+
+
+userCtrl.editUser = async (req, res) => {
+    await User.findByIdAndUpdate(req.params.id, req.body)
+    res.json({status: 'User Updated'})
 }
-userCtrl.deleteUser = (req, res) => {
-    res.send('Delete User')
+
+
+
+userCtrl.deleteUser = async (req, res) => {
+    await User.findByIdAndDelete(req.params.id)
+    res.json({status: 'User Deleted'})
 }
 
 module.exports = userCtrl;
