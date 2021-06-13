@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 mongoose
-    .connect('mongodb+srv://yummiadmin:1234@yummidb.rh4jc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+    .connect('mongodb+srv://yummiadmin:1234@yummidb.rh4jc.mongodb.net/yummiDB?retryWrites=true&w=majority',{
         useUnifiedTopology: true,
         useNewUrlParser: true,
         useFindAndModify: false
