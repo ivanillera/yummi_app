@@ -4,11 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './global/navbar/navbar.component';
+import { SearchbarComponent } from './home/searchbar/searchbar.component';
+import { FooterComponent } from './global/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
