@@ -1,0 +1,10 @@
+.mask-custom {
+    background: rgb(47, 47, 47);
+    border: 0px solid rgba(47, 47, 47);
+    background-clip: padding-box;
+    box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+  }
+
+  .footer-copyright{
+    color:white
+  }
