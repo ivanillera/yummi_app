@@ -24,3 +24,30 @@ Content-Type: application/json
 {
     "name": "Pepe"
 }
+
+### Lista de Apuntes
+GET http://localhost:4000/api/notes
+
+### Crear Apunte
+POST http://localhost:4000/api/notes
+Content-Type: application/json
+
+{
+    "name": "Apunte Fourier",
+    "creator": "Pepe",
+    "content": "Apunte Serie de Fourier.pdf"
+}
+
+### Ver Apunte
+GET http://localhost:4000/api/notes/60c805c5364c1418f0a3dcbb
+
+### Borrar Apunte
+DELETE http://localhost:4000/api/notes/60c805c5364c1418f0a3dcbb
+
+### Actualizar Apunte
+PUT http://localhost:4000/api/notes/60c8063f364c1418f0a3dcbc
+Content-Type: application/json
+
+{
+    "content": "Fourier Actualizado.pdf"
+}
