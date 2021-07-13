@@ -2,6 +2,9 @@ body {
     margin-top: 20px;
 }
 
+.checked {
+    color: orange;
+  }
 
 /* USER LIST TABLE */
 
