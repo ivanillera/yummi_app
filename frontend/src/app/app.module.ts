@@ -8,6 +8,7 @@ import { SearchbarComponent } from './home/searchbar/searchbar.component';
 import { FooterComponent } from './global/footer/footer.component';
 import { ForumComponent } from './pages/forum/forum.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ThreadComponent } from './forum/thread/thread.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HomeComponent } from './pages/home/home.component';
     SearchbarComponent,
     FooterComponent,
     ForumComponent,
-    HomeComponent
+    HomeComponent,
+    ThreadComponent
   ],
   imports: [
     BrowserModule,
