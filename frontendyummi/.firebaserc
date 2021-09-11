@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "yummi-3d579": {
+      "hosting": {
+        "frontendyummi": [
+          "yummi-3d579"
+        ]
+      }
+    }
+  }
+}
