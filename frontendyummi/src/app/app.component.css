@@ -5,3 +5,9 @@
     background-attachment: fixed;
 }
 
+.vertical-center{
+    min-height: 100%;
+    min-height: 60%;
+    display:flex;
+    align-items: center;
+}
