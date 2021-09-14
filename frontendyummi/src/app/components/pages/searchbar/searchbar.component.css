@@ -21,3 +21,7 @@ body,
     color: white;
 }
 
+.titulo{
+  font-family: 'Urbanist', sans-serif;
+  font-size: 128px;
+}

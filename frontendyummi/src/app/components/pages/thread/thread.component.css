@@ -214,3 +214,14 @@ body {
 .table-stats .table-line-plus .status-social-icon {
     color: #a75d54;
 }
+
+.titulos{
+    background-color: white;
+}
+
+.table-responsive{
+    border-radius: 10px;
+}
+
+
+

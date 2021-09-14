@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Apunte } from 'src/app/models/Apunte';
 
 @Component({
   selector: 'app-crear-apunte',
@@ -11,5 +12,4 @@ export class CrearApunteComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
