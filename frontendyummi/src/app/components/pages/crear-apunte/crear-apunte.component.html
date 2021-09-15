@@ -1,10 +1,10 @@
 <div class="container crear">
     <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Tema</label>
+        <label for="exampleFormControlInput1" class="form-label titulo">Tema (*)</label>
         <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese tema de su apunte...">
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Materia</label>
+        <label for="exampleFormControlInput1" class="form-label titulo">Materia (*)</label>
         <select class="form-select" id="inputGroupSelect01">
           <option selected disabled>Selecciona tu materia</option>
           <option disabled class="year">Primero</option>
@@ -22,19 +22,42 @@
         </select>
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Tags</label>
+        <label for="exampleFormControlInput1" class="form-label titulo">Ingrese sus tags | Cada tag seguido de un enter:</label>
         <input type="tags" class="form-control" id="exampleFormControlInput1" data-role="tagsinput"  placeholder="Tags">
       </div>
       <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label" >Contenido</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese link..."></textarea>
-        <label for="formFileLg" class="form-label"></label>
-      <input class="form-control form-control-lg" id="formFileLg" type="file">
+
+
+      <div>
+        <div class="row">
+          <label for="exampleFormControlTextarea1" class="form-label titulo" >Contenido(*) | Ingrese un link o un adjunto:</label>
+          <div class="col">
+            
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese link..."></textarea>
+          </div>
+          
+          <div class="col">
+            
+            <label for="formFileLg" class="form-label"></label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file">
+          </div>
+        </div>
       </div>
+      
+      
+     
+        
+      </div>
+
+
+
+
       <div class="d-flex flex-row-reverse bd-highlight">
         <button type="button"  class="btn btn-success boton">Subir</button>
         <button type="button" class="btn btn-danger boton">Cancelar</button>
       </div>
+
+      <span class="texto">(*) Campos obligatorios</span>
       
 </div>
 

@@ -2,7 +2,7 @@
     background-color:white;
     position:center;
     
-    padding: 15px;
+    padding: 40px;
     border-radius: 15px;
 }
 
@@ -15,4 +15,13 @@
 .year{
     font-style: italic;
     font-size: 14px;
+}
+
+.texto{
+    font-style: italic;
+    font-size: 15px;
+}
+
+.titulo{
+    font-weight: bold;
 }
