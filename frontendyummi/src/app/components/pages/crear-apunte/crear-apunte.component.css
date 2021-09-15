@@ -1,0 +1,27 @@
+.container{
+    background-color:white;
+    position:center;
+    
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.boton{
+    margin: 5px;
+    width: 100px !important;
+
+}
+
+.year{
+    font-style: italic;
+    font-size: 14px;
+}
+
+.texto{
+    font-style: italic;
+    font-size: 15px;
+}
+
+.titulo{
+    font-weight: bold;
+}
