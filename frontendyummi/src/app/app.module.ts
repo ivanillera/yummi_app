@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuth, AngularFireAuthModule } from  '@angular/fire/compat/auth';
+import { HttpClientModule } from '@angular/common/http';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -32,7 +33,8 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
