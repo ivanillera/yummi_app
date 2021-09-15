@@ -14,6 +14,8 @@ import { ThreadComponent } from './components/pages/thread/thread.component';
 import { CrearApunteComponent } from './components/pages/crear-apunte/crear-apunte.component';
 import { PerfilComponent } from './components/pages/perfil/perfil.component';
 import { environment } from 'src/environments/environment';
+import { InfoperfilComponent } from './components/pages/perfil/infoperfil/infoperfil/infoperfil.component';
+import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapuntes/misapuntes.component';
 
 
 
@@ -26,6 +28,8 @@ import { environment } from 'src/environments/environment';
     ThreadComponent,
     CrearApunteComponent,
     PerfilComponent,
+    InfoperfilComponent,
+    MisapuntesComponent,
   ],
   imports: [
     BrowserModule,
