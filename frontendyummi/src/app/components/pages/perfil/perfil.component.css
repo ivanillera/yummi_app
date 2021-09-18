@@ -1,4 +1,4 @@
-.perfil{
+.container-perfil{
     padding: 40px;
     border-radius: 15px;
     position:center;
@@ -7,9 +7,13 @@
 
 .imagenUsuario{
     height: 100px;
-    
 }
 
+.image-container{
+  display:flex;
+  justify-content: center;
+  padding: 40px;
+}
 .row {
     display: flex;
     flex-direction: row;
@@ -26,12 +30,10 @@
 
 
   .blue-column {
-    background-color: blue;
     height: 100px;
   }
   
   .green-column {
-    background-color: green;
     height: 100px;
   }
 
@@ -39,5 +41,5 @@
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
-    flex: 4;
+    flex: 5;
   }

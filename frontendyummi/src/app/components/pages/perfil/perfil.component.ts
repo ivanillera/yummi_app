@@ -12,4 +12,14 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  perfil=true;
+  apuntes=false;
+  ponerApuntes(){
+    this.apuntes=true;
+    this.perfil=false;
+  }
+  ponerInfo(){
+    this.apuntes=false;
+    this.perfil=true;
+  }
 }

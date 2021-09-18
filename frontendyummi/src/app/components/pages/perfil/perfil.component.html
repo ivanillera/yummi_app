@@ -1,53 +1,23 @@
-<!-- <div class="perfil">
-    <div class="row">
-        
-        <div class="col">
-            <div class="row">FOTO</div>
-            <div class="row">
-                <div class="d-grid gap-2 mx-auto">
-                    <button class="btn btn-primary" type="button">Button</button>
-                    <button class="btn btn-primary" type="button">Button</button>
-                  </div>
-            </div>
-        </div>
-        <div class="col">
-            INFORMACION / APUNTES
-        </div>
-    </div>
-</div> -->
-
-<div class="container perfil">
+<div class="container-perfil">
     <div class='row'>
         <div class='column'>
           <div class='blue-column'>
 
-              <div>
+              <div class="image-container">
                   <img class="imagenUsuario" src="../../../../assets/img/user.png" alt="">
               </div>
 
             <div class="d-grid gap-2 mx-auto">
-                <button class="btn btn-primary" type="button">Información</button>
-                <button class="btn btn-primary" type="button">Mis Apuntes</button>
+                <button class="btn btn-primary" (click)="ponerInfo()" type="button">Información</button>
+                <button class="btn btn-primary" (click)="ponerApuntes()" type="button">Mis Apuntes</button>
               </div>
           </div>
 
 
         </div>
         <div class='double-column'>
-          <div class="card" style="width: 50rem;">
-            <div class="card-body">
-              <h5 class="card-title">Martina Ardaiz</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Ing. Sistemas de la Información</h6>
-              <br>
-              <h6 class="card-subtitle mb-2">22/08/1998</h6>
-              <h6 class="card-subtitle mb-2">ardaizmartina@gmail.com</h6>       
-            </div>
-          </div>
+          <app-infoperfil *ngIf="perfil"></app-infoperfil>
+          <app-misapuntes *ngIf="apuntes"></app-misapuntes>
         </div>
-        <!-- <div class='double-column'>
-          <div class='green-column '>
-            <router-outlet></router-outlet>
-          </div>
-        </div>
-      </div>
-</div> -->
+    </div>
+</div>
