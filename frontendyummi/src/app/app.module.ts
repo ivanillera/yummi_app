@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuth, AngularFireAuthModule } from  '@angular/fire/compat/auth';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,7 +30,7 @@ import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapu
     CrearApunteComponent,
     PerfilComponent,
     InfoperfilComponent,
-    MisapuntesComponent,
+    MisapuntesComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +38,8 @@ import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapu
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
