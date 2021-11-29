@@ -7,12 +7,13 @@ Content-Type: application/json
 
 {
     "name": "Cristina",
-    "id": "10953",
-    "notes": ["AM2", "MatDisc", "SO"]
+    "mail": "cristina@gmail.com",
+    "birth": "19/12/2021",
+    "notes": []
 }
 
 ### Ver usuario (MODIFICAR ID)
-GET http://localhost:4000/api/users/60bea5a65de71f0190afbb42
+GET http://localhost:4000/api/users/60c572c613887e4d60491ade
 
 ### Borrar usuario (MODIFICAR ID)
 DELETE http://localhost:4000/api/users/60bea8c2166e3d357417359b
@@ -34,15 +35,20 @@ Content-Type: application/json
 
 {
     "name": "Apunte Fourier",
-    "creator": "Pepe",
-    "content": "Apunte Serie de Fourier.pdf"
+    "subject": "60c80ade70df0f346472ad38",
+    "career": "Ing. Sistemas de información",
+    "creator": "60c572c613887e4d60491ade",
+    "content": "blah bla bla bla",
+    "calification": 0,
+    "attached": "pelotas pelotas",
+    "category": "Matematíca"
 }
 
 ### Ver Apunte
 GET http://localhost:4000/api/notes/60c805c5364c1418f0a3dcbb
 
 ### Borrar Apunte
-DELETE http://localhost:4000/api/notes/60c805c5364c1418f0a3dcbb
+DELETE http://localhost:4000/api/notes/6192d6b515ac350a4395e940
 
 ### Actualizar Apunte
 PUT http://localhost:4000/api/notes/60c8063f364c1418f0a3dcbc
@@ -60,9 +66,9 @@ POST http://localhost:4000/api/subjects
 Content-Type: application/json
 
 {
-    "name": "Analisis Matematico II",
+    "name": "Analisis Matematico III",
     "professor": "Mercedes",
-    "notes": ["60c8063f364c1418f0a3dcbc", "60c80b2b70df0f346472ad39"]
+    "notes": []
 }
 
 ### Ver Materia

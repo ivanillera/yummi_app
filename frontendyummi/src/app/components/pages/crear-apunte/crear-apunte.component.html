@@ -1,63 +1,92 @@
 <div class="container crear">
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label titulo">Tema (*)</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese tema de su apunte...">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label titulo">Materia (*)</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option selected disabled>Selecciona tu materia</option>
-          <option disabled class="year">Primero</option>
-          <option value="3">Álgebra y Geometría Analítica</option>
-          <option disabled class="year">Segundo</option>
-          <option value="4">Diseño de Sistemas</option>
-          <option disabled class="year">Tercero</option>
-          <option value="1">Matemática Superior</option>
-          <option disabled class="year">Cuarto</option>
-          <option value="2">Ingeniería de Software</option>
-          <option disabled class="year">Quinto</option>
-          <option value="5">Sistemas de Gestión</option>
-          
-          
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label titulo">Ingrese sus tags | Cada tag seguido de un enter:</label>
-        <input type="tags" class="form-control" id="exampleFormControlInput1" data-role="tagsinput"  placeholder="Tags">
-      </div>
-      <div class="mb-3">
 
+  <form #noteForm="ngForm" (ngSubmit)="addNote(noteForm)">
+    <!-- TEST: Creator -->
+    <div class="form-group">
+      <label class="form-label"> TEST Creator</label>
+      <input type="text" class="form-control" name="creator" placeholder="Ingrese el tema de su apunte..." [(ngModel)]="noteService.selectedNote.creator">
+    </div>
+      <!-- TEST: calification -->
+      <div class="form-group">
+        <label class="form-label"> calification </label>
+        <input type="number" class="form-control" name="calification" placeholder="Ingrese el tema de su apunte..." [(ngModel)]="noteService.selectedNote.calification">
+      </div>
+    <!-- Tema/Name -->
+    <div class="form-group">
+      <label for="exampleFormControlInput1" class="form-label titulo">Tema (*)</label>
+      <input type="text" class="form-control" name="name" placeholder="Ingrese el tema de su apunte..." [(ngModel)]="noteService.selectedNote.name">
+    </div>
+    <!-- Carrera/Career  -->
+    <div class="form-group">
+      <label for="exampleFormControlInput1" class="form-label titulo">Carrera (*)</label>
+      <select class="form-select" name="career" placeholder="Selecciona tu carrera..." [(ngModel)]="noteService.selectedNote.career">
+        <option selected disabled>Selecciona tu Carrera</option>
+        <option >Ing. en Sistemas de información</option>
+        <option >Ing. Química</option>
+        <option >Ing. Eléctrica</option>
+        <option >Ing. Mecánica</option>
+      </select>
+    </div>
+    
+    <!-- Materia/Subject -->
+    <div class="form-group">
+      <label class="form-label titulo">Materia (*)</label>
+      <select class="form-select" name="subject" placeholder="Selecciona tu materia..." [(ngModel)]="noteService.selectedNote.subject">
+        <option selected disabled>Selecciona tu materia</option>
+        <option disabled class="year">Primero</option>
+        <option value="Álgebra y Geometría Analítica">Álgebra y Geometría Analítica</option>
+        <option disabled class="year">Segundo</option>
+        <option value="60c80ade70df0f346472ad38">Analisis Matematico II</option>
+        <option disabled class="year">Tercero</option>
+        <option value="Matemática Superior">Matemática Superior</option>
+        <option disabled class="year">Cuarto</option>
+        <option value="Ingeniería de Software">Ingeniería de Software</option>
+        <option disabled class="year">Quinto</option>
+        <option value="Sistemas de Gestión">Sistemas de Gestión</option>
+      </select>
+    </div>
 
-      <div>
+    <!-- Category/Categoría -->
+    <div class="form-group">
+      <label class="form-label titulo">Seleccione una categoría</label>
+      <select class="form-select" name="category" [(ngModel)]="noteService.selectedNote.category">
+        <option value="" selected disabled hidden>Selecciona una categoría</option>
+        <option value="Parcial">Parcial</option>
+        <option value="Resumen">Resumen</option>
+        <option value="Tarea">Tarea</option>
+        <option value="Final">Final</option>
+        <option value="Trabajo Practico">Trabajo Practico</option>
+      </select>
+    </div>
+    
+    <!-- Contenido/Content-->
+    <div class="form-group">
         <div class="row">
-          <label for="exampleFormControlTextarea1" class="form-label titulo" >Contenido(*) | Ingrese un link o un adjunto:</label>
+          <label class="form-label titulo" >Contenido(*) | Ingrese un link o un adjunto:</label>
           <div class="col">
-            
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese link..."></textarea>
+            <textarea class="form-control" name="content" rows="3" placeholder="Ingrese link..." [(ngModel)]="noteService.selectedNote.content"></textarea>
           </div>
-          
           <div class="col">
-            
             <label for="formFileLg" class="form-label"></label>
-            <input class="form-control form-control-lg" id="formFileLg" type="file">
+            <input class="form-control" name="attached" type="file" [(ngModel)]="noteService.selectedNote.attached">
           </div>
         </div>
-      </div>
-      
-      
-     
-        
-      </div>
+    </div>
 
+    <!-- Acciones/Actions -->
+    <button type="submit" class="btn btn-success">Subir</button>
+    <button type="cancel" class="btn btn-danger boton" (click)="resetForm(noteForm)">Cancelar</button>
+  </form>
+  <!-- 
+	<form (ngSubmit)="onSubmit()" #formName="ngForm">
+		<h2>Add a new player</h2>
+		<div class="form-group">
 
+		</div>
+		<button type="submit" class="btn btn-success" [disabled]="!formName.form.valid">Add Player</button>
+	</form>
+  -->
+  <span class="texto">(*) Campos obligatorios</span>
 
-
-      <div class="d-flex flex-row-reverse bd-highlight">
-        <button type="button"  class="btn btn-success boton">Subir</button>
-        <button type="button" class="btn btn-danger boton">Cancelar</button>
-      </div>
-
-      <span class="texto">(*) Campos obligatorios</span>
-      
 </div>
 
