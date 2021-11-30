@@ -21,7 +21,8 @@ export class NotesService {
     content: '',
     calification: 0,
     attached:'',
-    category: ''
+    category: '',
+    date: ''
   }
   
   constructor(private http: HttpClient) {

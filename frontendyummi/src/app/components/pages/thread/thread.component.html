@@ -18,19 +18,19 @@
                         </thead>
                         <tbody>
 
-                        <tr >
-                            <td></td>
-                        </tr>
+
                         
                         <tr *ngFor="let note of noteService.notes">
-                            <td class="text-center">
+                            <!-- TODO: Sacar hardcodeo. -->
+                            <td class="text">
                                 <a routerLink="/apunte" class="">{{ note.name }}</a>
                             </td>
                             <td class="text-center">
                                 <a class="">{{ note.creator }}</a>
                             </td>
                             <td class="text-center">
-                                <span class="label label-default"></span>
+                                <span class="label label-default"> 22/02/2020</span> 
+                               
                             </td>
                             <td class = "text-center">
                                 <span class="label label-default">Matemática Superior</span>
@@ -39,13 +39,8 @@
                                 <i class="fas fa-book-open custom"></i>
                                 <span class="nroLikes">14</span>
                             </td>
-                            <td style="width: 20%;">
-                                <a href="#" class="table-link">
-                                    <span class="fa-stack">
-                                    <i class="fa fa-square fa-stack-2x"></i>
-                                    <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                </span>
-                                </a>
+
+                            <td style="text-align: end;">
                                 <a href="#" class="table-link">
                                     <span class="fa-stack">
                                     <i class="fa fa-square fa-stack-2x"></i>
