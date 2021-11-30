@@ -24,7 +24,7 @@
                         
                         <tr *ngFor="let note of noteService.notes">
                             <td class="text-center">
-                                <a class="">{{ note.name }}</a>
+                                <a routerLink="/apunte" class="">{{ note.name }}</a>
                             </td>
                             <td class="text-center">
                                 <a class="">{{ note.creator }}</a>

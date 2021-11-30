@@ -17,6 +17,7 @@ import { PerfilComponent } from './components/pages/perfil/perfil.component';
 import { environment } from 'src/environments/environment';
 import { InfoperfilComponent } from './components/pages/perfil/infoperfil/infoperfil/infoperfil.component';
 import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapuntes/misapuntes.component';
+import { ApunteComponent } from './components/pages/apunte/apunte.component';
 
 
 
@@ -30,7 +31,8 @@ import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapu
     CrearApunteComponent,
     PerfilComponent,
     InfoperfilComponent,
-    MisapuntesComponent
+    MisapuntesComponent,
+    ApunteComponent
   ],
   imports: [
     BrowserModule,

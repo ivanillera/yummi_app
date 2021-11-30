@@ -1,0 +1,47 @@
+.container{
+
+    background: linear-gradient(90deg, white 0%, #d9e7ff 100%);
+    position:center;
+    padding: 40px;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.contenido{
+    margin-top: 20px;
+    text-align: center;
+}
+.boton{
+    text-align: right;
+    margin:10px;
+}
+.titulo{
+    font-weight: bold;
+    text-align: center;
+}
+
+.clasificacion{
+    text-align: end;
+}
+
+.nombre{
+    font-weight: bold;
+}
+
+.contenidoComentario{
+    font-style: italic;
+}
+
+.comentario{
+    margin-bottom: 20px;
+}
+
+.fechaComentario{
+    text-align: end;
+}
+
+.white{
+    background-color: white;
+}
+
+

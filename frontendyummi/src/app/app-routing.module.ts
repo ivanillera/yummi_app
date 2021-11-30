@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ApunteComponent } from './components/pages/apunte/apunte.component';
 import { CrearApunteComponent } from './components/pages/crear-apunte/crear-apunte.component';
 import { InfoperfilComponent } from './components/pages/perfil/infoperfil/infoperfil/infoperfil.component';
 import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapuntes/misapuntes.component';
@@ -14,6 +15,9 @@ const routes: Routes = [
   },
   {
     path:'apuntes', component:ThreadComponent
+  },
+  {
+    path:'apunte', component: ApunteComponent
   },
   {
     path:'perfil', component:PerfilComponent
