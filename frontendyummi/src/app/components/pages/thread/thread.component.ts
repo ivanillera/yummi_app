@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Apunte } from 'src/app/models/Apunte';
+import { User } from 'src/app/models/User';
+import { NotesService } from '../../../services/notes.service';
 
 @Component({
   selector: 'app-thread',
@@ -10,11 +12,23 @@ export class ThreadComponent implements OnInit {
 
   listApuntes: Apunte[] = []
   tituloApunte = '';
+  username: string = '';
 
-  constructor() { }
+  constructor(public noteService: NotesService) { }
 
   ngOnInit(): void {
+    this.getNotes();
   }
+
+  getNotes() {
+    this.noteService.getNotes().subscribe(
+      res => {
+        this.noteService.notes = res;
+      },
+      err => console.error(err)
+    )
+  }
+
 
   // Falta implementación
 

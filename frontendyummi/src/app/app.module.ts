@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuth, AngularFireAuthModule } from  '@angular/fire/compat/auth';
+import { HttpClientModule } from '@angular/common/http';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -14,6 +15,9 @@ import { ThreadComponent } from './components/pages/thread/thread.component';
 import { CrearApunteComponent } from './components/pages/crear-apunte/crear-apunte.component';
 import { PerfilComponent } from './components/pages/perfil/perfil.component';
 import { environment } from 'src/environments/environment';
+import { InfoperfilComponent } from './components/pages/perfil/infoperfil/infoperfil/infoperfil.component';
+import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapuntes/misapuntes.component';
+import { ApunteComponent } from './components/pages/apunte/apunte.component';
 
 
 
@@ -26,13 +30,18 @@ import { environment } from 'src/environments/environment';
     ThreadComponent,
     CrearApunteComponent,
     PerfilComponent,
+    InfoperfilComponent,
+    MisapuntesComponent,
+    ApunteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
