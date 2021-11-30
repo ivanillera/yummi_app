@@ -29,15 +29,15 @@
                                 <a class="">{{ note.creator }}</a>
                             </td>
                             <td class="text-center">
-                                <span class="label label-default"> 22/02/2020</span> 
+                                <span class="label label-default"> {{note.date}} 22/02/2020</span> 
                                
                             </td>
                             <td class = "text-center">
-                                <span class="label label-default">Matemática Superior</span>
+                                <span class="label label-default">{{ note.subject }} Matemática Superior</span>
                             </td>
                             <td class = "text-center">
                                 <i class="fas fa-book-open custom"></i>
-                                <span class="nroLikes">14</span>
+                                <span class="nroLikes"> {{ note.calification }} </span>
                             </td>
 
                             <td style="text-align: end;">
