@@ -15,5 +15,7 @@ app.use(express.urlencoded({extended: false}));
 app.use("/api/users", require('./routes/users.routes'));
 app.use("/api/notes", require('./routes/notes.routes'));
 app.use("/api/subjects", require('./routes/subjects.routes'));
+app.use("/api/files", require('./routes/files.routes'));
+app.use("/api/comments", require('./routes/comments.routes'));
 
 module.exports = app;
