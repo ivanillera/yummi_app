@@ -25,45 +25,34 @@
 
 <div class="container">
     <div class="miComentario">
+        
         <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" maxlength="150" id="floatingTextarea2"
+            <textarea class="form-control" [(ngModel)]="commentContent" placeholder="Leave a comment here" maxlength="150" id="floatingTextarea2"
                 style="height: 100px"></textarea>
             <label for="floatingTextarea2">Ingrese su comentario... (150 caracteres)</label>
         </div>
         <div class="boton">
-            <a class="btn btn-info btn-block " type="submit " value="Search">Comentar</a>
+            <a class="btn btn-info btn-block " type="submit " value="Search" (click) = "addComment()">Comentar</a>
         </div>
     </div>
 </div>
 
 <div class="container">
-    <div class="comentario">
-        <hr>
-        <div class="nombre">
-            Martina
-        </div>
-        <div class="contenidoComentario">
-            Muy buen apunte
-        </div>
-        <div class="fechaComentario">
-            12/12/2020
-        </div>
-        <hr>
-    </div>
-
-
-    <div class="comentario">
-        <hr>
-        <div class="nombre">
-            Martina
-        </div>
-        <div class="contenidoComentario">
-            Muy buen apunte
-        </div>
-        <div class="fechaComentario">
-            12/12/2020
-        </div>
-    </div>
-    <hr>
+            <div *ngIf = "listComments.length === 0" >
+                No hay comentarios para este apunte.
+            </div>
+            <div *ngFor ="let comment of listComments" class="comentario">
+                <hr>
+                <div class="nombre">
+                    {{ comment.creator}}
+                </div>
+                <div class="contenidoComentario">
+                    {{comment.content}}
+                </div>
+                <div class="fechaComentario">
+                    {{comment.date}}
+                </div>
+                <hr>
+            </div>
 </div>
 
