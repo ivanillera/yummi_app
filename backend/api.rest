@@ -84,3 +84,24 @@ Content-Type: application/json
 {
     "professor": "Adrianita"
 }
+
+
+### Crear comentario
+POST http://localhost:4000/api/comments
+Content-Type: application/json
+
+{
+    "creator": "60c572a013887e4d60491adc",
+    "content": "holiwis"
+}
+
+### Subir archivo
+POST http://localhost:4000/api/files
+Content-Type: application/json
+
+{
+    "url": "C:/Users/emman/Documents/yummi_app/frontendyummi/src/assets/Solucionario-Principio-de-las-Comunicaciones-Jose-Briceno.pdf"
+}
+
+### Lista
+GET http://localhost:4000/api/files
