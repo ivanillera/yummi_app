@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Comment } from 'src/app/models/Comment';
+import { CommentsService } from '../../../services/comments.service';
+
 
 @Component({
   selector: 'app-apunte',
@@ -27,12 +29,21 @@ export class ApunteComponent implements OnInit {
   }
   
 
-  constructor() { 
-    
-  }
+  constructor(public commentService: CommentsService) { }
 
   ngOnInit(): void {
+    this.getComments();
   }
+
+  getComments() {
+    this.commentService.getComments().subscribe(
+      res => {
+        this.commentService.comments = res;
+      },
+      err => console.error(err)
+    )
+  }
+
 
   liked = false;
   status = '0'; 
@@ -41,5 +52,7 @@ export class ApunteComponent implements OnInit {
     this.status = this.liked ? '1' : '0';
 
   }
+
+  
 
 }

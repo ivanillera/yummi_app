@@ -38,10 +38,10 @@
 </div>
 
 <div class="container">
-            <div *ngIf = "listComments.length === 0" >
+            <div *ngIf = "commentService.comments.length === 0" >
                 No hay comentarios para este apunte.
             </div>
-            <div *ngFor ="let comment of listComments" class="comentario">
+            <div *ngFor ="let comment of commentService.comments" class="comentario">
                 <hr>
                 <div class="nombre">
                     {{ comment.creator}}
