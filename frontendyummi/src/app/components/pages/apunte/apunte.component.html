@@ -23,17 +23,21 @@
     </div>
 </div>
 
+<!-- MI COMENTARIO!  -->
 <div class="container">
     <div class="miComentario">
         
         <div class="form-floating">
-            <textarea class="form-control" [(ngModel)]="commentContent" placeholder="Leave a comment here" maxlength="150" id="floatingTextarea2"
+            <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
+                <textarea class="form-control" name="content" [(ngModel)]="commentService.selectedComment.content" placeholder="Leave a comment here" maxlength="150" id="floatingTextarea2"
                 style="height: 100px"></textarea>
-            <label for="floatingTextarea2">Ingrese su comentario... (150 caracteres)</label>
+                <div class="boton">
+                    <button class="boton btn btn-info btn-block " type="submit ">Comentar</button>
+                </div>
+            </form>
+            
         </div>
-        <div class="boton">
-            <a class="btn btn-info btn-block " type="submit " value="Search" (click) = "addComment()">Comentar</a>
-        </div>
+        
     </div>
 </div>
 
