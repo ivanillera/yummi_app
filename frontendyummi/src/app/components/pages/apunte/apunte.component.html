@@ -45,7 +45,7 @@
             <div *ngIf = "commentService.comments.length === 0" >
                 No hay comentarios para este apunte.
             </div>
-            <div *ngFor ="let comment of commentService.comments" class="comentario">
+            <div *ngFor ="let comment of commentService.comments.reverse()" class="comentario">
                 <hr>
                 <div class="nombre">
                     {{ comment.creator}}

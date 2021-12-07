@@ -33,7 +33,9 @@ export class ApunteComponent implements OnInit {
     this.commentService.createComment(form.value).subscribe(
       res => console.log(res),
       err => console.log(err)
-    )
+    );
+    this.getComments();
+    this.resetForm(form);
   }
 
   resetForm(form: NgForm){ // No se usa.
