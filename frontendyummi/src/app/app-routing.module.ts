@@ -4,6 +4,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ApunteComponent } from './components/pages/apunte/apunte.component';
 import { CrearApunteComponent } from './components/pages/crear-apunte/crear-apunte.component';
 import { InfoperfilComponent } from './components/pages/perfil/infoperfil/infoperfil/infoperfil.component';
+import { EditarApunteComponent } from './components/pages/perfil/misapuntes/editar-apunte/editar-apunte.component';
 import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapuntes/misapuntes.component';
 import { PerfilComponent } from './components/pages/perfil/perfil.component';
 import { SearchbarComponent } from './components/pages/searchbar/searchbar.component';
@@ -30,6 +31,9 @@ const routes: Routes = [
   },
   {
     path:'perfil/info', component:InfoperfilComponent
+  },
+  {
+    path:'perfil/editarapunte', component:EditarApunteComponent
   }
 ];
 
