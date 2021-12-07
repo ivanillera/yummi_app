@@ -29,7 +29,7 @@
         
         <div class="form-floating">
             <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
-                <textarea class="form-control" name="content" [(ngModel)]="commentService.selectedComment.content" placeholder="Leave a comment here" maxlength="150" id="floatingTextarea2"
+                <textarea class="form-control" name="content" [(ngModel)]="commentService.selectedComment.content" placeholder="Dejá tu comentario! (Máximo 150 caracteres)" maxlength="150" id="floatingTextarea2"
                 style="height: 100px"></textarea>
                 <div class="boton">
                     <button class="boton btn btn-info btn-block " type="submit ">Comentar</button>
