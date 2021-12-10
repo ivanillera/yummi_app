@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from '@firebase/app-compat';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private auth: AngularFireAuth) {
-    auth.authState.subscribe(user=>{
-      console.log(user);
-    })
-   }
-
-  logOut() {return this.auth.signOut();}
-
-  googleAuth() {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider);
+  private URL = 'http://localhost:4000/api/users';
+  constructor(private http: HttpClient, private router: Router) {  }
+  
+  signUp(user: any){
+    return this.http.post<any>(this.URL + '/signup', user);
   }
 
-  facebookAuth() {
-    this.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider);
+  signIn(user: any){
+    return this.http.post<any>(this.URL + '/signin', user);
+  }
+
+  loggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  getToken(){
+    return localStorage.getItem('token');
+  }
+
+  logOut(){
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Note } from 'src/app/models/Note';
 import { NotesService } from '../../../services/notes.service';
 
@@ -11,9 +11,12 @@ import { NotesService } from '../../../services/notes.service';
   providers: [NotesService],
 })
 export class CrearApunteComponent implements OnInit {
-
+  noteForm: FormGroup;
 	
- 	constructor(public noteService: NotesService){
+ 	constructor(public noteService: NotesService, private formBuilder:FormBuilder){
+    this.noteForm = this.formBuilder.group({
+      name: ['', Validators.required],
+    })
 	}
 
   ngOnInit(): void {

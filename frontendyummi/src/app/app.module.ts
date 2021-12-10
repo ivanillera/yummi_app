@@ -3,8 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuth, AngularFireAuthModule } from  '@angular/fire/compat/auth';
-import { HttpClientModule } from '@angular/common/http';
+import { AngularFireAuthModule } from  '@angular/fire/compat/auth';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+import {TokenInterceptorService } from './services/token-interceptor.service';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -19,6 +21,8 @@ import { InfoperfilComponent } from './components/pages/perfil/infoperfil/infope
 import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapuntes/misapuntes.component';
 import { ApunteComponent } from './components/pages/apunte/apunte.component';
 import { EditarApunteComponent } from './components/pages/perfil/misapuntes/editar-apunte/editar-apunte.component';
+import { SignupComponent } from './components/pages/signup/signup.component';
+
 
 
 
@@ -34,7 +38,8 @@ import { EditarApunteComponent } from './components/pages/perfil/misapuntes/edit
     InfoperfilComponent,
     MisapuntesComponent,
     ApunteComponent,
-    EditarApunteComponent
+    EditarApunteComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,14 @@ import { EditarApunteComponent } from './components/pages/perfil/misapuntes/edit
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

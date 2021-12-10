@@ -8,11 +8,16 @@ import { EditarApunteComponent } from './components/pages/perfil/misapuntes/edit
 import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapuntes/misapuntes.component';
 import { PerfilComponent } from './components/pages/perfil/perfil.component';
 import { SearchbarComponent } from './components/pages/searchbar/searchbar.component';
+import { SignupComponent } from './components/pages/signup/signup.component';
 import { ThreadComponent } from './components/pages/thread/thread.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
     path:'', component:SearchbarComponent
+  },
+  {
+    path: '*', redirectTo: ''
   },
   {
     path:'apuntes', component:ThreadComponent
@@ -21,19 +26,32 @@ const routes: Routes = [
     path:'apunte', component: ApunteComponent
   },
   {
-    path:'perfil', component:PerfilComponent
+    path:'perfil', 
+    component: PerfilComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path:'crear', component:CrearApunteComponent
+    path:'crear',
+    component: CrearApunteComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path:'perfil/misapuntes', component:MisapuntesComponent
+    path:'perfil/misapuntes',
+    component: MisapuntesComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path:'perfil/info', component:InfoperfilComponent
+    path:'perfil/info',
+    component:InfoperfilComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path:'perfil/editarapunte', component:EditarApunteComponent
+    path:'perfil/editarapunte', 
+    component:EditarApunteComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'signup', component:SignupComponent
   }
 ];
 
