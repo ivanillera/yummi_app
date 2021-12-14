@@ -44,7 +44,7 @@
                                 <a class="" > {{ note.creator }}</a>
                             </td>
                             <td class="text-center">
-                                <span class="label label-default"> {{note.date}} 22/02/2020</span> 
+                                <span class="label label-default"> {{note.createdAt.split("T").join(" ").split("Z").join("").slice(0,10)}}</span> 
                                
                             </td>
                             <td class = "text-center">

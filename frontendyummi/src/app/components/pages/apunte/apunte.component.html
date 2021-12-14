@@ -55,7 +55,7 @@
                     {{comment.content}}
                 </div>
                 <div class="fechaComentario">
-                    {{comment.createdAt.split("T").join(" ").split("Z").join("")}}
+                    {{comment.createdAt.split("T").join(" ").split("Z").join("").slice(0,16)}}
                 </div>
                 <hr>
             </div>

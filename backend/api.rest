@@ -66,8 +66,8 @@ POST http://localhost:4000/api/subjects
 Content-Type: application/json
 
 {
-    "name": "Analisis Matematico III",
-    "professor": "Mercedes",
+    "name": "Inglés I",
+    "professor": "Susana",
     "notes": []
 }
 
