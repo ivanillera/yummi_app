@@ -5,7 +5,7 @@
             <div class="row justify-content-center ">
               <div class="col-md-6 mb-3 mb-md-0 ">
                   <div id="basic " class="form-outline form-white ">
-                      <input type="text " id="form1 " class="form-control form-control-lg " placeholder="¿De cuál materia o tema quieres ver apuntes?"/>
+                      <input type="text " id="form1 " class="form-control form-control-lg " placeholder="¿De cuál materia o tema quieres ver apuntes?" name="filterPost" [(ngModel)]="filterPost"/>
                   </div>
               </div>
 
@@ -35,7 +35,7 @@
 
 
                         
-                        <tr *ngFor="let note of noteService.notes">
+                        <tr *ngFor="let note of noteService.notes | filter:filterPost">
                             <!-- TODO: Sacar hardcodeo. -->
                             <td class="text">
                                 <a routerLink="/apunte" class="">{{ note.name }}</a>

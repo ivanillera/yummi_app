@@ -13,6 +13,7 @@ export class ThreadComponent implements OnInit {
   listApuntes: Apunte[] = []
   tituloApunte = '';
   username: string = '';
+  filterPost='';
 
   constructor(public noteService: NotesService) { }
 

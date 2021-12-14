@@ -22,6 +22,7 @@ import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapu
 import { ApunteComponent } from './components/pages/apunte/apunte.component';
 import { EditarApunteComponent } from './components/pages/perfil/misapuntes/editar-apunte/editar-apunte.component';
 import { SignupComponent } from './components/pages/signup/signup.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 
@@ -39,7 +40,8 @@ import { SignupComponent } from './components/pages/signup/signup.component';
     MisapuntesComponent,
     ApunteComponent,
     EditarApunteComponent,
-    SignupComponent
+    SignupComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
