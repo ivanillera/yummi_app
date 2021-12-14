@@ -5,7 +5,9 @@ import { NotesService } from '../../../services/notes.service';
 import { AuthService } from '../../../services/auth.service';
 import { UsersService} from '../../../services/users.service';
 import { SubjectsService } from 'src/app/services/subjects.service';
+import {ToastrService} from 'ngx-toastr';
 import { Note } from '../../../models/Note';
+
 import jwt_decode from 'jwt-decode';
 
 
@@ -20,14 +22,16 @@ export class CrearApunteComponent implements OnInit {
   tokenInfo: any;
   tokenId: any;
   userName: string;
-  pepe: any;
+  userData: any;
+  subjectId: any;
 	
  	constructor(
     private noteService: NotesService, 
     private formBuilder:FormBuilder, 
     private authService: AuthService, 
     private userService: UsersService,
-    public subjectsService: SubjectsService){
+    public subjectsService: SubjectsService,
+    private toastr: ToastrService){
     this.noteForm = this.formBuilder.group({
       name: ['', Validators.required],
       career: ['', Validators.required],
@@ -47,20 +51,20 @@ export class CrearApunteComponent implements OnInit {
 
   ngOnInit(){ 
     this.getSubjects();
+    this.getUserData();
+  }
+
+  getUserData(){
     this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
     this.tokenId = this.tokenInfo._id;
-    this.pepe = this.userService.getUser()
+    this.userData = this.userService.getUser()
         .subscribe(res => {
-          //console.log(res);
-          this.pepe = res
-          console.log(this.pepe);
-          this.userName = this.pepe.name;
-          console.log(this.userName);
+          this.userData = res
+          this.userName = this.userData.name;
         },
         err => {
           console.log(err);
         });
-
   }
 
   getSubjects() {
@@ -73,30 +77,29 @@ export class CrearApunteComponent implements OnInit {
   }
 
   typeSubject(){
-    var inputValue = (<HTMLInputElement>document.getElementById('pepe')).value;
-    console.log(inputValue);
-    console.log(this.noteService.notes);
-  }
+    this.subjectId = (<HTMLInputElement>document.getElementById('subjectId')).value;   
+}
 
   addNote(){
-
     const NOTE: Note = {
       name: this.noteForm.get('name')?.value,
       career: this.noteForm.get('career')?.value,
       creator: this.tokenId,
-      subject: this.noteForm.get('subject')?.value,
+      subject: this.subjectId,
       content: this.noteForm.get('content')?.value,
       calification: this.noteForm.get('calification')?.value,
       attached: this.noteForm.get('attached')?.value,
       category: this.noteForm.get('category')?.value,
       comments: this.noteForm.get('comments')?.value
     }
-    console.log(NOTE);
-    /*
+
     this.noteService.createNote(NOTE).subscribe(
-      res => {console.log(res);},
+      res => {
+        console.log(res)
+        this.toastr.success('Apunte creado con exito.','Apunte registrado!');
+      },
       err => {console.log(err);}
-    )*/
+    )
   }
 
   resetForm(form: NgForm) {

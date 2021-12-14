@@ -34,73 +34,8 @@
     <div class="form-group">
       <label class="form-label titulo">Materia (*)</label>
       <select class="form-select">
-        <option *ngFor="let subject of subjectsService.subjects" [value]="noteService.note._id" (click)="typeSubject()"> {{ subject.name }} -- {{subject.professor}} -- {{subject._id}} </option>
-      </select>
-      <!---->
-      <select class="form-select"  placeholder="Selecciona tu materia...">
         <option selected disabled>Selecciona tu materia</option>
-        <!-- PRIMERO -->
-        <option disabled class="year">Primero</option>
-        <option value="Álgebra y Geometría Analítica">Álgebra y Geometría Analítica</option>
-        <option value="Matemática Discreta">Matemática Discreta</option>
-        <option value="Ingeniería y Sociedad">Ingeniería y Sociedad</option>
-        <option value="Sistemas y Organizaciones">Sistemas y Organizaciones</option>
-        <option value="Algoritmos y Estructuras de Datos">Algoritmos y Estructuras de Datos</option>
-        <option value="Inglés I">Inglés I</option>
-        <option value="Química">Química</option>
-        <option value="Física I">Física I</option>
-        <option value="Análisis Matemático I">Análisis Matemático I</option>
-        <option disabled></option>
-        
-        <!-- SEGUNDO -->
-        <option disabled class="year">Segundo</option>
-        <option value="60c80ade70df0f346472ad38">Analisis Matematico II</option>
-        <option value="Sintaxis y Semántica de los Lenguajes">Sintaxis y Semántica de los Lenguajes</option>
-        <option value="Análisis de Sistemas">Análisis de Sistemas</option>
-        <option value="Inglés II">Inglés II</option>
-        <option value="Física II">Física II</option>
-        <option value="Arquitectura de Computadoras">Arquitectura de Computadoras</option>
-        <option value="Paradigmas de la Programación">Paradigmas de la Programación</option>
-        <option value="Probabilidades y Estadística">Probabilidades y Estadística</option>
-
-        <option disabled></option>
-        <!-- TERCERO -->
-        <option disabled class="year">Tercero</option>
-        <option value="Matemática Superior">Matemática Superior</option>
-        <option value="Sistemas Operativos">Sistemas Operativos</option>
-        <option value="Gestión de Datos">Gestión de Datos</option>
-        <option value="Comunicaciones">Comunicaciones</option>
-        <option value="Métodos Numéricos">Métodos Numéricos</option>
-        <option value="Estadística Aplicada">Estadística Aplicada</option>
-        <option value="Diseño de Sistemas">Diseño de Sistemas</option>
-        <option value="Física Acústica">Física Acústica</option>
-        <option value="Seguridad Informática">Seguridad Informática</option>
-        <option value="Economía">Economía</option>
-
-        <option disabled></option>
-        <!-- CUARTO -->
-        <option disabled class="year">Cuarto</option>
-        <option value="Ingeniería de Software">Ingeniería de Software</option>
-        <option value="Electrónica General y Aplicada">Electrónica General y Aplicada</option>
-        <option value="Legislación">Legislación</option>
-        <option value="Investigación Operativa">Investigación Operativa</option>
-        <option value="Simulación">Simulación</option>
-        <option value="Teoría de Control">Teoría de Control</option>
-        <option value="Redes de Información">Redes de Información</option>
-        <option value="Administración de Recursos">Administración de Recursos</option>
-        <option disabled></option>
-        <!-- QUINTO -->
-        <option disabled class="year">Quinto</option>
-        <option value="Sistemas de Gestión">Sistemas de Gestión</option>
-        <option value="Procesamiento Digital de Imágenes">Procesamiento Digital de Imágenes</option>
-        <option value="Sisteamas Informáticos Industriales">Sistemas Informáticos Industriales</option>
-        <option value="Inteligencia Artificial">Inteligencia Artificial</option>
-        <option value="Redes Neuronales">Redes Neuronales</option>
-        <option value="Administración Gerencial">Administración Gerencial</option>
-        <option value="Control Estadístico de Procesos">Control Estadístico de Procesos</option>
-        <option value="Laboratorio de Microcontroladores y DSP">Laboratorio de Microcontroladores</option>
-        <option value="Proyecto">Proyecto</option>
-       
+        <option *ngFor="let subject of subjectsService.subjects" value="{{subject._id}}" (click)="typeSubject()" id="subjectId"> {{ subject.name }} ({{subject.professor}}) </option>
       </select>
     </div>
 
@@ -171,6 +106,7 @@
     <a type="submit" (click)="addNote()" class="btn btn-info btn-block" style="width: 100px;" >Subir</a>
     
   </form>
+  
   <!-- 
 	<form (ngSubmit)="onSubmit()" #formName="ngForm">
 		<h2>Add a new player</h2>
@@ -183,4 +119,3 @@
   <span class="texto">(*) Campos obligatorios</span>
 
 </div>
-
