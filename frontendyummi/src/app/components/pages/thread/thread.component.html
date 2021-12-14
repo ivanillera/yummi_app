@@ -35,7 +35,7 @@
 
 
                         
-                        <tr *ngFor="let note of noteService.notes | filter:filterPost">
+                        <tr *ngFor="let note of noteService.notes.reverse() | filter:filterPost">
                             <!-- TODO: Sacar hardcodeo. -->
                             <td class="text">
                                 <a routerLink="/apunte" class="">{{ note.name }}</a>
@@ -51,7 +51,7 @@
                                 <span class="label label-default">{{ note.subject }} Matemática Superior</span>
                             </td>
                             <td class = "text-center">
-                                <i class="fas fa-book-open custom"></i>
+                                <i class="fas fa-heart"></i>
                                 <span class="nroLikes"> {{ note.calification }} </span>
                             </td>
 
