@@ -12,7 +12,8 @@ export class ThreadComponent implements OnInit {
 
   listApuntes: Apunte[] = []
   tituloApunte = '';
-  username: string = "juan";
+  username: string = '';
+  filterPost='';
 
   constructor(public noteService: NotesService) { }
 
