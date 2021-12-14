@@ -1,9 +1,8 @@
 const { Schema, model } = require('mongoose')
 
 const commentSchema = new Schema({
-    creator: {type: Schema.ObjectId, ref:'User', required: false},
+    creator: {type: Schema.ObjectId, ref:'User', required: true},
     content: {type: String, required: true},
-    date: {type:String, required:false}
 },{
     timestamps: true,
     versionKey: false

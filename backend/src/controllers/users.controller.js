@@ -24,6 +24,7 @@ userCtrl.signIn = async (req,res) => {
     if (user.password !== password) return res.status(401).send('La contraseña no es valida');
 
     const token = jwt.sign({_id: user._id}, 'secretKey')
+    
     res.status(200).json({token})
 }
 

@@ -1,25 +1,27 @@
 <div class="container crear">
 
-  <form #noteForm="ngForm" (ngSubmit)="addNote(noteForm)">
-    <!-- TEST: Creator -->
+  <form [formGroup]="noteForm">
+    <!-- TEST: Creator
     <div class="form-group">
       <label class="form-label"> TEST Creator</label>
-      <input type="text" class="form-control" name="creator" placeholder="Ingrese el tema de su apunte..." [(ngModel)]="noteService.selectedNote.creator">
+      <input type="text" class="form-control" name="creator" placeholder="Ingrese el tema de su apunte...">
     </div>
-      <!-- TEST: calification -->
+    -->
+    <!-- TEST: calification
       <div class="form-group">
         <label class="form-label"> calification </label>
         <input type="number" class="form-control" name="calification" placeholder="Ingrese el tema de su apunte..." [(ngModel)]="noteService.selectedNote.calification">
       </div>
+    -->
     <!-- Tema/Name -->
     <div class="form-group">
       <label for="exampleFormControlInput1" class="form-label titulo">Tema (*)</label>
-      <input type="text" class="form-control" name="name" placeholder="Ingrese el tema de su apunte..." [(ngModel)]="noteService.selectedNote.name">
+      <input type="text" class="form-control" name="name" placeholder="Ingrese el tema de su apunte..." formControlName="name">
     </div>
     <!-- Carrera/Career  -->
     <div class="form-group">
       <label for="exampleFormControlInput1" class="form-label titulo">Carrera (*)</label>
-      <select class="form-select" name="career" placeholder="Selecciona tu carrera..." [(ngModel)]="noteService.selectedNote.career">
+      <select class="form-select" name="career" placeholder="Selecciona tu carrera..." formControlName="career">
         <option selected disabled>Selecciona tu Carrera</option>
         <option >Ing. en Sistemas de Información</option>
         <option >Ing. Química</option>
@@ -31,7 +33,11 @@
     <!-- Materia/Subject -->
     <div class="form-group">
       <label class="form-label titulo">Materia (*)</label>
-      <select class="form-select" name="subject" placeholder="Selecciona tu materia..." [(ngModel)]="noteService.selectedNote.subject">
+      <select class="form-select">
+        <option *ngFor="let subject of subjectsService.subjects" [value]="noteService.note._id" (click)="typeSubject()"> {{ subject.name }} -- {{subject.professor}} -- {{subject._id}} </option>
+      </select>
+      <!---->
+      <select class="form-select"  placeholder="Selecciona tu materia...">
         <option selected disabled>Selecciona tu materia</option>
         <!-- PRIMERO -->
         <option disabled class="year">Primero</option>
@@ -134,7 +140,7 @@
     
     <div class="form-group">
       <label class="form-label titulo">Seleccione una categoría</label>
-      <select class="form-select" name="category" [(ngModel)]="noteService.selectedNote.category">
+      <select class="form-select" name="category" formControlName="category">
         <option value="" selected disabled hidden>Selecciona una categoría</option>
         <option value="Parcial">Parcial</option>
         <option value="Resumen">Resumen</option>
@@ -149,20 +155,20 @@
         <div class="row">
           <label class="form-label titulo" >Contenido(*) | Ingrese un link o un adjunto:</label>
           <div class="col">
-            <textarea class="form-control" name="content" rows="3" placeholder="Ingrese link..." [(ngModel)]="noteService.selectedNote.content"></textarea>
+            <textarea class="form-control" name="content" rows="3" placeholder="Ingrese link..." formControlName="content"></textarea>
           </div>
           <div class="col">
             <label for="formFileLg" class="form-label"></label>
-            <input class="form-control" name="attached" type="file" [(ngModel)]="noteService.selectedNote.attached">
+            <input class="form-control" name="attached" type="file" formControlName="attached">
             <a>* Tamaño máximo del archivo 50MB.</a>
           </div>
         </div>
     </div>
 
     <!-- Acciones/Actions -->
-    <button type="cancel" class="btn btn-danger boton" style="width: 100px;" (click)="resetForm(noteForm)">Cancelar</button>
+    <button type="cancel" class="btn btn-danger boton" style="width: 100px;">Cancelar</button>
     <!-- <button type="submit" class="btn btn-success">Subir</button> -->
-    <a class="btn btn-info btn-block" style="width: 100px;" type="submit">Subir</a>
+    <a type="submit" (click)="addNote()" class="btn btn-info btn-block" style="width: 100px;" >Subir</a>
     
   </form>
   <!-- 

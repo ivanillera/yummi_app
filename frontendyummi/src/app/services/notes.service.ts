@@ -2,38 +2,40 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Note } from '../models/Note';
 import { User } from '../models/User';
-import { EMPTY } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotesService {
 
-  URL_API = 'http://localhost:4000/api/notes';
+  URL_API = 'http://localhost:4000/api/notes/';
 
   notes: Note[] = [];
 
   selectedNote: Note = {
     name: '',
     career:'',
-    subject: '',
+    subject: {
+      name: '',
+      professor: ''
+    },
     creator: '',
     content: '',
     calification: 0,
     attached:'',
     category: '',
-    date: ''
+    comments: []
   }
   
   constructor(private http: HttpClient) {
   }
-
   
   getNotes() {
     return this.http.get<Note[]>(this.URL_API);
   }
 
-  createNote(note:Note) {
+  createNote(note:Note): Observable<any>{
     return this.http.post(this.URL_API, note);
   }
 }

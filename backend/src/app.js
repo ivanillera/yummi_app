@@ -65,3 +65,14 @@ var conn = mongoose.createConnection(mongoURI);
       app.post('/upload', upload.single('attached'), (req, res) => {
         res.json({file: req.file});
       })
+
+      app.use(function(req,res,next) {
+        JWT.verify(req.cookies['token'], 'secretKey', function(err, decodedToken) {
+          if(err) { /* handle token err */ }
+          else {
+           req.userId = decodedToken.id;   // Add to req object
+           next();
+          }
+        });
+       });
+       

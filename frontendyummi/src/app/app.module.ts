@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from  '@angular/fire/compat/auth';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import {TokenInterceptorService } from './services/token-interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -16,7 +17,6 @@ import { SearchbarComponent } from './components/pages/searchbar/searchbar.compo
 import { ThreadComponent } from './components/pages/thread/thread.component';
 import { CrearApunteComponent } from './components/pages/crear-apunte/crear-apunte.component';
 import { PerfilComponent } from './components/pages/perfil/perfil.component';
-import { environment } from 'src/environments/environment';
 import { InfoperfilComponent } from './components/pages/perfil/infoperfil/infoperfil/infoperfil.component';
 import { MisapuntesComponent } from './components/pages/perfil/misapuntes/misapuntes/misapuntes.component';
 import { ApunteComponent } from './components/pages/apunte/apunte.component';
@@ -45,10 +45,10 @@ import { SignupComponent } from './components/pages/signup/signup.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     AuthGuard,
