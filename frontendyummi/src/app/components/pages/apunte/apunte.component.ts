@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Comment } from 'src/app/models/Comment';
 import { CommentsService } from '../../../services/comments.service';
 import { FormGroup, NgForm } from '@angular/forms';
+import { NotesService } from 'src/app/services/notes.service';
 
 @Component({
   selector: 'app-apunte',
@@ -43,7 +44,7 @@ export class ApunteComponent implements OnInit {
   }
   
 
-  constructor(public commentService: CommentsService) { }
+  constructor(public commentService: CommentsService, public notesService: NotesService) { }
 
   ngOnInit(): void {
     this.getComments();
@@ -67,6 +68,10 @@ export class ApunteComponent implements OnInit {
 
   }
 
-  
+  getNote(id: any) {
+    this.notesService.getNote(id).subscribe(data => {
+      console.log(data);
+    })
+    }
 
 }
