@@ -23,10 +23,10 @@ const routes: Routes = [
     path:'apuntes', component:ThreadComponent
   },
   {
-    path:'apunte/:id', component: ApunteComponent
+    path:'apunte/:id', component:ApunteComponent
   },
   {
-    path:'perfil', 
+    path:'perfil/:id', 
     component: PerfilComponent,
     canActivate: [AuthGuard]
   },

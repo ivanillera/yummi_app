@@ -49,6 +49,15 @@ export class ThreadComponent implements OnInit {
           console.log(err);
         });
   }
+  
+  getNote(id: any) {
+    this.noteService.getNote(id).subscribe(
+      res => {
+        this.noteService.notes = res
+      }
+    )
+  }
+
 
   // Falta implementación
 
