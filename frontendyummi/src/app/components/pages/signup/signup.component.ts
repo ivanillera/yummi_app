@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit {
       res => {
         console.log(res);
         localStorage.setItem('token', res.token);
-        this.router.navigate(['/perfil/misapuntes']);
+        this.router.navigate(['/perfil']);
       },
       err => console.log(err)
     )

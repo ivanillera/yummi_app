@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Apunte } from 'src/app/models/Apunte';
 import { User } from 'src/app/models/User';
 import { NotesService } from '../../../services/notes.service';
+import { UsersService} from '../../../services/users.service';
+import { AuthService } from '../../../services/auth.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-thread',
@@ -14,8 +17,12 @@ export class ThreadComponent implements OnInit {
   tituloApunte = '';
   username: string = '';
   filterPost='';
+  tokenInfo: any;
+  tokenId: any;
+  userData: any;
+  userName: any;
 
-  constructor(public noteService: NotesService) { }
+  constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, ) { }
 
   ngOnInit(): void {
     this.getNotes();
@@ -30,6 +37,18 @@ export class ThreadComponent implements OnInit {
     )
   }
 
+  getUserData(){
+    this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
+    this.tokenId = this.tokenInfo._id;
+    this.userData = this.userService.getUser()
+        .subscribe(res => {
+          this.userData = res
+          this.userName = this.userData.name;
+        },
+        err => {
+          console.log(err);
+        });
+  }
 
   // Falta implementación
 
@@ -46,6 +65,15 @@ export class ThreadComponent implements OnInit {
     this.listApuntes.push(apunte);
     // Resetear formulario
     this.tituloApunte = ''
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
   }
 
 }

@@ -38,10 +38,10 @@
                         <tr *ngFor="let note of noteService.notes.reverse() | filter:filterPost">
                             <!-- TODO: Sacar hardcodeo. -->
                             <td class="text">
-                                <a routerLink="/apunte" class="">{{ note.name }}</a>
+                                <a [routerLink]="['/apunte', note._id]" class="">{{ note.name }}</a>
                             </td>
                             <td class="text-center">
-                                <a class="" > {{ note.creator }}</a>
+                                <a class="" > {{ note.creator }} </a>
                             </td>
                             <td class="text-center">
                                 <span class="label label-default"> {{note.createdAt.split("T").join(" ").split("Z").join("").slice(0,10)}}</span> 

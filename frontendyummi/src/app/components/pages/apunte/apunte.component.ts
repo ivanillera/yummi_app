@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Comment } from 'src/app/models/Comment';
 import { CommentsService } from '../../../services/comments.service';
 import { FormGroup, NgForm } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-apunte',
@@ -9,6 +10,9 @@ import { FormGroup, NgForm } from '@angular/forms';
   styleUrls: ['./apunte.component.css']
 })
 export class ApunteComponent implements OnInit {
+
+  id: String | null;
+
   listComments: Comment[] = []
   commentCreator = "Creador de Prueba"
   commentContent = ""
@@ -27,26 +31,12 @@ export class ApunteComponent implements OnInit {
   //   this.commentContent = '';
 
   // }
-
-  addComment(form: NgForm){
-    console.log(form.value);
-    this.commentService.createComment(form.value).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    );
-    this.getComments();
-    this.resetForm(form);
+  constructor(public commentService: CommentsService, private activatedRoute: ActivatedRoute) {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
   }
-
-  resetForm(form: NgForm){ // No se usa.
-    form.reset();
-  }
-  
-
-  constructor(public commentService: CommentsService) { }
 
   ngOnInit(): void {
-    this.getComments();
+    console.log(this.id);
   }
 
   getComments() {
@@ -67,6 +57,18 @@ export class ApunteComponent implements OnInit {
 
   }
 
-  
+  addComment(form: NgForm){
+    console.log(form.value);
+    this.commentService.createComment(form.value).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
+    this.getComments();
+    this.resetForm(form);
+  }
+
+  resetForm(form: NgForm){ // No se usa.
+    form.reset();
+  }
 
 }

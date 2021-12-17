@@ -23,7 +23,7 @@ const routes: Routes = [
     path:'apuntes', component:ThreadComponent
   },
   {
-    path:'apunte', component: ApunteComponent
+    path:'apunte/:id', component: ApunteComponent
   },
   {
     path:'perfil', 

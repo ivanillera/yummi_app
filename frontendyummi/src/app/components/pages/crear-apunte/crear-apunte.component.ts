@@ -21,8 +21,9 @@ export class CrearApunteComponent implements OnInit {
   noteForm: FormGroup;
   tokenInfo: any;
   tokenId: any;
-  userName: string;
   userData: any;
+
+  userName: string;
   subjectId: any;
 	
  	constructor(
