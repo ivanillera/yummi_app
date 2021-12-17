@@ -6,7 +6,7 @@ const filesCtrl = require('../controllers/files.controller.js')
 // '/' es /api/users
 router.get('/', filesCtrl.getFiles);
 router.post('/', filesCtrl.createFile);
-router.get('/:id', filesCtrl.getFiles);
+router.get('/:id', filesCtrl.getFile);
 router.put('/:id', filesCtrl.editFile);
 router.delete('/:id', filesCtrl.deleteFile);
 

@@ -6,7 +6,7 @@ const subjectsCtrl = require('../controllers/subjects.controller.js')
 // '/' es /api/users
 router.get('/', subjectsCtrl.getSubjects);
 router.post('/', subjectsCtrl.createSubject);
-router.get('/:id', subjectsCtrl.getSubjects);
+router.get('/:id', subjectsCtrl.getSubject);
 router.put('/:id', subjectsCtrl.editSubject);
 router.delete('/:id', subjectsCtrl.deleteSubject);
 
