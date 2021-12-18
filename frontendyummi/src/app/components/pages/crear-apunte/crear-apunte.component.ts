@@ -50,18 +50,20 @@ export class CrearApunteComponent implements OnInit {
 
 	}
 
-  ngOnInit(){ 
-    this.getSubjects();
-    this.getUserData();
+  ngOnInit(){
+    this.getUserData()
+    this.getSubjects()
+
   }
 
   getUserData(){
     this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
     this.tokenId = this.tokenInfo._id;
-    this.userData = this.userService.getUser()
+    this.userData = this.userService.getUser(this.tokenId)
         .subscribe(res => {
           this.userData = res
-          this.userName = this.userData.name;
+          //this.userName = this.userData.name;
+
         },
         err => {
           console.log(err);

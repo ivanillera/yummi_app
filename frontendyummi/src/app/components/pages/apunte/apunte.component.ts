@@ -3,6 +3,8 @@ import { Comment } from 'src/app/models/Comment';
 import { CommentsService } from '../../../services/comments.service';
 import { FormGroup, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { NotesService } from 'src/app/services/notes.service';
+import { Note } from '../../../models/Note';
 
 @Component({
   selector: 'app-apunte',
@@ -11,7 +13,21 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class ApunteComponent implements OnInit {
 
-  id: String | null;
+  id: any;
+  note: Note = {
+    name: '',
+    career:'',
+    subject: {
+      name: '',
+      professor: ''
+    },
+    creator: '',
+    content: '',
+    calification: 0,
+    attached:'',
+    category: '',
+    comments: []
+  }
 
   listComments: Comment[] = []
   commentCreator = "Creador de Prueba"
@@ -31,13 +47,19 @@ export class ApunteComponent implements OnInit {
   //   this.commentContent = '';
 
   // }
-  constructor(public commentService: CommentsService, private activatedRoute: ActivatedRoute) {
+  constructor(public commentService: CommentsService, private activatedRoute: ActivatedRoute, private notesService: NotesService) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
     console.log(this.id);
-    
+    this.notesService.getNote(this.id).subscribe(
+      res => {
+        this.note = res;
+        console.log(this.note);
+        },
+      err => {console.log(err);}
+    );
   }
 
   getComments() {

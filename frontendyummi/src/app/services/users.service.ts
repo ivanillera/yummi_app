@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsersService {
 
-  URL_API = 'http://localhost:4000/api/users'
+  URL_API = 'http://localhost:4000/api/users/'
 
   constructor(private http: HttpClient) { }
 
@@ -15,8 +15,8 @@ export class UsersService {
     return this.http.get(this.URL_API);
   }
 
-  getUser(){
-    return this.http.get<User>('http://localhost:4000/api/users/61b288da99b1b433ea65ae3d');
+  getUser(id: string){
+    return this.http.get<User>(this.URL_API + id);
   };
 
 

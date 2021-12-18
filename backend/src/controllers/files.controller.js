@@ -1,3 +1,12 @@
+
+const multer = require('multer')
+const { Router } = require('express'); 
+
+const router = new Router();
+
+const path = require('path');
+const fs = require('fs');
+
 const fileCtrl = {}
 
 const File = require('../models/File')
@@ -8,9 +17,27 @@ fileCtrl.getFiles = async (req, res) => {
 }
 
 fileCtrl.createFile = async (req, res) => {
-    const newFile = new File(req.body)
-    await newFile.save()
-    res.send({ message: 'File created' })
+    const storage = multer.diskStorage({
+        destination: path.join(__dirname, '../public/uploads'),
+        filename:  (req, file, cb) => {
+            cb(null, Date.now() + file.originalname);
+        }
+    })
+    const uploadImage = multer({
+        storage,
+        limits: {fileSize: 1024*1024*5}
+    }).single('file');
+
+    uploadImage(req, res, (err) => {
+        if (err) {
+            err.message = 'The file is so heavy for my service';
+            return res.send(err);
+        }
+        console.log(req.file);
+        //const newFile = new File(req.body)
+        //await newFile.save()
+        //res.send({ message: 'File created' })
+    });
 }
 
 

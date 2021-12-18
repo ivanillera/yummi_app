@@ -40,7 +40,7 @@ export class ThreadComponent implements OnInit {
   getUserData(){
     this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
     this.tokenId = this.tokenInfo._id;
-    this.userData = this.userService.getUser()
+    this.userData = this.userService.getUser(this.tokenId)
         .subscribe(res => {
           this.userData = res
           this.userName = this.userData.name;

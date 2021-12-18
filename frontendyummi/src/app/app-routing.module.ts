@@ -26,7 +26,7 @@ const routes: Routes = [
     path:'apunte/:id', component:ApunteComponent
   },
   {
-    path:'perfil/:id', 
+    path:'perfil', 
     component: PerfilComponent,
     canActivate: [AuthGuard]
   },
