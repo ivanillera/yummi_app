@@ -1,17 +1,18 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="titulo"> {{ note.name }}</div>
-
+    <img src="file:///Users/daviddonayo/Documents/GitHub/yummi_app/backend/src/public/uploads/f7cc3abc-38db-4b7f-8112-a85532659d65.png">
     <div class="contenido">
         <iframe
-        src="https://stackoverflow.com/questions/29859490/how-to-store-a-file-with-mongoose-crate-via-an-express-route"
+
+        url="file:///Users/daviddonayo/Documents/GitHub/yummi_app/backend/src/public/uploads/f7cc3abc-38db-4b7f-8112-a85532659d65.png"
         frameBorder="0"
         scrolling="auto"
         height="100%"
         width="100%"
         ></iframe>
     </div>
-
+    
     <div class="clasificacion">
         <div class="boton">
             <a class="btn btn-info btn-block" (click)="likear()" [ngClass]="{'white' : !liked, '': liked}" type="submit " value="Search">

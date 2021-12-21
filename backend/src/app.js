@@ -32,6 +32,7 @@ app.use("/api/comments", require('./routes/comments.routes'));
 app.use(require('./routes/images.routes'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 module.exports = app;
 
 //TODO - MEJORAR ESTO

@@ -34,6 +34,8 @@ export class ApunteComponent implements OnInit {
   commentContent = ""
   commentDate = "21/10/2021"
 
+  SRC_FILE: any;
+
   // addComment(){
   //   // Crear un objeto comentario
   //   const comment: Comment = {
@@ -52,6 +54,7 @@ export class ApunteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadImages()
     console.log(this.id);
     this.notesService.getNote(this.id).subscribe(
       res => {
@@ -61,6 +64,12 @@ export class ApunteComponent implements OnInit {
       err => {console.log(err);}
     );
   }
+
+  async loadImages(){
+    const response = await fetch('http://localhost:4000/api/files/61c0ebe8f9d18012531e62db').then(response => response.json());
+    this.SRC_FILE = response.filePath;
+    console.log(this.SRC_FILE);
+  };
 
   getComments() {
     this.commentService.getComments().subscribe(

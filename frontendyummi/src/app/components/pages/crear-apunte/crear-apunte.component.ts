@@ -7,7 +7,7 @@ import { UsersService} from '../../../services/users.service';
 import { SubjectsService } from 'src/app/services/subjects.service';
 import {ToastrService} from 'ngx-toastr';
 import { Note } from '../../../models/Note';
-
+import { UcWidgetModule } from 'ngx-uploadcare-widget';
 import jwt_decode from 'jwt-decode';
 
 
@@ -15,9 +15,17 @@ import jwt_decode from 'jwt-decode';
   selector: 'app-crear-apunte',
   templateUrl: './crear-apunte.component.html',
   styleUrls: ['./crear-apunte.component.css'],
-  providers: [NotesService],
+  providers: [NotesService,
+    UcWidgetModule],
 })
 export class CrearApunteComponent implements OnInit {
+
+  // Variable to store shortLink from api response
+  shortLink: string = "";
+  loading: boolean = false; // Flag variable
+  file: File | undefined; // Variable to store file
+
+
   noteForm: FormGroup;
   tokenInfo: any;
   tokenId: any;
@@ -25,14 +33,15 @@ export class CrearApunteComponent implements OnInit {
 
   userName: string;
   subjectId: any;
-	
+
  	constructor(
     private noteService: NotesService, 
     private formBuilder:FormBuilder, 
     private authService: AuthService, 
     private userService: UsersService,
     public subjectsService: SubjectsService,
-    private toastr: ToastrService){
+    private toastr: ToastrService,
+    private uploadcare: UcWidgetModule){
     this.noteForm = this.formBuilder.group({
       name: ['', Validators.required],
       career: ['', Validators.required],
@@ -45,16 +54,34 @@ export class CrearApunteComponent implements OnInit {
       comments: [[]]
 
     })
-
     this.userName = '';
-
 	}
 
   ngOnInit(){
     this.getUserData()
     this.getSubjects()
-
   }
+
+    // On file Select
+    onChange(event:any) {
+        this.file = event.target.files[0];
+    }
+  
+    // OnClick of button Upload
+    onUpload() {
+        this.loading = !this.loading;
+        this.noteService.upload(this.file).subscribe(
+            (event: any) => {
+                if (typeof (event) === 'object') {
+  
+                    // Short link via api response
+                    this.shortLink = event.link;
+                    console.log(this.shortLink);
+                    this.loading = false; // Flag variable 
+                }
+            }
+        );
+    }
 
   getUserData(){
     this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));

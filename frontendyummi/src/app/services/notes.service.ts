@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Note } from '../models/Note';
 import { User } from '../models/User';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, Observable, throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { EMPTY, Observable } from 'rxjs';
 export class NotesService {
 
   URL_API = 'http://localhost:4000/api/notes/';
+  FILE_API = 'https://file.io';
 
   notes: Note[] = [];
 
@@ -28,7 +30,7 @@ export class NotesService {
     comments: []
   }
   
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toastr: ToastrService) {
   }
   
   getNotes() {
@@ -41,5 +43,25 @@ export class NotesService {
 
   createNote(note:Note): Observable<any>{
     return this.http.post(this.URL_API, note);
+  }
+
+    // Returns an observable
+    upload(file:any):Observable<any> {
+      console.log(file);
+      if (file.size > 50000000){
+        this.toastr.error('El archivo que quiere subir es demasiado pesado');
+        return throwError('El archivo que quiere subir es demasiado pesado');
+      } else {
+      // Create form data
+        const formData = new FormData(); 
+          
+        // Store form name as "file" with file data
+        formData.append("file", file, file.name);
+          
+        // Make http post request over api
+        // with formData as req
+        return this.http.post(this.FILE_API, formData)
+      }
+
   }
 }
