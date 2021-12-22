@@ -149,25 +149,32 @@
     <!-- Contenido/Content-->
     <div class="form-group">
         <div class="row">
-          <!-- file -->
+        <ng-picker-overlay
+        apikey="AvHvKEsxS4i2EoPKAkTaez"
+        (uploadSuccess)="onUploadSuccess($event)">
+
+          <button>Open picker</button>
+        </ng-picker-overlay>
+          <!-- file 
           <div class="text-center">
-              <input class="form-control" type="file" 
-                      (change)="onChange($event)">
-            
-              <button (click)="onUpload()" 
-                  class="btn btn-success">
-                  Upload
-              </button>
-          </div>
+            <input class="form-control" type="file" 
+                    (change)="onChange($event)">
           
-          <!-- Shareable short link of  uoloaded file -->
+            <button (click)="onUpload()" 
+                class="btn btn-success">
+                Upload
+            </button>
+          </div>
+
+  
+          Shareable short link of  uoloaded file 
           <div class="container text-center jumbotron"
               *ngIf="shortLink">
               <h2> Visit Here</h2>
               <a href="{{shortLink}}">{{shortLink}}</a>
           </div>
             
-          <!--Flag variable is used here-->
+          <Flag variable is used here-->
           <div class="container" *ngIf="loading">
               <h3>Loading ...</h3>
           </div>

@@ -30,7 +30,7 @@ app.use("/api/subjects", require('./routes/subjects.routes'));
 app.use("/api/files", require('./routes/files.routes'));
 app.use("/api/comments", require('./routes/comments.routes'));
 app.use(require('./routes/images.routes'));
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 
 module.exports = app;

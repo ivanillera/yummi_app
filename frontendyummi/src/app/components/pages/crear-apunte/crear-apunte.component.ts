@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
+
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NotesService } from '../../../services/notes.service';
 import { AuthService } from '../../../services/auth.service';
 import { UsersService} from '../../../services/users.service';
 import { SubjectsService } from 'src/app/services/subjects.service';
+import { FilesService } from 'src/app/services/files.service';
 import {ToastrService} from 'ngx-toastr';
 import { Note } from '../../../models/Note';
-import { UcWidgetModule } from 'ngx-uploadcare-widget';
 import jwt_decode from 'jwt-decode';
-
 
 @Component({
   selector: 'app-crear-apunte',
   templateUrl: './crear-apunte.component.html',
   styleUrls: ['./crear-apunte.component.css'],
-  providers: [NotesService,
-    UcWidgetModule],
+  providers: [NotesService],
 })
 export class CrearApunteComponent implements OnInit {
 
@@ -40,8 +39,9 @@ export class CrearApunteComponent implements OnInit {
     private authService: AuthService, 
     private userService: UsersService,
     public subjectsService: SubjectsService,
+    public fileService: FilesService,
     private toastr: ToastrService,
-    private uploadcare: UcWidgetModule){
+    ){
     this.noteForm = this.formBuilder.group({
       name: ['', Validators.required],
       career: ['', Validators.required],
@@ -62,6 +62,10 @@ export class CrearApunteComponent implements OnInit {
     this.getSubjects()
   }
 
+  onUploadSuccess(res: object) {
+    console.log('###uploadSuccess', res);
+  }
+  
     // On file Select
     onChange(event:any) {
         this.file = event.target.files[0];
@@ -76,6 +80,7 @@ export class CrearApunteComponent implements OnInit {
   
                     // Short link via api response
                     this.shortLink = event.link;
+                    console.log(event);
                     console.log(this.shortLink);
                     this.loading = false; // Flag variable 
                 }

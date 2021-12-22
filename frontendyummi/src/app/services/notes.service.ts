@@ -45,23 +45,22 @@ export class NotesService {
     return this.http.post(this.URL_API, note);
   }
 
-    // Returns an observable
-    upload(file:any):Observable<any> {
-      console.log(file);
-      if (file.size > 50000000){
-        this.toastr.error('El archivo que quiere subir es demasiado pesado');
-        return throwError('El archivo que quiere subir es demasiado pesado');
-      } else {
-      // Create form data
-        const formData = new FormData(); 
-          
-        // Store form name as "file" with file data
-        formData.append("file", file, file.name);
-          
-        // Make http post request over api
-        // with formData as req
-        return this.http.post(this.FILE_API, formData)
-      }
+  // Returns an observable
+  upload(file:any):Observable<any> {
+    if (file.size > 50000000){
+      this.toastr.error('El archivo que quiere subir es demasiado pesado');
+      return throwError('El archivo que quiere subir es demasiado pesado');
+    } else {
+    // Create form data
+      const formData = new FormData(); 
+        
+      // Store form name as "file" with file data
+      formData.append("file", file, file.name);
+        
+      // Make http post request over api
+      // with formData as req
+      return this.http.post(this.FILE_API, formData)
+    }
 
   }
 }

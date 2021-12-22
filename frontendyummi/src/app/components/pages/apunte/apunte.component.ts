@@ -54,7 +54,7 @@ export class ApunteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadImages()
+    //this.loadImages()
     console.log(this.id);
     this.notesService.getNote(this.id).subscribe(
       res => {
@@ -69,6 +69,12 @@ export class ApunteComponent implements OnInit {
     const response = await fetch('http://localhost:4000/api/files/61c0ebe8f9d18012531e62db').then(response => response.json());
     this.SRC_FILE = response.filePath;
     console.log(this.SRC_FILE);
+    const fileElement = document.querySelector('.uopa');
+    fileElement!.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = 'http://localhost:4000/api/files/61c0ebe8f9d18012531e62db/81f8d5aa-b390-4b4f-b375-5598348eb72a.png';
+    img.height = 200;
+    fileElement!.appendChild(img);
   };
 
   getComments() {

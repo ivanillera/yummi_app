@@ -11,14 +11,16 @@ const File = require('../models/File');
 // CRUD o ABM
 const filesCtrl = require('../controllers/files.controller.js');
 // '/' es /api/users
-router.get('/', filesCtrl.getFiles);
+//router.get('/', filesCtrl.getFiles);
 //router.post('/', filesCtrl.createFile);
 const storage = multer.diskStorage({
+
     destination: path.join(__dirname, '../public/uploads'),
     filename: (req, file, cb) => {
         const ext = path.extname(file.originalname);
         const id = uuid();
         const filePath = `${id}${ext}`;
+        console.log(path.dirname(require.main.filename) + filePath);
         File.create({ filePath: filePath })
             .then(() => {
                 cb(null, filePath)
@@ -30,14 +32,21 @@ const upload = multer({
     limits: {fileSize: 1024*1024*5}
 }); // or simply { dest: 'uploads/' }
 
-router.use(express.static('public'));
-router.use(express.static('uploads'));
+
+router.use(express.static('api/files'));
 router.use('/public/uploads', express.static(__dirname + '/public/uploads/'));
 
 router.post('/', upload.array('avatar'), (req, res) => {
+
     return res.send({ message: 'File created' });
+
 });
 
+router.post('/', (req, res) => {
+
+    return res.send('./index.html');
+
+});
 /* router.post('/', (req, res) => {
 
     const storage = multer.diskStorage({

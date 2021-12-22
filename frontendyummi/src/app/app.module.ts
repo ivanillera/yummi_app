@@ -7,6 +7,7 @@ import { AuthGuard } from './auth.guard';
 import {TokenInterceptorService } from './services/token-interceptor.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
+import { FilestackModule } from '@filestack/angular';
 
 
 //Componentes
@@ -50,6 +51,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    FilestackModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right'
     })
