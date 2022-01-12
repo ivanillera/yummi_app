@@ -25,7 +25,7 @@ export class ApunteComponent implements OnInit {
     content: '',
     calification: 0,
     attached:'',
-    category: '',
+    category: [],
     comments: []
   }
 

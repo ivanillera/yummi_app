@@ -26,7 +26,7 @@ export class NotesService {
     content: '',
     calification: 0,
     attached:'',
-    category: '',
+    category: [],
     comments: []
   }
   

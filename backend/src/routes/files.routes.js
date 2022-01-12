@@ -1,3 +1,10 @@
+/* 
+
+Implementación de subida de archivos al backend:
+-PROBLEMAS: Si bien esto funciona no podemos solucionar el tema de traer los archivos del back al front
+-Este modulo queda en stand by, se utiliza la api de filestack para la subida de archivos (import { FilestackService } from '@filestack/angular';)
+
+
 const { Router } = require('express');
 const express = require('express');
 
@@ -10,7 +17,7 @@ const File = require('../models/File');
 
 // CRUD o ABM
 const filesCtrl = require('../controllers/files.controller.js');
-// '/' es /api/users
+// '/' es /api/files
 //router.get('/', filesCtrl.getFiles);
 //router.post('/', filesCtrl.createFile);
 const storage = multer.diskStorage({
@@ -47,7 +54,7 @@ router.post('/', (req, res) => {
     return res.send('./index.html');
 
 });
-/* router.post('/', (req, res) => {
+router.post('/', (req, res) => {
 
     const storage = multer.diskStorage({
         destination: path.join(__dirname, '../public/uploads'),
@@ -68,10 +75,12 @@ router.post('/', (req, res) => {
         console.log(req.file);
         res.send('uploaded');
     });
-}); */
+});
 router.get('/:id', filesCtrl.getFile);
 router.put('/:id', filesCtrl.editFile);
 router.delete('/:id', filesCtrl.deleteFile);
 
 
 module.exports = router;
+
+*/

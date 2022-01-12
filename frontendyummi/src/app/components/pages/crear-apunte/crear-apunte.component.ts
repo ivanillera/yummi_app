@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, ElementRef, OnInit } from '@angular/core';
+import * as $ from "jquery";
 
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NotesService } from '../../../services/notes.service';
@@ -10,6 +10,8 @@ import { FilesService } from 'src/app/services/files.service';
 import {ToastrService} from 'ngx-toastr';
 import { Note } from '../../../models/Note';
 import jwt_decode from 'jwt-decode';
+import { FilestackService } from '@filestack/angular';
+
 
 @Component({
   selector: 'app-crear-apunte',
@@ -21,9 +23,8 @@ export class CrearApunteComponent implements OnInit {
 
   // Variable to store shortLink from api response
   shortLink: string = "";
-  loading: boolean = false; // Flag variable
-  file: File | undefined; // Variable to store file
-
+  file: any; // Variable to store file
+  loading: any;
 
   noteForm: FormGroup;
   tokenInfo: any;
@@ -33,6 +34,8 @@ export class CrearApunteComponent implements OnInit {
   userName: string;
   subjectId: any;
 
+  arrayPrueba:any;
+
  	constructor(
     private noteService: NotesService, 
     private formBuilder:FormBuilder, 
@@ -41,6 +44,7 @@ export class CrearApunteComponent implements OnInit {
     public subjectsService: SubjectsService,
     public fileService: FilesService,
     private toastr: ToastrService,
+    private filestackService: FilestackService
     ){
     this.noteForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -50,43 +54,67 @@ export class CrearApunteComponent implements OnInit {
       content: ['', Validators.required],
       calification: 0,
       attached: ['', Validators.required],
-      category : ['', Validators.required],
+      category : [ [], Validators.required],
       comments: [[]]
 
     })
     this.userName = '';
+    this.arrayPrueba = [];
 	}
 
   ngOnInit(){
+    // API KEY
+    this.filestackService.init('AvHvKEsxS4i2EoPKAkTaez'); 
     this.getUserData()
     this.getSubjects()
   }
 
-  onUploadSuccess(res: object) {
-    console.log('###uploadSuccess', res);
+  arraypepe(event: any){
+    if (event.target.checked) {
+      this.arrayPrueba.push(event.target.value);
+    }
+    console.log();
+
   }
-  
-    // On file Select
-    onChange(event:any) {
-        this.file = event.target.files[0];
+
+  pepe2(e:any){
+    console.log(e.target.value)
+  }
+
+
+  fileChanged(e:any) {
+    (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "none";
+    (<HTMLInputElement> document.getElementById("uploadButton")).disabled = false;
+    this.file = e.target.files[0];
+    console.log(this.file);
+    if (this.file.size > 50000000){
+      this.toastr.error('El archivo que estas intentando subir es mayor a 50 MB.');
+      this.file = null;
+      e.target.value = null;
     }
-  
-    // OnClick of button Upload
-    onUpload() {
-        this.loading = !this.loading;
-        this.noteService.upload(this.file).subscribe(
-            (event: any) => {
-                if (typeof (event) === 'object') {
-  
-                    // Short link via api response
-                    this.shortLink = event.link;
-                    console.log(event);
-                    console.log(this.shortLink);
-                    this.loading = false; // Flag variable 
-                }
-            }
-        );
-    }
+  }
+
+  uploadFile(){
+    this.postFileStack().then((res) => {
+      this.loading!.style.display = "none";
+      this.toastr.success('Archivo cargado con exito.');
+      (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "block";
+    })
+  }
+
+  postFileStack(){
+    (<HTMLInputElement> document.getElementById("uploadButton")).disabled = true;
+    this.loading = document.getElementById('fileLoading');
+    this.loading!.style.display = "block";
+    return new Promise((resolve, reject) => {
+      this.filestackService.upload(this.file)
+      .subscribe(res => {
+        console.log(Object.keys(res));
+        console.log(Object.values(res)[4]);
+        resolve(res);
+      })
+    })
+  }
 
   getUserData(){
     this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
@@ -124,17 +152,20 @@ export class CrearApunteComponent implements OnInit {
       content: this.noteForm.get('content')?.value,
       calification: this.noteForm.get('calification')?.value,
       attached: this.noteForm.get('attached')?.value,
-      category: this.noteForm.get('category')?.value,
+      //category: this.noteForm.get('category')?.value,
+      category: this.arrayPrueba,
       comments: this.noteForm.get('comments')?.value
     }
-
+    console.log(NOTE);
+    /*
     this.noteService.createNote(NOTE).subscribe(
       res => {
         console.log(res)
         this.toastr.success('Apunte creado con exito.','Apunte registrado!');
       },
       err => {console.log(err);}
-    )
+    );
+    */
   }
 
   resetForm(form: NgForm) {

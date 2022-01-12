@@ -27,27 +27,9 @@ app.use(express.urlencoded({extended: false}));
 app.use("/api/users", require('./routes/users.routes'));
 app.use("/api/notes", require('./routes/notes.routes'));
 app.use("/api/subjects", require('./routes/subjects.routes'));
-app.use("/api/files", require('./routes/files.routes'));
+//app.use("/api/files", require('./routes/files.routes')); -- MODULO DESHABILITADO POR EL MOMENTO
 app.use("/api/comments", require('./routes/comments.routes'));
 app.use(require('./routes/images.routes'));
-//app.use(express.static(path.join(__dirname, 'public')));
 
 
 module.exports = app;
-
-//TODO - MEJORAR ESTO
-/*
-      app.post('/upload', upload.single('attached'), (req, res) => {
-        res.json({file: req.file});
-      })
-
-      app.use(function(req,res,next) {
-        JWT.verify(req.cookies['token'], 'secretKey', function(err, decodedToken) {
-          if(err) {}
-          else {
-           req.userId = decodedToken.id;   // Add to req object
-           next();
-          }
-        });
-       });
-*/

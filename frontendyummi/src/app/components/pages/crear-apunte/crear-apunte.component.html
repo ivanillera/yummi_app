@@ -1,17 +1,6 @@
 <div class="container crear">
   <form [formGroup]="noteForm">
-    <!-- TEST: Creator
-    <div class="form-group">
-      <label class="form-label"> TEST Creator</label>
-      <input type="text" class="form-control" name="creator" placeholder="Ingrese el tema de su apunte...">
-    </div>
-    -->
-    <!-- TEST: calification
-      <div class="form-group">
-        <label class="form-label"> calification </label>
-        <input type="number" class="form-control" name="calification" placeholder="Ingrese el tema de su apunte..." [(ngModel)]="noteService.selectedNote.calification">
-      </div>
-    -->
+
     <!-- Tema/Name -->
     <div class="form-group">
       <label for="exampleFormControlInput1" class="form-label titulo">Tema (*)</label>
@@ -34,179 +23,91 @@
       <label class="form-label titulo">Materia (*)</label>
       <select class="form-select">
         <option selected disabled>Selecciona tu materia</option>
-        <option *ngFor="let subject of subjectsService.subjects" value="{{subject._id}}" (click)="typeSubject()" id="subjectId"> {{ subject.name }} </option>
-        
-        <option disabled></option>
-        <option disabled class="year">Primero</option>
-        <option value="Álgebra y Geometría Analítica">Álgebra y Geometría Analítica</option>
-        <option value="Matemática Discreta">Matemática Discreta</option>
-        <option value="Ingeniería y Sociedad">Ingeniería y Sociedad</option>
-        <option value="Sistemas y Organizaciones">Sistemas y Organizaciones</option>
-        <option value="Algoritmos y Estructuras de Datos">Algoritmos y Estructuras de Datos</option>
-        <option value="Inglés I">Inglés I</option>
-        <option value="Química">Química</option>
-        <option value="Física I">Física I</option>
-        <option value="Análisis Matemático I">Análisis Matemático I</option>
-        <option disabled></option>
-        
-        <!-- SEGUNDO -->
-        <option disabled class="year">Segundo</option>
-        <option value="60c80ade70df0f346472ad38">Analisis Matematico II</option>
-        <option value="Sintaxis y Semántica de los Lenguajes">Sintaxis y Semántica de los Lenguajes</option>
-        <option value="Análisis de Sistemas">Análisis de Sistemas</option>
-        <option value="Inglés II">Inglés II</option>
-        <option value="Física II">Física II</option>
-        <option value="Arquitectura de Computadoras">Arquitectura de Computadoras</option>
-        <option value="Paradigmas de la Programación">Paradigmas de la Programación</option>
-        <option value="Probabilidades y Estadística">Probabilidades y Estadística</option>
-
-        <option disabled></option>
-        <!-- TERCERO -->
-        <option disabled class="year">Tercero</option>
-        <option value="Matemática Superior">Matemática Superior</option>
-        <option value="Sistemas Operativos">Sistemas Operativos</option>
-        <option value="Gestión de Datos">Gestión de Datos</option>
-        <option value="Comunicaciones">Comunicaciones</option>
-        <option value="Métodos Numéricos">Métodos Numéricos</option>
-        <option value="Estadística Aplicada">Estadística Aplicada</option>
-        <option value="Diseño de Sistemas">Diseño de Sistemas</option>
-        <option value="Física Acústica">Física Acústica</option>
-        <option value="Seguridad Informática">Seguridad Informática</option>
-        <option value="Economía">Economía</option>
-
-        <option disabled></option>
-        <!-- CUARTO -->
-        <option disabled class="year">Cuarto</option>
-        <option value="Ingeniería de Software">Ingeniería de Software</option>
-        <option value="Electrónica General y Aplicada">Electrónica General y Aplicada</option>
-        <option value="Legislación">Legislación</option>
-        <option value="Investigación Operativa">Investigación Operativa</option>
-        <option value="Simulación">Simulación</option>
-        <option value="Teoría de Control">Teoría de Control</option>
-        <option value="Redes de Información">Redes de Información</option>
-        <option value="Administración de Recursos">Administración de Recursos</option>
-        <option disabled></option>
-        <!-- QUINTO -->
-        <option disabled class="year">Quinto</option>
-        <option value="Sistemas de Gestión">Sistemas de Gestión</option>
-        <option value="Procesamiento Digital de Imágenes">Procesamiento Digital de Imágenes</option>
-        <option value="Sisteamas Informáticos Industriales">Sistemas Informáticos Industriales</option>
-        <option value="Inteligencia Artificial">Inteligencia Artificial</option>
-        <option value="Redes Neuronales">Redes Neuronales</option>
-        <option value="Administración Gerencial">Administración Gerencial</option>
-        <option value="Control Estadístico de Procesos">Control Estadístico de Procesos</option>
-        <option value="Laboratorio de Microcontroladores y DSP">Laboratorio de Microcontroladores</option>
-        <option value="Proyecto">Proyecto</option>
+        <option *ngFor="let subject of subjectsService.subjects" value="{{subject._id}}" (click)="typeSubject()" id="subjectId"> {{ subject.name }} - {{ subject.professor }}</option>
       </select>
     </div>
 
-    <!-- Category/Categoría --> 
-    <!-- <div class="form-group" [(ngModel)]="noteService.selectedNote.category">
-      <a style="font-weight: bold;">Seleccione Categorías:   </a>
-      <div class="categorias" style="margin-top:10px; margin-bottom: 10px;">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Parcial">
-          <label class="form-check-label" for="inlineCheckbox1">Parcial</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Resumen">
-          <label class="form-check-label" for="inlineCheckbox2">Resumen</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Tarea">
-          <label class="form-check-label" for="inlineCheckbox3">Tarea</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="Final" >
-          <label class="form-check-label" for="inlineCheckbox4">Final</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="Trabajo Práctico">
-          <label class="form-check-label" for="inlineCheckbox5">Trabajo Práctico</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="Otros">
-          <label class="form-check-label" for="inlineCheckbox6">Otros</label>
-        </div>
-      </div>
-      </div> -->
-    
-    
-    
-    
-    <div class="form-group">
-      <label class="form-label titulo">Seleccione una categoría</label>
-      <select class="form-select" name="category" formControlName="category">
-        <option value="" selected disabled hidden>Selecciona una categoría</option>
-        <option value="Parcial">Parcial</option>
-        <option value="Resumen">Resumen</option>
-        <option value="Tarea">Tarea</option>
-        <option value="Final">Final</option>
-        <option value="Trabajo Practico">Trabajo Practico</option>
-      </select>
-    </div>
-    
-    <!-- Contenido/Content-->
-    <div class="form-group">
-        <div class="row">
-        <ng-picker-overlay
-        apikey="AvHvKEsxS4i2EoPKAkTaez"
-        (uploadSuccess)="onUploadSuccess($event)">
 
-          <button>Open picker</button>
-        </ng-picker-overlay>
-          <!-- file 
-          <div class="text-center">
-            <input class="form-control" type="file" 
-                    (change)="onChange($event)">
-          
-            <button (click)="onUpload()" 
-                class="btn btn-success">
-                Upload
-            </button>
-          </div>
-
+    <!-- Categoria/ Category 
+    <label class="form-label titulo">Categorías</label>
+    <div class="form-group">
+      <div id="checkboxes">
+        <ul>
+                  
+          <li><input type="checkbox" value="Trabajo Practico" (change)="arraypepe($event)"> Trabajo Practico</li>
+          <li><input type="checkbox" value="Laboratorio" (change)="arraypepe($event)"> Laboratorio </li>
+          <li><input type="checkbox" value="Resumen" (change)="arraypepe($event)"> Resumen </li>
+          <li><input type="checkbox" value="Ejercicio" (change)="arraypepe($event)"> Ejercicio </li>
+          <li><input type="checkbox" value="Informe" (change)="arraypepe($event)"> Informe </li>
+          <li><input type="checkbox" value="Parcial" (change)="arraypepe($event)"> Parcial </li>
+          <li><input type="checkbox" value="Tarea" (change)="arraypepe($event)"> Tarea </li>
+          <li><input type="checkbox" value="Final" (change)="arraypepe($event)"> Final </li>
   
-          Shareable short link of  uoloaded file 
-          <div class="container text-center jumbotron"
-              *ngIf="shortLink">
-              <h2> Visit Here</h2>
-              <a href="{{shortLink}}">{{shortLink}}</a>
-          </div>
-            
-          <Flag variable is used here-->
-          <div class="container" *ngIf="loading">
-              <h3>Loading ...</h3>
-          </div>
-          <!-- file -->
+        </ul>
+      </div>
+    </div>
+  -->
+    
+    <!-- Contenido/Content 
+    <div class="form-group">
+        <div class="row" >
+
           <label class="form-label titulo" >Contenido(*) | Ingrese un link o un adjunto:</label>
           <div class="col">
             <textarea class="form-control" name="content" rows="3" placeholder="Ingrese link..." formControlName="content"></textarea>
           </div>
           <div class="col">
             <label for="formFileLg" class="form-label"></label>
-            <input class="form-control" name="attached" type="file" formControlName="attached">
-            <a>* Tamaño máximo del archivo 50MB.</a>
+            <input type='file' (change)="fileChanged($event)" style="margin-bottom: 5%;" id = "file">
+
+            <div class="spinner-border text-success" style="display:none;" role="status" id="fileLoading">
+              <span class="sr-only">Cargando...</span>
+            </div>
+            <a style="color: green; display:none;" id="succesLabel">&nbsp; Archivo cargado con exito.</a>
+            <br>
+            <button (click)="uploadFile()" class="btn btn-secondary" style="width:40%; height:40%;" id="uploadButton"> Adjuntar archivo</button>
+            <a style="color: grey;">&nbsp; * Tamaño máximo del archivo 50MB.</a>
           </div>
         </div>
     </div>
+  -->
+  <div class="row">
+    <div class="col-md-2">
+      <label class="form-label titulo" style="margin-top:0.5rem;">Categorías</label>
+      <div id="checkboxes">
+        <ul>
+                  
+          <li><input type="checkbox" value="Trabajo Practico" (change)="arraypepe($event)"> Trabajo Practico</li>
+          <li><input type="checkbox" value="Laboratorio" (change)="arraypepe($event)"> Laboratorio </li>
+          <li><input type="checkbox" value="Resumen" (change)="arraypepe($event)"> Resumen </li>
+          <li><input type="checkbox" value="Ejercicio" (change)="arraypepe($event)"> Ejercicio </li>
+          <li><input type="checkbox" value="Informe" (change)="arraypepe($event)"> Informe </li>
+          <li><input type="checkbox" value="Parcial" (change)="arraypepe($event)"> Parcial </li>
+          <li><input type="checkbox" value="Tarea" (change)="arraypepe($event)"> Tarea </li>
+          <li><input type="checkbox" value="Final" (change)="arraypepe($event)"> Final </li>
+  
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label titulo" style="margin-top:0.5rem;">Contenido(*) | Ingrese un link o un adjunto:</label>
+      <label for="formFileLg" class="form-label"></label>
+      <input type='file' (change)="fileChanged($event)" style="margin-bottom: 5%;" id = "file">
 
-    <!-- Acciones/Actions -->
-    <button type="cancel" class="btn btn-danger boton" style="width: 100px;">Cancelar</button>
-    <!-- <button type="submit" class="btn btn-success">Subir</button> -->
-    <a type="submit" (click)="addNote()" class="btn btn-info btn-block" style="width: 100px;" >Subir</a>
+      <div class="spinner-border text-success" style="display:none;" role="status" id="fileLoading">
+        <span class="sr-only">Cargando...</span>
+      </div>
+      <a style="color: green; display:none;" id="succesLabel">&nbsp; Archivo cargado con exito.</a>
+      <br>
+      <button (click)="uploadFile()" class="btn btn-secondary" id="uploadButton"> Adjuntar archivo</button>
+      <a style="color: grey;">&nbsp; * Tamaño máximo del archivo 50MB.</a>
+    </div>
+  </div>
     
   </form>
-  
-  <!-- 
-	<form (ngSubmit)="onSubmit()" #formName="ngForm">
-		<h2>Add a new player</h2>
-		<div class="form-group">
-
-		</div>
-		<button type="submit" class="btn btn-success" [disabled]="!formName.form.valid">Add Player</button>
-	</form>
-  -->
+  <!-- Acciones/Actions -->
+  <button type="cancel" class="btn btn-danger boton" style="width: 100px;">Cancelar</button>
+  <a type="submit" (click)="addNote()" class="btn btn-info btn-block" style="width: 100px;" >Subir</a>
   <span class="texto">(*) Campos obligatorios</span>
 
 </div>
