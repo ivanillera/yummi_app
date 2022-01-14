@@ -45,6 +45,10 @@ export class NotesService {
     return this.http.post(this.URL_API, note);
   }
 
+  deleteNote(id: string): Observable<any>{
+    return this.http.delete(this.URL_API + id)
+  }
+
   // Returns an observable
   upload(file:any):Observable<any> {
     if (file.size > 50000000){

@@ -37,6 +37,15 @@ export class ThreadComponent implements OnInit {
     )
   }
 
+  deleteNote(id:string){
+    this.noteService.deleteNote(id).subscribe(
+      res => {
+        this.noteService.notes = res;
+      },
+      err => console.error(err)
+    )
+  }
+
   getUserData(){
     this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
     this.tokenId = this.tokenInfo._id;
