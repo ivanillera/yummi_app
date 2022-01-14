@@ -43,16 +43,16 @@
                                 <a class="" > {{ note.category }}</a>
                             </td>
                             <td class="text">
-                                <a [routerLink]="['/apunte', note._id]">{{ note.name }}</a>
+                                <a [routerLink]="['/apunte', note._id]"  >{{ note.name }}</a>
                             </td>
                             <td class="text-center">
-                                <a class="" > {{ note.creator }} </a>
+                                <a class="" > {{ note.creator}} </a>
                             </td>
                             <td class="text-center">
                                 <span class="label label-default"> {{note.createdAt.split("T").join(" ").split("Z").join("").slice(0,10)}}</span> 
                             </td>
                             <td class = "text-center">
-                                <span class="label label-default">{{ note.subject }} Matemática Superior</span>
+                                <span class="label label-default">{{ note.subject }}</span>
                             </td>
                             <td class = "text-center">
                                 <span class="label label-default">{{ note.career }}</span>

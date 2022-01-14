@@ -18,10 +18,7 @@ export class NotesService {
   selectedNote: Note = {
     name: '',
     career:'',
-    subject: {
-      name: '',
-      professor: ''
-    },
+    subject: '',
     creator: '',
     content: '',
     calification: 0,
