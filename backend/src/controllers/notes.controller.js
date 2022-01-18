@@ -3,7 +3,7 @@ const noteCtrl = {}
 const Note = require('../models/Note')
 
 noteCtrl.getNotes = async (req, res) => {
-    const notes = await Note.find()
+    const notes = await Note.find().populate('creator'); 
     res.json(notes)
 }
 
