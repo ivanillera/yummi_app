@@ -46,7 +46,7 @@
                                 <a [routerLink]="['/apunte', note._id]"  >{{ note.name }}</a>
                             </td>
                             <td class="text-center">
-                                <a class="" > {{ note.creator}} </a>
+                                <a class="" > {{ note.creator.name}} </a>
                             </td>
                             <td class="text-center">
                                 <span class="label label-default"> {{note.createdAt.split("T").join(" ").split("Z").join("").slice(0,10)}}</span> 
