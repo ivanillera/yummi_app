@@ -42,6 +42,42 @@ export class NotesService {
     return this.http.post(this.URL_API, note);
   }
 
+  // addLike(note:Note): Observable<any>{
+  //   return this.http.put(this.URL_API, note.calification = note.calification +  1)
+  // }
+
+  // this.notesService.getNote(this.id).subscribe(
+  //   res => {
+  //     this.note = res;
+  //     console.log('Nota: ', this.note);
+  //     },
+  //   err => {console.log(err);}
+  // );
+
+
+  
+  updateNote(note: Note, id: string): Observable<any> {
+    const resCalification = note.calification
+    const body = {calification: resCalification + 1}
+    return this.http.put(this.URL_API + id, body);
+  }
+
+  // updateNote(id: string, note: Note): Observable<any> {
+  //   const calificacionActual = this.getCalification(id,note)
+  //   console.log("calification: ", calificacionActual)
+  //   const body = { calification: calificacionActual }
+  //   return this.http.put(this.URL_API + id, body);
+  // }
+
+  // getCalification(id:string, note:Note){
+  //   return this.http.post(this.URL_API + id, note.calification )
+  // }
+
+  // updateNote(id:string, x:number): Observable<any> {
+  //   let body = { calification: x }
+  //   return this.http.put(this.URL_API, body);
+  // }
+
   deleteNote(id: string): Observable<any>{
     return this.http.delete(this.URL_API + id)
   }

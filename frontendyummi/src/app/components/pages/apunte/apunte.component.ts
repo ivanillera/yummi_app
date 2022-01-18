@@ -56,7 +56,7 @@ export class ApunteComponent implements OnInit {
     this.notesService.getNote(this.id).subscribe(
       res => {
         this.note = res;
-        console.log(this.note);
+        console.log('Nota: ', this.note);
         },
       err => {console.log(err);}
     );
@@ -83,14 +83,26 @@ export class ApunteComponent implements OnInit {
     )
   }
 
-
   liked = false;
   status = '0'; 
   likear(){
     this.liked = !this.liked;
     this.status = this.liked ? '1' : '0';
+    if (this.liked == true){
+      console.log("LIKE!")
+      this.notesService.updateNote(this.note, this.id).subscribe(
+        res => res,
+        err => console.log(err)
+      )
+      window.location.reload();
+
+    }
+    else{
+      console.log("SACO LIKE PERRO")
+    }
 
   }
+
 
   addComment(form: NgForm){
     console.log(form.value);
