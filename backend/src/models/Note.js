@@ -8,7 +8,7 @@ const noteSchema = new Schema({
     body: {type: String, required: false},
     calification: {type: Number, required: false},
     file: {type: String, required: false}, // Contenido de apunte: Adjuntar archivo.
-    category: {type: String(), required: FontFaceSetLoadEvent},
+    category: {type: String(), required: false},
     comments: {type: String(), required: false}
 },{
     timestamps: true,
