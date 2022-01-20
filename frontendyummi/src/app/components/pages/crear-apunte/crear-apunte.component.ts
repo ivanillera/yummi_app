@@ -157,7 +157,6 @@ export class CrearApunteComponent implements OnInit {
       comments: this.noteForm.get('comments')?.value
     }
     console.log(NOTE);
-    /*
     this.noteService.createNote(NOTE).subscribe(
       res => {
         console.log(res)
@@ -165,7 +164,6 @@ export class CrearApunteComponent implements OnInit {
       },
       err => {console.log(err);}
     );
-    */
   }
 
   resetForm(form: NgForm) {
