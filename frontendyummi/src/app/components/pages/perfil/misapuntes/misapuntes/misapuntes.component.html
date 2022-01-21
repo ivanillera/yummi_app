@@ -20,9 +20,10 @@
                         <tbody>
 
 
-
+                        <a #tokenId>{{tokenId}}</a>
                         <tr *ngFor="let note of noteService.notes.reverse()">
-                            <div class="nota" *ngIf="note.creator._id === '61b92841b63b32398a5d269e' ">
+                            <!-- TODO: QUE TOKEN ID VAYA A LA CONDICION!!! -->
+                            <div class="nota" *ngIf="note.creator._id === '61b92841b63b32398a5d269e' "> 
                                                             <!-- TODO: Sacar hardcodeo. -->
                             <td class="text-center">
                                 <a class="" > {{ note.category }}</a>

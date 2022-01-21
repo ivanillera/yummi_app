@@ -14,13 +14,33 @@ import { ThreadComponent } from '../../../thread/thread.component';
 })
 export class MisapuntesComponent implements OnInit {
 
+  tokenInfo: any;
+  tokenId: any;
+  userData: any;
+
 
 
   constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, ) { }
   ngOnInit(): void {
     this.getNotes();
+    this.getUserData();
   }
 
+  getUserData(){
+    this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
+    this.tokenId = this.tokenInfo._id;
+    this.userData = this.userService.getUser(this.tokenId)
+        .subscribe(res => {
+          this.userData = res
+          //this.userName = this.userData.name;
+
+        },
+        err => {
+          console.log(err);
+        });
+  }
+
+  
   getNotes() {
     this.noteService.getNotes().subscribe(
       res => {
