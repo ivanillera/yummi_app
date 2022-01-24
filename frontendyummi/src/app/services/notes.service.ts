@@ -56,9 +56,15 @@ export class NotesService {
 
 
   
-  updateNote(note: Note, id: string): Observable<any> {
+  agregarLike(note: Note, id: string): Observable<any> {
     const resCalification = note.calification
     const body = {calification: resCalification + 1}
+    return this.http.put(this.URL_API + id, body);
+  }
+
+  removerLike(note: Note, id: string): Observable<any> {
+    const resCalification = note.calification
+    const body = {calification: resCalification - 1}
     return this.http.put(this.URL_API + id, body);
   }
 

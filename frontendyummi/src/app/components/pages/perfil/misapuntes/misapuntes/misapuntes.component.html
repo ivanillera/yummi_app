@@ -20,33 +20,33 @@
                         <tbody>
 
 
-                        <a #tokenId>{{tokenId}}</a>
-                        <tr *ngFor="let note of noteService.notes.reverse()">
+                        <a>{{tokenId}}</a>
+                        
+                        <tr *ngFor="let note of noteService.notes.reverse()" >
                             <!-- TODO: QUE TOKEN ID VAYA A LA CONDICION!!! -->
-                            <div class="nota" *ngIf="note.creator._id === '61b92841b63b32398a5d269e' "> 
-                                                            <!-- TODO: Sacar hardcodeo. -->
-                            <td class="text-center">
+                                                                                        <!-- TODO: Sacar hardcodeo. -->
+                            <td class="text-center" *ngIf="note.creator._id === '61b92841b63b32398a5d269e' ">
                                 <a class="" > {{ note.category }}</a>
                             </td>
-                            <td class="text">
+                            <td class="text" *ngIf="note.creator._id === '61b92841b63b32398a5d269e' ">
                                 <a [routerLink]="['/apunte', note._id]"  >{{ note.name }}</a>
                             </td>
                         
-                            <td class="text-center">
+                            <td class="text-center" *ngIf="note.creator._id === '61b92841b63b32398a5d269e' ">
                                 <span class="label label-default"> {{note.createdAt.split("T").join(" ").split("Z").join("").slice(0,10)}}</span> 
                             </td>
-                            <td class = "text-center">
+                            <td class = "text-center" *ngIf="note.creator._id === '61b92841b63b32398a5d269e' ">
                                 <span class="label label-default">{{ note.subject }}</span>
                             </td>
-                            <td class = "text-center">
+                            <td class = "text-center" *ngIf="note.creator._id === '61b92841b63b32398a5d269e' ">
                                 <span class="label label-default">{{ note.career }}</span>
                             </td>
-                            <td class = "text-center">
+                            <td class = "text-center" *ngIf="note.creator._id === '61b92841b63b32398a5d269e' ">
                                 <i class="fas fa-heart"></i>
                                 <span class="nroLikes"> {{ note.calification }} </span>
                             </td>
 
-                            <td style="text-align: end;">
+                            <td style="text-align: end;" *ngIf="note.creator._id === '61b92841b63b32398a5d269e' ">
                                 <a href="/apuntes" (click)=deleteNote(note._id) class="table-link danger">
                                     <span class="fa-stack">
                                     <i class="fa fa-square fa-stack-2x"></i>
@@ -55,7 +55,7 @@
                                 </a>
                             </td>
                             
-                            </div>
+                
 
                         </tr>
                         

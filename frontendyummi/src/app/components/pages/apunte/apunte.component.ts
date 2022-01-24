@@ -86,20 +86,43 @@ export class ApunteComponent implements OnInit {
   liked = false;
   status = '0'; 
   likear(){
+    
+    
     this.liked = !this.liked;
     this.status = this.liked ? '1' : '0';
     if (this.liked == true){
+      
       console.log("LIKE!")
-      this.notesService.updateNote(this.note, this.id).subscribe(
+      this.notesService.agregarLike(this.note, this.id).subscribe(
         res => res,
         err => console.log(err)
       )
-      window.location.reload();
+      this.notesService.getNote(this.id).subscribe(
+        res => {
+          this.note = res;
+          console.log('Nota: ', this.note);
+          },
+        err => {console.log(err);}
+      );
+      
 
     }
     else{
       console.log("SACO LIKE PERRO")
+      this.notesService.removerLike(this.note, this.id).subscribe(
+        res => res,
+        err => console.log(err)
+      )
+      this.notesService.getNote(this.id).subscribe(
+      res => {
+        this.note = res;
+        console.log('Nota: ', this.note);
+        },
+      err => {console.log(err);}
+    );
+    window.location.reload()
     }
+
 
   }
 

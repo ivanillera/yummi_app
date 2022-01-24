@@ -26,6 +26,12 @@ export class MisapuntesComponent implements OnInit {
     this.getUserData();
   }
 
+  getToken(){
+    this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
+    this.tokenId = this.tokenInfo._id;
+    return this.tokenId
+  }
+
   getUserData(){
     this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
     this.tokenId = this.tokenInfo._id;
