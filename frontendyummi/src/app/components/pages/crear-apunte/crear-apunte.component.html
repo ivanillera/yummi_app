@@ -21,11 +21,22 @@
     <!-- Materia/Subject -->
     <div class="form-group">
       <label class="form-label titulo">Materia (*)</label>
-      <select class="form-select">
+      <select class="form-select" name="subject" formControlName="subject">
         <option selected disabled>Selecciona tu materia</option>
-        <option *ngFor="let subject of subjectsService.subjects" value="{{subject._id}}" (click)="typeSubject()" id="subjectId"> {{ subject.name }} - {{ subject.professor }}</option>
+        <option disabled class="year">Primero</option>
+        <option value="Álgebra y Geometría Analítica">Álgebra y Geometría Analítica</option>
+        <option disabled class="year">Segundo</option>
+        <option value="Análisis Matemático II">Analisis Matematico II</option>
+        <option disabled class="year">Tercero</option>
+        <option value="Matemática Superior">Matemática Superior</option>
+        <option disabled class="year">Cuarto</option>
+        <option value="Ingeniería de Software">Ingeniería de Software</option>
+        <option disabled class="year">Quinto</option>
+        <option value="Sistemas de Gestión">Sistemas de Gestión</option>
+    
       </select>
     </div>
+ <!-- Materia/Subject -->
 
 
     <!-- Categoria/ Category 
@@ -74,7 +85,18 @@
   <div class="row">
     <div class="col-md-2">
       <label class="form-label titulo" style="margin-top:0.5rem;">Categorías</label>
-      <div id="checkboxes">
+      <select class="form-select" name="category" formControlName="category">
+        <option value="Trabajo Práctico">Trabajo Práctico</option>
+        <option value="Laboratorio">Laboratorio</option>
+        <option value="Resumen">Resumen</option>
+        <option value="Ejercicio">Ejercicio</option>
+        <option value="Informe">Informe</option>
+        <option value="Parcial">Parcial</option>
+        <option value="Tarea">Tarea</option>
+        <option value="Final">Final</option>
+    
+      </select>
+      <!-- <div id="checkboxes">
         <ul>
                   
           <li><input type="checkbox" value="Trabajo Practico" (change)="arraypepe($event)"> Trabajo Practico</li>
@@ -87,7 +109,7 @@
           <li><input type="checkbox" value="Final" (change)="arraypepe($event)"> Final </li>
   
         </ul>
-      </div>
+      </div> -->
     </div>
     <div class="col-md-6">
       <label class="form-label titulo" style="margin-top:0.5rem;">Contenido(*) | Ingrese un link o un adjunto:</label>

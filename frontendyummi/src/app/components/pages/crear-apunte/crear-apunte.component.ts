@@ -148,12 +148,12 @@ export class CrearApunteComponent implements OnInit {
       name: this.noteForm.get('name')?.value,
       career: this.noteForm.get('career')?.value,
       creator: this.tokenId,
-      subject: this.subjectId,
+      subject: this.noteForm.get('subject')?.value,
       content: this.noteForm.get('content')?.value,
       calification: this.noteForm.get('calification')?.value,
       attached: this.noteForm.get('attached')?.value,
       //category: this.noteForm.get('category')?.value,
-      category: this.arrayPrueba,
+      category: this.noteForm.get('category')?.value,
       comments: this.noteForm.get('comments')?.value
     }
     console.log(NOTE);

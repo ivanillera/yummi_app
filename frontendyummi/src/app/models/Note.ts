@@ -1,4 +1,3 @@
-import {Subject} from './Subject';
 import {Comment} from './Comment';
 
 export class Note{

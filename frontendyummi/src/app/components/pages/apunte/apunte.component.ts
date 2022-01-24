@@ -53,6 +53,7 @@ export class ApunteComponent implements OnInit {
   ngOnInit(): void {
     //this.loadImages()
     console.log(this.id);
+    this.getComments(),
     this.notesService.getNote(this.id).subscribe(
       res => {
         this.note = res;
@@ -60,6 +61,8 @@ export class ApunteComponent implements OnInit {
         },
       err => {console.log(err);}
     );
+    this.commentService.getComments()
+
   }
 
   async loadImages(){
