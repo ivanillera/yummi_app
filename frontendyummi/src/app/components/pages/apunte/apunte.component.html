@@ -38,7 +38,7 @@
                 <textarea formControlName="content" name="content" class="form-control" name="content" placeholder="Dejá tu comentario! (Máximo 150 caracteres)" maxlength="150" id="floatingTextarea2"
                 style="height: 100px"></textarea>
                 <div class="boton">
-                    <button class="boton btn btn-info btn-block " (click)="addComment()" type="submit">Comentar</button>
+                    <button class="boton btn btn-info btn-block " (click)="addComment()" (click)="resetForm()" type="submit">Comentar</button>
                 </div>
             </form>
         </div>

@@ -222,6 +222,10 @@ export class ApunteComponent implements OnInit {
     )
   }
 
+  resetForm(){
+    this.commentForm.reset()
+  }
+
   // addCommentNUEVO(form:NgForm){
   //   console.log("Form value da: ",form.value);
   //   this.notesService.commentNote(this.note,this.id,form.value).subscribe(
@@ -242,9 +246,5 @@ export class ApunteComponent implements OnInit {
   //   this.getComments();
   //   this.resetForm(form);
   // }
-
-  resetForm(form: NgForm){ // No se usa.
-    form.reset();
-  }
 
 }
