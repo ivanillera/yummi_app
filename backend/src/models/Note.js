@@ -6,7 +6,7 @@ const noteSchema = new Schema({
     career: {type: String, required:true},
     creator: {type: Schema.ObjectId, ref:'User', required: true},
     content: {type: String, required: false},
-    calification: {type: Number, required: false},
+    calification: {type: [Schema.ObjectId], ref:'User', required: true},
     attached: {type: String, required: false}, // Contenido de apunte: Adjuntar archivo.
     category: {type: String, required: true},
     comments: {type: [Schema.OjectId], ref:'Comment', required: false}

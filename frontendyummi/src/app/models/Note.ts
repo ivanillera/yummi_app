@@ -6,12 +6,12 @@ export class Note{
     creator: string;
     subject: string;
     content: string;
-    calification: number;
+    calification: Array<String>;
     attached: string;
     category: Array<String>;
     comments: Array<Comment>;
 
-    constructor(name:string, career:string, creator:string, subject: string, content:string, calification:number, attached:string, category: String[], comments: Comment[]){
+    constructor(name:string, career:string, creator:string, subject: string, content:string, calification:String[], attached:string, category: String[], comments: Comment[]){
         this.name = name;
         this.career = career;
         this.creator = creator;

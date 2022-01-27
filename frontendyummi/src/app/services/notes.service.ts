@@ -23,7 +23,7 @@ export class NotesService {
     subject: '',
     creator: '',
     content: '',
-    calification: 0,
+    calification: [],
     attached:'',
     category: [],
     comments: []
@@ -66,18 +66,36 @@ export class NotesService {
   //   return this.http.get<Comment[]>(this.URL_API + id)
   // }
 
-
-  agregarLike(note: Note, id: string): Observable<any> {
-    const resCalification = note.calification
-    const body = {calification: resCalification + 1}
-    return this.http.put(this.URL_API + id, body);
+  agregarLike(note:Note, id:string, userId: string): Observable<any>{
+    let arrayOriginal = note.calification
+    const body = {
+      calification: arrayOriginal.concat(userId)
+    }
+    return this.http.put(this.URL_API + id,body);
   }
 
-  removerLike(note: Note, id: string): Observable<any> {
-    const resCalification = note.calification
-    const body = {calification: resCalification - 1}
-    return this.http.put(this.URL_API + id, body);
+  removerLike(note:Note, id:string, userId: string): Observable<any>{
+    const userIndex = note.calification.indexOf(userId)
+    let arrayOriginal = note.calification
+    console.log("Pepe")
+    console.log("Entré ", arrayOriginal.splice(userIndex, 1)) // 2nd parameter means remove one item only
+    const body = {
+      calification: arrayOriginal.splice(userIndex, 1)
+    }
+    note.calification = arrayOriginal.splice(userIndex, 1)
+    return this.http.put(this.URL_API + id,body);
   }
+  // agregarLike(note: Note, id: string): Observable<any> {
+  //   const resCalification = note.calification
+  //   const body = {calification: resCalification + 1}
+  //   return this.http.put(this.URL_API + id, body);
+  // }
+
+  // removerLike(note: Note, id: string): Observable<any> {
+  //   const resCalification = note.calification
+  //   const body = {calification: resCalification - 1}
+  //   return this.http.put(this.URL_API + id, body);
+  // }
 
   deleteNote(id: string): Observable<any>{
     return this.http.delete(this.URL_API + id)

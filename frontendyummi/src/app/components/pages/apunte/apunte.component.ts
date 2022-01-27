@@ -41,7 +41,7 @@ export class ApunteComponent implements OnInit {
     subject: '',
     creator: '',
     content: '',
-    calification: 0,
+    calification: [],
     attached:'',
     category: [],
     comments: []
@@ -118,48 +118,70 @@ export class ApunteComponent implements OnInit {
     )
   }
 
-  liked = false;
-  status = '0'; 
+
   likear(){
-    
-    
-    this.liked = !this.liked;
-    this.status = this.liked ? '1' : '0';
-    if (this.liked == true){
-      
-      console.log("LIKE!")
-      this.notesService.agregarLike(this.note, this.id).subscribe(
+    if (this.note.calification.includes(this.tokenId)) {
+      console.log("Ya likeaste")
+      this.notesService.removerLike(this.note,this.id,this.tokenId).subscribe(
         res => res,
         err => console.log(err)
       )
-      this.notesService.getNote(this.id).subscribe(
-        res => {
-          this.note = res;
-          console.log('Nota: ', this.note);
-          },
-        err => {console.log(err);}
-      );
-      
-
     }
     else{
-      console.log("SACO LIKE PERRO")
-      this.notesService.removerLike(this.note, this.id).subscribe(
+      this.notesService.agregarLike(this.note,this.id,this.tokenId).subscribe(
         res => res,
         err => console.log(err)
       )
-      this.notesService.getNote(this.id).subscribe(
+    }
+    this.notesService.getNote(this.id).subscribe(
       res => {
         this.note = res;
         console.log('Nota: ', this.note);
         },
       err => {console.log(err);}
     );
-    window.location.reload()
-    }
-
-
+    
   }
+  // liked = false;
+  // status = '0'; 
+  // likear(){
+  //   this.liked = !this.liked;
+  //   this.status = this.liked ? '1' : '0';
+  //   if (this.liked == true){
+      
+  //     console.log("LIKE!")
+  //     this.notesService.agregarLike(this.note, this.id).subscribe(
+  //       res => res,
+  //       err => console.log(err)
+  //     )
+  //     this.notesService.getNote(this.id).subscribe(
+  //       res => {
+  //         this.note = res;
+  //         console.log('Nota: ', this.note);
+  //         },
+  //       err => {console.log(err);}
+  //     );
+      
+
+  //   }
+  //   else{
+  //     console.log("SACO LIKE PERRO")
+  //     this.notesService.removerLike(this.note, this.id).subscribe(
+  //       res => res,
+  //       err => console.log(err)
+  //     )
+  //     this.notesService.getNote(this.id).subscribe(
+  //     res => {
+  //       this.note = res;
+  //       console.log('Nota: ', this.note);
+  //       },
+  //     err => {console.log(err);}
+  //   );
+  //   window.location.reload()
+  //   }
+
+
+  // }
   getDecodedAccessToken(token: string): any {
     try{
         return jwt_decode(token);

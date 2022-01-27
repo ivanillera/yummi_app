@@ -86,7 +86,7 @@ export class CrearApunteComponent implements OnInit {
       creator: [''],
       subject: ['', Validators.required],
       content: ['', Validators.required],
-      calification: 0,
+      // calification: [],
       attached: ['', Validators.required],
       category : [ [], Validators.required],
       // comments: [[]]
