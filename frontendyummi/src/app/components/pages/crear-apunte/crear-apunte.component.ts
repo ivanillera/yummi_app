@@ -154,7 +154,8 @@ export class CrearApunteComponent implements OnInit {
       attached: this.noteForm.get('attached')?.value,
       //category: this.noteForm.get('category')?.value,
       category: this.noteForm.get('category')?.value,
-      comments: this.noteForm.get('comments')?.value
+      comments: []
+      // comments: this.noteForm.get('comments')?.value
     }
     console.log(NOTE);
     this.noteService.createNote(NOTE).subscribe(

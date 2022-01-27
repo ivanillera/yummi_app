@@ -3,7 +3,7 @@ const commentCtrl = {}
 const Comment = require('../models/Comment')
 
 commentCtrl.getComments = async (req, res) => {
-    const comments = await Comment.find()
+    const comments = await Comment.find();
     res.json(comments)
 }
 

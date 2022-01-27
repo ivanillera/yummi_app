@@ -31,11 +31,11 @@
     <div class="miComentario">
         
         <div class="form-floating">
-            <form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
-                <textarea class="form-control" name="content"[(ngModel)]="commentService.selectedComment.content" placeholder="Dejá tu comentario! (Máximo 150 caracteres)" maxlength="150" id="floatingTextarea2"
+            <form [formGroup]="commentForm">
+                <textarea formControlName="content" name="content" class="form-control" name="content" placeholder="Dejá tu comentario! (Máximo 150 caracteres)" maxlength="150" id="floatingTextarea2"
                 style="height: 100px"></textarea>
                 <div class="boton">
-                    <button class="boton btn btn-info btn-block " (click)='getComments()' type="submit">Comentar</button>
+                    <button class="boton btn btn-info btn-block " (click)="addComment()" type="submit">Comentar</button>
                 </div>
             </form>
             
@@ -45,21 +45,23 @@
 </div>
 
 <div class="container">
-            <div *ngIf = "commentService.comments.length === 0" >
-                No hay comentarios para este apunte.
-            </div>
-            <div *ngFor ="let comment of commentService.comments.reverse()" class="comentario">
-                <hr>
+    <!-- {{comment.date.toString().slice(8,10) + "/" + comment.date.toString().slice(5,7) + "/" + comment.date.toString().slice(0,4)}} -->
+    <div *ngIf = "note.comments.length === 0" >
+        No hay comentarios para este apunte.
+    </div>
+    <div *ngFor="let comment of note.comments.reverse()" class="comentario">
+        <hr>
                 <div class="nombre">
                     {{ comment.creator}}
                 </div>
                 <div class="contenidoComentario">
-                    {{comment.content}}
+                    {{ comment.content }}
                 </div>
                 <div class="fechaComentario">
-                    {{comment.createdAt.slice(8,10) + "/" + comment.createdAt.slice(5,7) + "/" + comment.createdAt.slice(0,4) + " " + comment.createdAt.slice(11,16)}}
+                   {{comment.date}}
                 </div>
                 <hr>
-            </div>
+       
+    </div>
 </div>
 

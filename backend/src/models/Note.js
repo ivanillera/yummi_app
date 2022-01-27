@@ -9,7 +9,7 @@ const noteSchema = new Schema({
     calification: {type: Number, required: false},
     file: {type: String, required: false}, // Contenido de apunte: Adjuntar archivo.
     category: {type: String, required: true},
-    comments: {type: String(), required: false}
+    comments: {type: [Schema.OjectId], ref:'Comment', required: false}
 },{
     timestamps: true,
     versionKey: false

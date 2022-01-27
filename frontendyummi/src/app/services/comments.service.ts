@@ -17,13 +17,12 @@ export class CommentsService {
   selectedComment: Comment = {
     creator: '',
     content: '',
-    date: ''
+    date: new Date(),
   }
   
   constructor(private http: HttpClient) {
   }
 
-  
   getComments() {
     return this.http.get<Comment[]>(this.URL_API);
   }

@@ -5,6 +5,16 @@ import { FormGroup, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NotesService } from 'src/app/services/notes.service';
 import { Note } from '../../../models/Note';
+import { AuthService } from 'src/app/services/auth.service';
+import { UsersService} from '../../../services/users.service';
+import jwt_decode from 'jwt-decode';
+import * as $ from "jquery";
+import { FormBuilder, Validators } from '@angular/forms';
+import { SubjectsService } from 'src/app/services/subjects.service';
+import { FilesService } from 'src/app/services/files.service';
+import {ToastrService} from 'ngx-toastr';
+import { FilestackService } from '@filestack/angular';
+
 
 @Component({
   selector: 'app-apunte',
@@ -12,6 +22,14 @@ import { Note } from '../../../models/Note';
   styleUrls: ['./apunte.component.css']
 })
 export class ApunteComponent implements OnInit {
+
+  // Info del user:
+  tokenId: any;
+  tokenInfo: any;
+  userData: any;
+  userName: any;
+  
+  commentForm: FormGroup;
 
   id: any;
   note: Note = {
@@ -25,7 +43,6 @@ export class ApunteComponent implements OnInit {
     category: [],
     comments: []
   }
-
   listComments: Comment[] = []
   commentCreator = "Creador de Prueba"
   commentContent = ""
@@ -46,14 +63,26 @@ export class ApunteComponent implements OnInit {
   //   this.commentContent = '';
 
   // }
-  constructor(public commentService: CommentsService, private activatedRoute: ActivatedRoute, private notesService: NotesService) {
+  constructor(
+    public commentService: CommentsService, 
+    private activatedRoute: ActivatedRoute, 
+    public notesService: NotesService,
+    private authService: AuthService,
+    private userService: UsersService,
+    private formBuilder:FormBuilder 
+    ) {
+      this.commentForm = this.formBuilder.group({
+        creator: ['', Validators.required],
+        content: ['', Validators.required],
+        date: ['']
+      })
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
     //this.loadImages()
+    this.getUserData()
     console.log(this.id);
-    this.getComments(),
     this.notesService.getNote(this.id).subscribe(
       res => {
         this.note = res;
@@ -61,7 +90,6 @@ export class ApunteComponent implements OnInit {
         },
       err => {console.log(err);}
     );
-    this.commentService.getComments()
 
   }
 
@@ -128,17 +156,66 @@ export class ApunteComponent implements OnInit {
 
 
   }
-
-
-  addComment(form: NgForm){
-    console.log(form.value);
-    this.commentService.createComment(form.value).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    );
-    this.getComments();
-    this.resetForm(form);
+  getDecodedAccessToken(token: string): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
   }
+
+  getUserData(){
+    this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
+    this.tokenId = this.tokenInfo._id;
+    this.userData = this.userService.getUser(this.tokenId)
+        .subscribe(res => {
+          this.userData = res
+          //this.userName = this.userData.name;
+
+        },
+        err => {
+          console.log(err);
+        });
+  }
+
+  addComment(){
+    const COMMENT: Comment = {
+      creator: this.tokenId,
+      content: this.commentForm.get('content')?.value,
+      date: new Date()
+    }
+    console.log(COMMENT);
+    this.notesService.commentNote(this.note, this.id, COMMENT).subscribe(
+      res => {
+        console.log(res)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
+  // addCommentNUEVO(form:NgForm){
+  //   console.log("Form value da: ",form.value);
+  //   this.notesService.commentNote(this.note,this.id,form.value).subscribe(
+  //     res => console.log(res),
+  //     err => console.log(err)
+  //     );
+  //     this.resetForm(form);
+  //     this.getComments();
+
+  // }
+
+  // addComment(form: NgForm){
+  //   console.log(form.value);
+  //   this.commentService.createComment(form.value).subscribe(
+  //     res => console.log(res),
+  //     err => console.log(err)
+  //   );
+  //   this.getComments();
+  //   this.resetForm(form);
+  // }
 
   resetForm(form: NgForm){ // No se usa.
     form.reset();

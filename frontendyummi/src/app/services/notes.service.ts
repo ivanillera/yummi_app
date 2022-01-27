@@ -4,6 +4,8 @@ import { Note } from '../models/Note';
 import { User } from '../models/User';
 import { EMPTY, Observable, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { CommentsService } from './comments.service';
+import { Comment } from '../models/Comment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +14,9 @@ export class NotesService {
 
   URL_API = 'http://localhost:4000/api/notes/';
   FILE_API = 'https://file.io';
-
+  
   notes: Note[] = [];
-
+  
   selectedNote: Note = {
     name: '',
     career:'',
@@ -25,6 +27,12 @@ export class NotesService {
     attached:'',
     category: [],
     comments: []
+  }
+
+  selectedComment: Comment = {
+    creator: '',
+    content: '',
+    date: new Date()
   }
   
   constructor(private http: HttpClient, private toastr: ToastrService) {
@@ -42,20 +50,23 @@ export class NotesService {
     return this.http.post(this.URL_API, note);
   }
 
-  // addLike(note:Note): Observable<any>{
-  //   return this.http.put(this.URL_API, note.calification = note.calification +  1)
+  commentNote(note:Note, id:string, comment: Comment):Observable<any> {
+    let actualComments = note.comments
+    const body = {
+      // [Comments] = [Comments] + comment
+      comments:  actualComments.concat(comment)
+    }
+    note.comments = actualComments.concat(comment)
+
+    return this.http.put(this.URL_API + id, body);
+  }
+
+  // getCommentsOf(id:string):Observable<any>{
+  //   console.log('getCommentsOf tira ', this.http.get<Comment[]>(this.URL_API + id))
+  //   return this.http.get<Comment[]>(this.URL_API + id)
   // }
 
-  // this.notesService.getNote(this.id).subscribe(
-  //   res => {
-  //     this.note = res;
-  //     console.log('Nota: ', this.note);
-  //     },
-  //   err => {console.log(err);}
-  // );
 
-
-  
   agregarLike(note: Note, id: string): Observable<any> {
     const resCalification = note.calification
     const body = {calification: resCalification + 1}
@@ -67,22 +78,6 @@ export class NotesService {
     const body = {calification: resCalification - 1}
     return this.http.put(this.URL_API + id, body);
   }
-
-  // updateNote(id: string, note: Note): Observable<any> {
-  //   const calificacionActual = this.getCalification(id,note)
-  //   console.log("calification: ", calificacionActual)
-  //   const body = { calification: calificacionActual }
-  //   return this.http.put(this.URL_API + id, body);
-  // }
-
-  // getCalification(id:string, note:Note){
-  //   return this.http.post(this.URL_API + id, note.calification )
-  // }
-
-  // updateNote(id:string, x:number): Observable<any> {
-  //   let body = { calification: x }
-  //   return this.http.put(this.URL_API, body);
-  // }
 
   deleteNote(id: string): Observable<any>{
     return this.http.delete(this.URL_API + id)
