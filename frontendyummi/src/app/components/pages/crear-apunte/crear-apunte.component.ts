@@ -89,8 +89,7 @@ export class CrearApunteComponent implements OnInit {
       calification: 0,
       attached: ['', Validators.required],
       category : [ [], Validators.required],
-      comments: [[]]
-
+      // comments: [[]]
     })
     this.userName = '';
     this.arrayPrueba = [];
@@ -175,8 +174,7 @@ export class CrearApunteComponent implements OnInit {
       attached: this.shortLink,
       //category: this.noteForm.get('category')?.value,
       category: this.noteForm.get('category')?.value,
-      comments: []
-      // comments: this.noteForm.get('comments')?.value
+      comments: this.noteForm.get('comments')?.value
     }
     console.log(NOTE);
     this.noteService.createNote(NOTE).subscribe(
