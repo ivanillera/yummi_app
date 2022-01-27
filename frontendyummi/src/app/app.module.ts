@@ -8,7 +8,7 @@ import {TokenInterceptorService } from './services/token-interceptor.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import { FilestackModule } from '@filestack/angular';
-
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -24,6 +24,7 @@ import { ApunteComponent } from './components/pages/apunte/apunte.component';
 import { EditarApunteComponent } from './components/pages/perfil/misapuntes/editar-apunte/editar-apunte.component';
 import { SignupComponent } from './components/pages/signup/signup.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { UrlsafePipe } from './pipes/urlsafe.pipe';
 
 
 
@@ -42,7 +43,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     ApunteComponent,
     EditarApunteComponent,
     SignupComponent,
-    FilterPipe
+    FilterPipe,
+    UrlsafePipe
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     FilestackModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right'
-    })
+    }),
+    AngularEditorModule
   ],
   providers: [
     AuthGuard,

@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NotesService } from 'src/app/services/notes.service';
 import { Note } from '../../../models/Note';
 
+
 @Component({
   selector: 'app-apunte',
   templateUrl: './apunte.component.html',
@@ -13,6 +14,8 @@ import { Note } from '../../../models/Note';
 })
 export class ApunteComponent implements OnInit {
 
+  attachedURL:any;
+  strippedHTML: any;
   id: any;
   note: Note = {
     name: '',
@@ -32,6 +35,7 @@ export class ApunteComponent implements OnInit {
   commentDate = "21/10/2021"
 
   SRC_FILE: any;
+  sanitizer: any;
 
   // addComment(){
   //   // Crear un objeto comentario
@@ -46,12 +50,16 @@ export class ApunteComponent implements OnInit {
   //   this.commentContent = '';
 
   // }
-  constructor(public commentService: CommentsService, private activatedRoute: ActivatedRoute, private notesService: NotesService) {
+  constructor(
+    public commentService: CommentsService, 
+    private activatedRoute: ActivatedRoute, 
+    private notesService: NotesService) {
+
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
+
   }
 
   ngOnInit(): void {
-    //this.loadImages()
     console.log(this.id);
     this.getComments(),
     this.notesService.getNote(this.id).subscribe(
@@ -61,8 +69,7 @@ export class ApunteComponent implements OnInit {
         },
       err => {console.log(err);}
     );
-    this.commentService.getComments()
-
+    this.commentService.getComments();
   }
 
   async loadImages(){

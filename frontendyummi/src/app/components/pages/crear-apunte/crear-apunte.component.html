@@ -1,10 +1,12 @@
 <div class="container crear">
-  <form [formGroup]="noteForm">
 
+
+  <form [formGroup]="noteForm">
+    
     <!-- Tema/Name -->
     <div class="form-group">
       <label for="exampleFormControlInput1" class="form-label titulo">Título (*)</label>
-      <input type="text" class="form-control" name="name" placeholder="Ingrese el tema de su apunte..." formControlName="name">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el tema de su apunte..." formControlName="name">
     </div>
     <!-- Carrera/Career  -->
     <div class="form-group">
@@ -33,86 +35,34 @@
         <option value="Ingeniería de Software">Ingeniería de Software</option>
         <option disabled class="year">Quinto</option>
         <option value="Sistemas de Gestión">Sistemas de Gestión</option>
-    
       </select>
     </div>
- <!-- Materia/Subject -->
 
-
-    <!-- Categoria/ Category 
-    <label class="form-label titulo">Categorías</label>
-    <div class="form-group">
-      <div id="checkboxes">
-        <ul>
-                  
-          <li><input type="checkbox" value="Trabajo Practico" (change)="arraypepe($event)"> Trabajo Practico</li>
-          <li><input type="checkbox" value="Laboratorio" (change)="arraypepe($event)"> Laboratorio </li>
-          <li><input type="checkbox" value="Resumen" (change)="arraypepe($event)"> Resumen </li>
-          <li><input type="checkbox" value="Ejercicio" (change)="arraypepe($event)"> Ejercicio </li>
-          <li><input type="checkbox" value="Informe" (change)="arraypepe($event)"> Informe </li>
-          <li><input type="checkbox" value="Parcial" (change)="arraypepe($event)"> Parcial </li>
-          <li><input type="checkbox" value="Tarea" (change)="arraypepe($event)"> Tarea </li>
-          <li><input type="checkbox" value="Final" (change)="arraypepe($event)"> Final </li>
-  
-        </ul>
+    <!-- Contenido/Content -->
+    <label class="form-label titulo">Contenido (*)</label>
+    <angular-editor formControlName="content" [config]="editorConfig"></angular-editor>
+    
+    <div class="row">
+      <!-- Categoría/Category -->
+      <div class="col-md-3">
+        <label class="form-label titulo" style="margin-top:0.5rem;">Categoría (*) </label>
+        <select class="form-select" name="category" formControlName="category">
+          <option value="Trabajo Práctico">Trabajo Práctico</option>
+          <option value="Laboratorio">Laboratorio</option>
+          <option value="Resumen">Resumen</option>
+          <option value="Ejercicio">Ejercicio</option>
+          <option value="Informe">Informe</option>
+          <option value="Parcial">Parcial</option>
+          <option value="Tarea">Tarea</option>
+          <option value="Final">Final</option>
+        </select>
       </div>
-    </div>
-  -->
-    
-    <!-- Contenido/Content 
-    <div class="form-group">
-        <div class="row" >
 
-          <label class="form-label titulo" >Contenido(*) | Ingrese un link o un adjunto:</label>
-          <div class="col">
-            <textarea class="form-control" name="content" rows="3" placeholder="Ingrese link..." formControlName="content"></textarea>
-          </div>
-          <div class="col">
-            <label for="formFileLg" class="form-label"></label>
-            <input type='file' (change)="fileChanged($event)" style="margin-bottom: 5%;" id = "file">
+    <!-- Adjunto/Attached -->
 
-            <div class="spinner-border text-success" style="display:none;" role="status" id="fileLoading">
-              <span class="sr-only">Cargando...</span>
-            </div>
-            <a style="color: green; display:none;" id="succesLabel">&nbsp; Archivo cargado con exito.</a>
-            <br>
-            <button (click)="uploadFile()" class="btn btn-secondary" style="width:40%; height:40%;" id="uploadButton"> Adjuntar archivo</button>
-            <a style="color: grey;">&nbsp; * Tamaño máximo del archivo 50MB.</a>
-          </div>
-        </div>
-    </div>
-  -->
-  <div class="row">
-    <div class="col-md-2">
-      <label class="form-label titulo" style="margin-top:0.5rem;">Categorías</label>
-      <select class="form-select" name="category" formControlName="category">
-        <option value="Trabajo Práctico">Trabajo Práctico</option>
-        <option value="Laboratorio">Laboratorio</option>
-        <option value="Resumen">Resumen</option>
-        <option value="Ejercicio">Ejercicio</option>
-        <option value="Informe">Informe</option>
-        <option value="Parcial">Parcial</option>
-        <option value="Tarea">Tarea</option>
-        <option value="Final">Final</option>
-    
-      </select>
-      <!-- <div id="checkboxes">
-        <ul>
-                  
-          <li><input type="checkbox" value="Trabajo Practico" (change)="arraypepe($event)"> Trabajo Practico</li>
-          <li><input type="checkbox" value="Laboratorio" (change)="arraypepe($event)"> Laboratorio </li>
-          <li><input type="checkbox" value="Resumen" (change)="arraypepe($event)"> Resumen </li>
-          <li><input type="checkbox" value="Ejercicio" (change)="arraypepe($event)"> Ejercicio </li>
-          <li><input type="checkbox" value="Informe" (change)="arraypepe($event)"> Informe </li>
-          <li><input type="checkbox" value="Parcial" (change)="arraypepe($event)"> Parcial </li>
-          <li><input type="checkbox" value="Tarea" (change)="arraypepe($event)"> Tarea </li>
-          <li><input type="checkbox" value="Final" (change)="arraypepe($event)"> Final </li>
-  
-        </ul>
-      </div> -->
-    </div>
     <div class="col-md-6">
-      <label class="form-label titulo" style="margin-top:0.5rem;">Contenido(*) | Ingrese un link o un adjunto:</label>
+      <label class="form-label titulo" style="margin-top:0.5rem;">Adjunto</label>
+      <br>
       <label for="formFileLg" class="form-label"></label>
       <input type='file' (change)="fileChanged($event)" style="margin-bottom: 5%;" id = "file">
 
@@ -125,7 +75,11 @@
       <a style="color: grey;">&nbsp; * Tamaño máximo del archivo 50MB.</a>
     </div>
   </div>
-    
+
+
+
+
+
   </form>
   <!-- Acciones/Actions -->
   <button type="cancel" class="btn btn-danger boton" style="width: 100px;">Cancelar</button>

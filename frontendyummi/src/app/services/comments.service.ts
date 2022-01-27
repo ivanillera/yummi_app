@@ -22,7 +22,6 @@ export class CommentsService {
   
   constructor(private http: HttpClient) {
   }
-
   
   getComments() {
     return this.http.get<Comment[]>(this.URL_API);

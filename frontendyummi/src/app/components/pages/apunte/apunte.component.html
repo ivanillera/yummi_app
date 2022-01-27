@@ -1,20 +1,23 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- No carga los estilos al ser anidado (/apunte:id) -->
 <link rel="stylesheet" href="/styles.css"> 
+
+
 <div class="container">
     <div class="titulo"> {{ note.name }} </div>
     <div class="titulo"> {{ note.subject }} - {{ note.category }}</div>
-
+    <div class="contenidoHTML" [innerHtml]="note.content">
+    </div>
     <div class="contenido">
         <iframe
         frameBorder="0"
         scrolling="auto"
         height="100%"
         width="100%"
-        src="https://cdn.filestackcontent.com/HTOSAiOcTI6q3smUGLlj">
+        [src]= "note.attached | urlsafe">
         </iframe>
     </div>
-    <div class="uopa"></div>
+
     <div class="clasificacion">
         <div class="boton">
             <a class="btn btn-info btn-block" (click)="likear()" [ngClass]="{'white' : !liked, '': liked}" type="submit " value="Search">
@@ -38,7 +41,6 @@
                     <button class="boton btn btn-info btn-block " (click)='getComments()' type="submit">Comentar</button>
                 </div>
             </form>
-            
         </div>
         
     </div>

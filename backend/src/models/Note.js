@@ -5,9 +5,9 @@ const noteSchema = new Schema({
     subject: {type: String, required: true},
     career: {type: String, required:true},
     creator: {type: Schema.ObjectId, ref:'User', required: true},
-    body: {type: String, required: false},
+    content: {type: String, required: false},
     calification: {type: Number, required: false},
-    file: {type: String, required: false}, // Contenido de apunte: Adjuntar archivo.
+    attached: {type: String, required: false}, // Contenido de apunte: Adjuntar archivo.
     category: {type: String, required: true},
     comments: {type: String(), required: false}
 },{
