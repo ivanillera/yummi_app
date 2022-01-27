@@ -6,6 +6,11 @@
     margin: 10px;
 }
 
+.contenidoHTML{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
 .contenido{
     margin-top: 20px;
     text-align: center;

@@ -16,6 +16,7 @@ import {ToastrService} from 'ngx-toastr';
 import { FilestackService } from '@filestack/angular';
 
 
+
 @Component({
   selector: 'app-apunte',
   templateUrl: './apunte.component.html',
@@ -31,6 +32,8 @@ export class ApunteComponent implements OnInit {
   
   commentForm: FormGroup;
 
+  attachedURL:any;
+  strippedHTML: any;
   id: any;
   note: Note = {
     name: '',
@@ -49,6 +52,7 @@ export class ApunteComponent implements OnInit {
   commentDate = "21/10/2021"
 
   SRC_FILE: any;
+  sanitizer: any;
 
   // addComment(){
   //   // Crear un objeto comentario
@@ -77,6 +81,7 @@ export class ApunteComponent implements OnInit {
         date: ['']
       })
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
+
   }
 
   ngOnInit(): void {
@@ -90,7 +95,6 @@ export class ApunteComponent implements OnInit {
         },
       err => {console.log(err);}
     );
-
   }
 
   async loadImages(){

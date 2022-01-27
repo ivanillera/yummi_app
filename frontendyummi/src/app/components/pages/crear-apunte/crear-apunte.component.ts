@@ -2,25 +2,58 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import * as $ from "jquery";
 
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NotesService } from '../../../services/notes.service';
 import { AuthService } from '../../../services/auth.service';
 import { UsersService} from '../../../services/users.service';
 import { SubjectsService } from 'src/app/services/subjects.service';
 import { FilesService } from 'src/app/services/files.service';
-import {ToastrService} from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { Note } from '../../../models/Note';
 import jwt_decode from 'jwt-decode';
 import { FilestackService } from '@filestack/angular';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 
 @Component({
   selector: 'app-crear-apunte',
   templateUrl: './crear-apunte.component.html',
   styleUrls: ['./crear-apunte.component.css'],
-  providers: [NotesService],
+  providers: [NotesService]
 })
-export class CrearApunteComponent implements OnInit {
 
+export class CrearApunteComponent implements OnInit {
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['bold']
+      ],
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
+
+  htmlContent: any;
+  
   // Variable to store shortLink from api response
   shortLink: string = "";
   file: any; // Variable to store file
@@ -44,7 +77,8 @@ export class CrearApunteComponent implements OnInit {
     public subjectsService: SubjectsService,
     public fileService: FilesService,
     private toastr: ToastrService,
-    private filestackService: FilestackService
+    private filestackService: FilestackService,
+    private router: Router,
     ){
     this.noteForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -68,19 +102,6 @@ export class CrearApunteComponent implements OnInit {
     this.getUserData()
     this.getSubjects()
   }
-
-  arraypepe(event: any){
-    if (event.target.checked) {
-      this.arrayPrueba.push(event.target.value);
-    }
-    console.log();
-
-  }
-
-  pepe2(e:any){
-    console.log(e.target.value)
-  }
-
 
   fileChanged(e:any) {
     (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "none";
@@ -111,6 +132,7 @@ export class CrearApunteComponent implements OnInit {
       .subscribe(res => {
         console.log(Object.keys(res));
         console.log(Object.values(res)[4]);
+        this.shortLink = Object.values(res)[4]; //el valor del attached
         resolve(res);
       })
     })
@@ -123,7 +145,6 @@ export class CrearApunteComponent implements OnInit {
         .subscribe(res => {
           this.userData = res
           //this.userName = this.userData.name;
-
         },
         err => {
           console.log(err);
@@ -151,7 +172,7 @@ export class CrearApunteComponent implements OnInit {
       subject: this.noteForm.get('subject')?.value,
       content: this.noteForm.get('content')?.value,
       calification: this.noteForm.get('calification')?.value,
-      attached: this.noteForm.get('attached')?.value,
+      attached: this.shortLink,
       //category: this.noteForm.get('category')?.value,
       category: this.noteForm.get('category')?.value,
       comments: []
@@ -162,6 +183,7 @@ export class CrearApunteComponent implements OnInit {
       res => {
         console.log(res)
         this.toastr.success('Apunte creado con exito.','Apunte registrado!');
+        this.router.navigate(['/']);
       },
       err => {console.log(err);}
     );

@@ -4,6 +4,7 @@
     
     padding: 40px;
     border-radius: 15px;
+    margin-bottom: 5rem;
 }
 
 .boton{
@@ -30,14 +31,3 @@
     margin-top:10px;
     margin-bottom:10px;
 }
-
-#checkboxes label {
-    float: left;
-  }
-  #checkboxes ul {
-    margin-left: -1.5rem;
-    
-    list-style: none;
-    float: left;
-  }
-  
