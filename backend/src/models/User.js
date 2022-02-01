@@ -6,7 +6,6 @@ const userSchema = new Schema({
     mail: {type: String, required:true},
     password: {type: String, required: true},
     legajo: {type: Number, required: true},
-    career: {type: String, required: false},
     notes: {type: Schema.ObjectId, ref:'Note', required: false} // Contiene el hilo de apuntes creados
 }, {
     timestamps: true,
