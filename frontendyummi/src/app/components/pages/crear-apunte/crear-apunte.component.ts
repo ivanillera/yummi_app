@@ -52,6 +52,7 @@ export class CrearApunteComponent implements OnInit {
     ]
   };
 
+
   htmlContent: any;
   
   // Variable to store shortLink from api response
@@ -81,13 +82,13 @@ export class CrearApunteComponent implements OnInit {
     private router: Router,
     ){
     this.noteForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(75)]],
       career: ['', Validators.required],
       creator: [''],
       subject: ['', Validators.required],
-      content: ['', Validators.required],
+      content: [''],
       // calification: [],
-      attached: ['', Validators.required],
+      attached: [''],
       category : [ [], Validators.required],
       // comments: [[]]
     })
@@ -161,9 +162,22 @@ export class CrearApunteComponent implements OnInit {
 
   typeSubject(){
     this.subjectId = (<HTMLInputElement>document.getElementById('subjectId')).value;   
-}
+  }
+
+  CheckValidator(name:string){
+    if (this.noteForm.get(name)?.valid){
+
+      document.getElementById(name)?.classList.remove('is-invalid')
+      document.getElementById(name)?.classList.add('is-valid');
+    }else{
+
+      document.getElementById(name)?.classList.remove('is-valid');
+      document.getElementById(name)?.classList.add('is-invalid');
+    }
+  }
 
   addNote(){
+    var alert = false;
     const NOTE: Note = {
       name: this.noteForm.get('name')?.value,
       career: this.noteForm.get('career')?.value,
@@ -177,14 +191,34 @@ export class CrearApunteComponent implements OnInit {
       comments: this.noteForm.get('comments')?.value
     }
     console.log(NOTE);
-    this.noteService.createNote(NOTE).subscribe(
-      res => {
-        console.log(res)
-        this.toastr.success('Apunte creado con exito.','Apunte registrado!');
-        this.router.navigate(['/']);
-      },
-      err => {console.log(err);}
-    );
+
+    Object.keys(this.noteForm.controls).forEach(key => {
+      if (this.noteForm.get(key)?.valid){
+        console.log(key + ' valid');
+        document.getElementById(key)?.classList.add('is-valid');
+      }else{
+        console.log(key + ' invalid');
+        document.getElementById(key)?.classList.add('is-invalid');
+        alert = true;
+      }
+    });
+    if (alert) {
+      this.toastr.error('Algunos campos son incorrectos, por favor, corrigalos e intente nuevamente.', 'Tuvimos un problema :(', { timeOut: 13000 });
+    } else
+    {
+      if (NOTE.content == "" && NOTE.attached == ""){
+        this.toastr.warning('No ha agregado contenido ni archivo adjunto, agregá alguna información a tu apunte y vuelve a intentar!', 'Tuvimos un problema :(', { timeOut: 19000 });
+      }else{
+        this.noteService.createNote(NOTE).subscribe(
+          res => {
+            console.log(res)
+            this.toastr.success('Apunte creado con exito.','Apunte registrado!');
+            this.router.navigate(['/']);
+          },
+          err => {console.log(err);}
+        );
+      }
+    }
   }
 
   resetForm(form: NgForm) {
