@@ -53,8 +53,8 @@
     </div>
     <div *ngFor="let comment of note.comments.reverse()" class="comentario">
         <hr>
-                <div class="nombre">
-                    {{ comment.creator}}
+                <div class="nombre" >
+                    {{ comment.creator.name }}
                 </div>
                 <div class="contenidoComentario">
                     {{ comment.content }}

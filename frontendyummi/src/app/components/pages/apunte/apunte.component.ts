@@ -35,6 +35,7 @@ export class ApunteComponent implements OnInit {
   attachedURL:any;
   strippedHTML: any;
   id: any;
+
   note: Note = {
     name: '',
     career:'',
@@ -46,10 +47,6 @@ export class ApunteComponent implements OnInit {
     category: [],
     comments: []
   }
-  listComments: Comment[] = []
-  commentCreator = "Creador de Prueba"
-  commentContent = ""
-  commentDate = "21/10/2021"
 
   SRC_FILE: any;
   sanitizer: any;

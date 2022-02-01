@@ -3,7 +3,7 @@ const commentCtrl = {}
 const Comment = require('../models/Comment')
 
 commentCtrl.getComments = async (req, res) => {
-    const comments = await Comment.find();
+    const comments = await Comment.find().populate('creator');
     res.json(comments)
 }
 
@@ -15,7 +15,7 @@ commentCtrl.createComment = async (req, res) => {
 
 
 commentCtrl.getComment = async (req, res) => {
-    const comment = await Comment.findById(req.params.id)
+    const comment = await Comment.findById(req.params.id).populate('creator')
     res.send(comment)
 }
 

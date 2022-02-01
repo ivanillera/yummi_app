@@ -1,25 +1,16 @@
 <div class="container-perfil">
     <div class='row'>
-        <div class='column'>
-          <div class='blue-column'>
-
-              <div class="image-container">
-                  <img class="imagenUsuario" src="../../../../assets/img/user.png" alt="">
-              </div>
-
-            
-          </div>
-
-          
-          <div class="d-grid gap-2 mx-auto">
-            <button class="btn btn-primary" (click)="ponerInfo()" type="button">Información</button>
-            <button class="btn btn-primary" (click)="ponerApuntes()" type="button">Mis Apuntes</button>
-          </div>
-
-        </div>
-        <div class='double-column'>
-          <app-infoperfil *ngIf="perfil"></app-infoperfil>
-          <app-misapuntes *ngIf="apuntes"></app-misapuntes>
-        </div>
+      <div class="col" >
+        <app-infoperfil></app-infoperfil>
+      </div>
     </div>
+
+
+    <div class="row">
+      <app-misapuntes></app-misapuntes>
+    </div>
+
+
 </div>
+
+
