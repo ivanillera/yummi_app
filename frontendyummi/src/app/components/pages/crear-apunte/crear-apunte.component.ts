@@ -28,12 +28,14 @@ export class CrearApunteComponent implements OnInit {
     spellcheck: true,
     height: '15rem',
     minHeight: '5rem',
-    placeholder: 'Enter text here...',
+    placeholder: 'Ingresa texto aquí...',
     translate: 'no',
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
     toolbarHiddenButtons: [
-      ['bold']
+      ['insertImage'],
+      ['insertVideo'],
+      
       ],
     customClasses: [
       {

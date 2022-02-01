@@ -30,7 +30,7 @@ export class ApunteComponent implements OnInit {
   userData: any;
   userName: any;
   liked: any;
-  
+
   commentForm: FormGroup;
 
   attachedURL:any;
@@ -71,6 +71,7 @@ export class ApunteComponent implements OnInit {
     public notesService: NotesService,
     private authService: AuthService,
     private userService: UsersService,
+    private toastr: ToastrService,
     private formBuilder:FormBuilder 
     ) {
       this.commentForm = this.formBuilder.group({
@@ -79,7 +80,6 @@ export class ApunteComponent implements OnInit {
         date: ['']
       })
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-
   }
 
   ngOnInit(): void {
@@ -94,7 +94,8 @@ export class ApunteComponent implements OnInit {
       err => {console.log(err);}
     );
     this.liked = this.note.calification.includes(this.tokenId)
-    console.log('liked: ', this.liked)
+    console.log('liked: ', this.liked);
+    (<HTMLInputElement> document.getElementById("buttonComment")).disabled = true;
   }
 
 
@@ -173,6 +174,14 @@ export class ApunteComponent implements OnInit {
         });
   }
 
+  unlockCommentButton(){
+    if (this.commentForm.get('content')?.value == ""){
+      (<HTMLInputElement> document.getElementById("buttonComment")).disabled = true;
+    }else{
+      (<HTMLInputElement> document.getElementById("buttonComment")).disabled = false;
+    }
+  }
+
   addComment(){
     const COMMENT: Comment = {
       creator: this.tokenId,
@@ -193,26 +202,5 @@ export class ApunteComponent implements OnInit {
   resetForm(){
     this.commentForm.reset()
   }
-
-  // addCommentNUEVO(form:NgForm){
-  //   console.log("Form value da: ",form.value);
-  //   this.notesService.commentNote(this.note,this.id,form.value).subscribe(
-  //     res => console.log(res),
-  //     err => console.log(err)
-  //     );
-  //     this.resetForm(form);
-  //     this.getComments();
-
-  // }
-
-  // addComment(form: NgForm){
-  //   console.log(form.value);
-  //   this.commentService.createComment(form.value).subscribe(
-  //     res => console.log(res),
-  //     err => console.log(err)
-  //   );
-  //   this.getComments();
-  //   this.resetForm(form);
-  // }
 
 }

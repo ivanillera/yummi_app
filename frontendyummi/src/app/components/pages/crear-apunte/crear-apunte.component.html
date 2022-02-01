@@ -11,8 +11,8 @@
     <!-- Carrera/Career  -->
     <div class="form-group">
       <label for="exampleFormControlInput1" class="form-label titulo">Carrera (*)</label>
-      <select class="form-select" name="career" placeholder="Selecciona tu carrera..." formControlName="career" id="career" (blur)="CheckValidator('career')">
-        <option selected disabled>Selecciona tu Carrera</option>
+      <select class="form-select" name="career" formControlName="career" id="career" (blur)="CheckValidator('career')">
+        <option disabled selected>Selecciona tu Carrera</option>
         <option >Ing. en Sistemas de Información</option>
         <option >Ing. Química</option>
         <option >Ing. Eléctrica</option>
@@ -47,6 +47,7 @@
       <div class="col-md-4">
         <label class="form-label titulo" style="margin-top:0.5rem;">Categoría (*) </label>
         <select class="form-select" name="category" formControlName="category" id="category" (blur)="CheckValidator('category')">
+          <option disabled selected>Selecciona una categoría</option>
           <option value="Trabajo Práctico">Trabajo Práctico</option>
           <option value="Laboratorio">Laboratorio</option>
           <option value="Resumen">Resumen</option>
