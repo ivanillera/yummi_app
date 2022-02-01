@@ -20,7 +20,7 @@
 
     <div class="clasificacion">
         <div class="boton">
-            <button class="btn btn-info btn-block" (click)="likear()"  type="submit " value="Search">
+            <button class="btn btn-info btn-block" (click)="likear()" [ngClass]="{'white' : !liked, '': liked}" type="submit " value="Search">
                 <i class="fas fa-heart"></i>
                 <!-- <i class="fas fa-book-open custom"></i> -->
                 {{note.calification.length}}
@@ -54,7 +54,7 @@
     <div *ngFor="let comment of note.comments.reverse()" class="comentario">
         <hr>
                 <div class="nombre" >
-                    {{ comment.creator.name }}
+                    {{ comment.creator }}
                 </div>
                 <div class="contenidoComentario">
                     {{ comment.content }}

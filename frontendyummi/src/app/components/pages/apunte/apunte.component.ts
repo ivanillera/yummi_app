@@ -29,6 +29,7 @@ export class ApunteComponent implements OnInit {
   tokenInfo: any;
   userData: any;
   userName: any;
+  liked: any;
   
   commentForm: FormGroup;
 
@@ -92,7 +93,11 @@ export class ApunteComponent implements OnInit {
         },
       err => {console.log(err);}
     );
+    this.liked = this.note.calification.includes(this.tokenId)
+    console.log('liked: ', this.liked)
   }
+
+
 
   async loadImages(){
     const response = await fetch('http://localhost:4000/api/files/61c0ebe8f9d18012531e62db').then(response => response.json());
@@ -116,6 +121,7 @@ export class ApunteComponent implements OnInit {
   }
 
 
+
   likear(){
     if (this.note.calification.includes(this.tokenId)) {
       console.log("Ya likeaste")
@@ -123,12 +129,16 @@ export class ApunteComponent implements OnInit {
         res => res,
         err => console.log(err)
       )
+      this.liked = false
+      console.log("No likeo, pongo like en: ", this.liked)
     }
     else{
       this.notesService.agregarLike(this.note,this.id,this.tokenId).subscribe(
         res => res,
         err => console.log(err)
       )
+      this.liked = true
+      console.log("Likeo, pongo like en: ", this.liked)
     }
     this.notesService.getNote(this.id).subscribe(
       res => {
@@ -139,46 +149,7 @@ export class ApunteComponent implements OnInit {
     );
     
   }
-  // liked = false;
-  // status = '0'; 
-  // likear(){
-  //   this.liked = !this.liked;
-  //   this.status = this.liked ? '1' : '0';
-  //   if (this.liked == true){
-      
-  //     console.log("LIKE!")
-  //     this.notesService.agregarLike(this.note, this.id).subscribe(
-  //       res => res,
-  //       err => console.log(err)
-  //     )
-  //     this.notesService.getNote(this.id).subscribe(
-  //       res => {
-  //         this.note = res;
-  //         console.log('Nota: ', this.note);
-  //         },
-  //       err => {console.log(err);}
-  //     );
-      
-
-  //   }
-  //   else{
-  //     console.log("SACO LIKE PERRO")
-  //     this.notesService.removerLike(this.note, this.id).subscribe(
-  //       res => res,
-  //       err => console.log(err)
-  //     )
-  //     this.notesService.getNote(this.id).subscribe(
-  //     res => {
-  //       this.note = res;
-  //       console.log('Nota: ', this.note);
-  //       },
-  //     err => {console.log(err);}
-  //   );
-  //   window.location.reload()
-  //   }
-
-
-  // }
+  
   getDecodedAccessToken(token: string): any {
     try{
         return jwt_decode(token);
