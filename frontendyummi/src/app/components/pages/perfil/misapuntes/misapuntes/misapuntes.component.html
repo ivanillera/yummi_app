@@ -41,7 +41,7 @@
                             </td>
                             <td class = "text-center" *ngIf="note.creator._id === getToken() ">
                                 <i class="fas fa-heart"></i>
-                                <span class="nroLikes"> {{ note.calification }} </span>
+                                <span class="nroLikes"> {{ note.calification.length }} </span>
                             </td>
                             <td class = "text-center" *ngIf="note.creator._id === getToken() ">
                                 <a href="/apuntes" class="table-link danger">
