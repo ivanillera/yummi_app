@@ -15,7 +15,7 @@ export class CommentsService {
   comments: Comment[] = [];
 
   selectedComment: Comment = {
-    creator: '',
+    commentCreator: '',
     content: '',
     date: new Date(),
   }

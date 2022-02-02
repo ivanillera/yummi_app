@@ -25,6 +25,8 @@ import { EditarApunteComponent } from './components/pages/perfil/misapuntes/edit
 import { SignupComponent } from './components/pages/signup/signup.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { UrlsafePipe } from './pipes/urlsafe.pipe';
+import { CategoryFilterPipe } from './pipes/category-filter.pipe';
+import { SubjectFilterPipe } from './pipes/subject-filter.pipe';
 
 
 
@@ -44,7 +46,9 @@ import { UrlsafePipe } from './pipes/urlsafe.pipe';
     EditarApunteComponent,
     SignupComponent,
     FilterPipe,
-    UrlsafePipe
+    UrlsafePipe,
+    CategoryFilterPipe,
+    SubjectFilterPipe
   ],
   imports: [
     BrowserModule,

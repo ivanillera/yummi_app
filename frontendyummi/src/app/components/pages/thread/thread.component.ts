@@ -17,6 +17,8 @@ export class ThreadComponent implements OnInit {
   tituloApunte = '';
   username: string = '';
   filterPost='';
+  filterCategory='';
+  filterSubject='';
   tokenInfo: any;
   tokenId: any;
   userData: any;

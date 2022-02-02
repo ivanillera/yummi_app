@@ -75,7 +75,7 @@ export class ApunteComponent implements OnInit {
     private formBuilder:FormBuilder 
     ) {
       this.commentForm = this.formBuilder.group({
-        creator: ['', Validators.required],
+        commentCreator: [''],
         content: ['', Validators.required],
         date: ['']
       })
@@ -184,7 +184,7 @@ export class ApunteComponent implements OnInit {
 
   addComment(){
     const COMMENT: Comment = {
-      creator: this.tokenId,
+      commentCreator: this.userData.name,
       content: this.commentForm.get('content')?.value,
       date: new Date()
     }

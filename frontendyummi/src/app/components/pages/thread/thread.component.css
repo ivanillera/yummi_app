@@ -1,3 +1,18 @@
+.categoryfilter{
+    margin-top: 1rem;
+    background-color:transparent;
+    color: white;
+}
+
+.estiloYear{
+    color: blue; 
+    font-weight: bold;
+}
+
+option {
+    color: black;
+}
+
 body {
     margin-top: 20px;
 }

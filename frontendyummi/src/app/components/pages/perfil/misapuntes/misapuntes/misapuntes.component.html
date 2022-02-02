@@ -8,12 +8,13 @@
                     <table class="table user-list titulos">
                         <thead class="titulo">
                             <tr>
-                                <th class="text-center"><span>Tipo de apunte</span></th>
+                                <th class="text-center"><span>Tipo</span></th>
                                 <th class="text-center"><span>Título</span></th>
                                 <th class="text-center"><span>Fecha</span></th>
                                 <th class="text-center"><span>Materia</span></th>
                                 <th class="text-center"><span>Carrera</span></th>
-                                <th class="text-center"><span>Calificación</span></th>
+                                <th class="text-center"><span> </span></th>
+                                <th class="text-center"><span> </span></th>
                                 <th class="text-center">&nbsp;</th>
                             </tr>
                         </thead>
@@ -41,10 +42,14 @@
                             </td>
                             <td class = "text-center" *ngIf="note.creator._id === getToken() ">
                                 <i class="fas fa-heart"></i>
-                                <span class="nroLikes"> {{ note.calification }} </span>
+                                <span class="nroLikes"> {{ note.calification.length }} </span>
                             </td>
                             <td class = "text-center" *ngIf="note.creator._id === getToken() ">
-                                <a href="/apuntes" class="table-link danger">
+                                <i class="fas fa-comments"></i>
+                                <span class="nroLikes"> {{ note.comments.length }} </span>
+                            </td>
+                            <td class = "text-center" *ngIf="note.creator._id === getToken() ">
+                                <a [routerLink]="['/perfil/editarapunte', note._id]" class="table-link" style="color:orange;">
                                     <span class="fa-stack">
                                     <i class="fa fa-square fa-stack-2x"></i>
                                     <i class="fa fa-file-text fa-stack-1x fa-inverse" aria-hidden="true"></i>
@@ -54,7 +59,7 @@
                             </td>
 
                             <td style="text-align: end;" *ngIf="note.creator._id === getToken() ">
-                                <a href="/apuntes" (click)=deleteNote(note._id) class="table-link danger">
+                                <a href="/perfil" (click)=deleteNote(note._id) class="table-link" style="color:red;" data-target="#deleteFileModal">
                                     <span class="fa-stack">
                                     <i class="fa fa-square fa-stack-2x"></i>
                                     <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

@@ -18,8 +18,6 @@ export class MisapuntesComponent implements OnInit {
   tokenId: any;
   userData: any;
 
-
-
   constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, ) { }
   ngOnInit(): void {
     this.getNotes();
@@ -38,8 +36,6 @@ export class MisapuntesComponent implements OnInit {
     this.userData = this.userService.getUser(this.tokenId)
         .subscribe(res => {
           this.userData = res
-          //this.userName = this.userData.name;
-
         },
         err => {
           console.log(err);
@@ -57,12 +53,13 @@ export class MisapuntesComponent implements OnInit {
   }
 
   deleteNote(id:string){
+    /** 
     this.noteService.deleteNote(id).subscribe(
       res => {
         this.noteService.notes = res;
       },
       err => console.error(err)
-    )
+    ) */
   }
   
   getNote(id: any) {

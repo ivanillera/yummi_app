@@ -30,7 +30,7 @@ export class NotesService {
   }
 
   selectedComment: Comment = {
-    creator: '',
+    commentCreator: '',
     content: '',
     date: new Date()
   }
@@ -61,6 +61,9 @@ export class NotesService {
     return this.http.put(this.URL_API + id, body);
   }
 
+  updateNote(note:Note, id:string): Observable<any>{
+    return this.http.put(this.URL_API + id, note);
+  }
   // getCommentsOf(id:string):Observable<any>{
   //   console.log('getCommentsOf tira ', this.http.get<Comment[]>(this.URL_API + id))
   //   return this.http.get<Comment[]>(this.URL_API + id)

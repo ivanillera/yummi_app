@@ -107,26 +107,22 @@ export class CrearApunteComponent implements OnInit {
 
   fileChanged(e:any) {
     (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "none";
-    (<HTMLInputElement> document.getElementById("uploadButton")).disabled = false;
     this.file = e.target.files[0];
     console.log(this.file);
     if (this.file.size > 50000000){
       this.toastr.error('El archivo que estas intentando subir es mayor a 50 MB.');
       this.file = null;
       e.target.value = null;
+    } else {
+      this.postFileStack().then((res) => {
+        this.loading!.style.display = "none";
+        this.toastr.success('Archivo cargado con exito.');
+        (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "block";
+      })
     }
   }
 
-  uploadFile(){
-    this.postFileStack().then((res) => {
-      this.loading!.style.display = "none";
-      this.toastr.success('Archivo cargado con exito.');
-      (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "block";
-    })
-  }
-
   postFileStack(){
-    (<HTMLInputElement> document.getElementById("uploadButton")).disabled = true;
     this.loading = document.getElementById('fileLoading');
     this.loading!.style.display = "block";
     return new Promise((resolve, reject) => {

@@ -1,131 +1,178 @@
-<div class="container crear">
+<link rel="stylesheet" href="/styles.css">
+<div class="container crear" style="margin-bottom: 5rem;">
 
-    <form #noteForm="ngForm">
-      <!-- Tema/Name -->
+
+  <form [formGroup]="noteForm">
+    
+    <!-- Tema/Name -->
       <div class="form-group">
-        <label for="exampleFormControlInput1" class="form-label titulo">Tema (*)</label>
-        <input type="text" class="form-control" name="name" placeholder="Ingrese el tema de su apunte...">
+        <label for="exampleFormControlInput1" class="form-label titulo">Título (*)</label>
+        <input type="text" value="{{ note.name }}" class="form-control " id="name" name="name" placeholder="Ingrese el tema de su apunte..." formControlName="name" (blur)="CheckValidator('name')"> 
+
       </div>
-      <!-- Carrera/Career  -->
-      <div class="form-group">
-        <label for="exampleFormControlInput1" class="form-label titulo">Carrera (*)</label>
-        <select class="form-select" name="career" placeholder="Selecciona tu carrera...">
-          <option selected disabled>Selecciona tu Carrera</option>
-          <option >Ing. en Sistemas de Información</option>
-          <option >Ing. Química</option>
-          <option >Ing. Eléctrica</option>
-          <option >Ing. Mecánica</option>
+    <!-- Carrera/Career  -->
+    <div class="form-group">
+      <label for="exampleFormControlInput1" class="form-label titulo">Carrera (*)</label>
+      <select value="{{ note.career }}" class="form-select" name="career" formControlName="career" id="career" (blur)="CheckValidator('career')">
+        <option disabled>Selecciona tu Carrera</option>
+        <option >Ing. en Sistemas de Información</option>
+        <option >Ing. Química</option>
+        <option >Ing. Eléctrica</option>
+        <option >Ing. Mecánica</option>
+        <option >Basicas </option>
+      </select>
+    </div>
+    
+    <!-- Materia/Subject -->
+    <div class="form-group">
+      <label class="form-label titulo">Materia (*)</label>
+      <select value="{{ note.subject }}" class="form-select" name="subject" formControlName="subject" id="subject" (blur)="CheckValidator('subject')">
+        <option disabled>Selecciona tu materia</option>
+        <!-- PRIMERO -->
+        <option disabled class="year">Primero</option>
+        <option value="Álgebra y Geometría Analítica">Álgebra y Geometría Analítica</option>
+        <option value="Matemática Discreta">Matemática Discreta</option>
+        <option value="Ingeniería y Sociedad">Ingeniería y Sociedad</option>
+        <option value="Sistemas y Organizaciones">Sistemas y Organizaciones</option>
+        <option value="Algoritmos y Estructuras de Datos">Algoritmos y Estructuras de Datos</option>
+        <option value="Inglés I">Inglés I</option>
+        <option value="Química">Química</option>
+        <option value="Física I">Física I</option>
+        <option value="Análisis Matemático I">Análisis Matemático I</option>
+        <option disabled></option>
+        
+        <!-- SEGUNDO -->
+        <option disabled class="year">Segundo</option>
+        <option value="60c80ade70df0f346472ad38">Analisis Matematico II</option>
+        <option value="Sintaxis y Semántica de los Lenguajes">Sintaxis y Semántica de los Lenguajes</option>
+        <option value="Análisis de Sistemas">Análisis de Sistemas</option>
+        <option value="Inglés II">Inglés II</option>
+        <option value="Física II">Física II</option>
+        <option value="Arquitectura de Computadoras">Arquitectura de Computadoras</option>
+        <option value="Paradigmas de la Programación">Paradigmas de la Programación</option>
+        <option value="Probabilidades y Estadística">Probabilidades y Estadística</option>
+
+        <option disabled></option>
+        <!-- TERCERO -->
+        <option disabled class="year">Tercero</option>
+        <option value="Matemática Superior">Matemática Superior</option>
+        <option value="Sistemas Operativos">Sistemas Operativos</option>
+        <option value="Gestión de Datos">Gestión de Datos</option>
+        <option value="Comunicaciones">Comunicaciones</option>
+        <option value="Métodos Numéricos">Métodos Numéricos</option>
+        <option value="Estadística Aplicada">Estadística Aplicada</option>
+        <option value="Diseño de Sistemas">Diseño de Sistemas</option>
+        <option value="Física Acústica">Física Acústica</option>
+        <option value="Seguridad Informática">Seguridad Informática</option>
+        <option value="Economía">Economía</option>
+
+        <option disabled></option>
+        <!-- CUARTO -->
+        <option disabled class="year">Cuarto</option>
+        <option value="Ingeniería de Software">Ingeniería de Software</option>
+        <option value="Electrónica General y Aplicada">Electrónica General y Aplicada</option>
+        <option value="Legislación">Legislación</option>
+        <option value="Investigación Operativa">Investigación Operativa</option>
+        <option value="Simulación">Simulación</option>
+        <option value="Teoría de Control">Teoría de Control</option>
+        <option value="Redes de Información">Redes de Información</option>
+        <option value="Administración de Recursos">Administración de Recursos</option>
+        <option disabled></option>
+        <!-- QUINTO -->
+        <option disabled class="year">Quinto</option>
+        <option value="Sistemas de Gestión">Sistemas de Gestión</option>
+        <option value="Procesamiento Digital de Imágenes">Procesamiento Digital de Imágenes</option>
+        <option value="Sisteamas Informáticos Industriales">Sistemas Informáticos Industriales</option>
+        <option value="Inteligencia Artificial">Inteligencia Artificial</option>
+        <option value="Redes Neuronales">Redes Neuronales</option>
+        <option value="Administración Gerencial">Administración Gerencial</option>
+        <option value="Control Estadístico de Procesos">Control Estadístico de Procesos</option>
+        <option value="Laboratorio de Microcontroladores y DSP">Laboratorio de Microcontroladores</option>
+        <option value="Proyecto">Proyecto</option>
+      </select>
+    </div>
+
+    <!-- Contenido/Content -->
+    <label class="form-label titulo">Contenido (*)</label>
+
+    <angular-editor [(ngModel)]="htmlContent" formControlName="content" [config]="editorConfig"></angular-editor>
+    
+    <div class="row">
+      <!-- Categoría/Category -->
+      <div class="col-md-4">
+        <label class="form-label titulo" style="margin-top:0.5rem;">Categoría (*) </label>
+        <select value="{{ note.category }}" class="form-select" name="category" formControlName="category" id="category" (blur)="CheckValidator('category')">
+          <option disabled>Selecciona una categoría</option>
+          <option value="Trabajo Práctico">Trabajo Práctico</option>
+          <option value="Laboratorio">Laboratorio</option>
+          <option value="Resumen">Resumen</option>
+          <option value="Ejercicio">Ejercicio</option>
+          <option value="Informe">Informe</option>
+          <option value="Parcial">Parcial</option>
+          <option value="Tarea">Tarea</option>
+          <option value="Final">Final</option>
+          <option value="Otros"> Otros</option>
         </select>
       </div>
-      
-      <!-- Materia/Subject -->
-      <div class="form-group">
-        <label class="form-label titulo">Materia (*)</label>
-        <select class="form-select" name="subject" placeholder="Selecciona tu materia...">
-          <option selected disabled>Selecciona tu materia</option>
-          <!-- PRIMERO -->
-          <option disabled class="year">Primero</option>
-          <option value="Álgebra y Geometría Analítica">Álgebra y Geometría Analítica</option>
-          <option value="Matemática Discreta">Matemática Discreta</option>
-          <option value="Ingeniería y Sociedad">Ingeniería y Sociedad</option>
-          <option value="Sistemas y Organizaciones">Sistemas y Organizaciones</option>
-          <option value="Algoritmos y Estructuras de Datos">Algoritmos y Estructuras de Datos</option>
-          <option value="Inglés I">Inglés I</option>
-          <option value="Química">Química</option>
-          <option value="Física I">Física I</option>
-          <option value="Análisis Matemático I">Análisis Matemático I</option>
-          <option disabled></option>
-          
-          <!-- SEGUNDO -->
-          <option disabled class="year">Segundo</option>
-          <option value="60c80ade70df0f346472ad38">Analisis Matematico II</option>
-          <option value="Sintaxis y Semántica de los Lenguajes">Sintaxis y Semántica de los Lenguajes</option>
-          <option value="Análisis de Sistemas">Análisis de Sistemas</option>
-          <option value="Inglés II">Inglés II</option>
-          <option value="Física II">Física II</option>
-          <option value="Arquitectura de Computadoras">Arquitectura de Computadoras</option>
-          <option value="Paradigmas de la Programación">Paradigmas de la Programación</option>
-          <option value="Probabilidades y Estadística">Probabilidades y Estadística</option>
-  
-          <option disabled></option>
-          <!-- TERCERO -->
-          <option disabled class="year">Tercero</option>
-          <option value="Matemática Superior">Matemática Superior</option>
-          <option value="Sistemas Operativos">Sistemas Operativos</option>
-          <option value="Gestión de Datos">Gestión de Datos</option>
-          <option value="Comunicaciones">Comunicaciones</option>
-          <option value="Métodos Numéricos">Métodos Numéricos</option>
-          <option value="Estadística Aplicada">Estadística Aplicada</option>
-          <option value="Diseño de Sistemas">Diseño de Sistemas</option>
-          <option value="Física Acústica">Física Acústica</option>
-          <option value="Seguridad Informática">Seguridad Informática</option>
-          <option value="Economía">Economía</option>
-  
-          <option disabled></option>
-          <!-- CUARTO -->
-          <option disabled class="year">Cuarto</option>
-          <option value="Ingeniería de Software">Ingeniería de Software</option>
-          <option value="Electrónica General y Aplicada">Electrónica General y Aplicada</option>
-          <option value="Legislación">Legislación</option>
-          <option value="Investigación Operativa">Investigación Operativa</option>
-          <option value="Simulación">Simulación</option>
-          <option value="Teoría de Control">Teoría de Control</option>
-          <option value="Redes de Información">Redes de Información</option>
-          <option value="Administración de Recursos">Administración de Recursos</option>
-          <option disabled></option>
-          <!-- QUINTO -->
-          <option disabled class="year">Quinto</option>
-          <option value="Sistemas de Gestión">Sistemas de Gestión</option>
-          <option value="Procesamiento Digital de Imágenes">Procesamiento Digital de Imágenes</option>
-          <option value="Sisteamas Informáticos Industriales">Sistemas Informáticos Industriales</option>
-          <option value="Inteligencia Artificial">Inteligencia Artificial</option>
-          <option value="Redes Neuronales">Redes Neuronales</option>
-          <option value="Administración Gerencial">Administración Gerencial</option>
-          <option value="Control Estadístico de Procesos">Control Estadístico de Procesos</option>
-          <option value="Laboratorio de Microcontroladores y DSP">Laboratorio de Microcontroladores</option>
-          <option value="Proyecto">Proyecto</option>
-         
-        </select>
+
+    <!-- Adjunto/Attached -->
+    <div class="col-md-6">
+      <div class="row">
+        <label class="form-label titulo" style="margin-top:0.5rem;">Adjunto</label>
+        <br>
+        <div *ngIf="note.attached == '' " class="btn-group" role="group" aria-label="Basic mixed styles example">
+          <button type="button" class="btn btn-success" (click)="enableUp()"> Subir archivo <i class="far fa-upload"></i></button>
+        </div>
+
+        <div *ngIf="note.attached !== '' " class="btn-group" role="group" aria-label="Basic mixed styles example">
+          <a type="button" class="btn btn-primary" href="{{ note.attached }}" target="_blank">Ver archivo <i class="far fa-file-alt"></i></a>
+          <button type="button" class="btn btn-success" (click)="enableUp()"> Actualizar archivo <i class="far fa-upload"></i></button>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAttachedFile"> Eliminar archivo <i class="far fa-trash-alt"></i></button>
+        </div>
+        <br>
       </div>
-  
-      <!-- Category/Categoría -->
-      <div class="form-group">
-        <a style="font-weight: bold;">Seleccione Categorías:   </a>
-        <div class="categorias" style="margin-top:10px; margin-bottom: 10px;">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-            <label class="form-check-label" for="inlineCheckbox1">Parcial</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-            <label class="form-check-label" for="inlineCheckbox2">Resumen</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-            <label class="form-check-label" for="inlineCheckbox3">Tarea</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" >
-            <label class="form-check-label" for="inlineCheckbox4">Final</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
-            <label class="form-check-label" for="inlineCheckbox5">Trabajo Práctico</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
-            <label class="form-check-label" for="inlineCheckbox6">Otros</label>
-          </div>
+
+      <div class="row" *ngIf="enableUpload">
+        <label for="formFileLg" class="form-label"></label>
+        <input type="file" (change)="fileChanged($event)" style="margin-bottom: 5%;" id="attached">
+
+        <div class="spinner-border text-success" style="display:none;" role="status" id="fileLoading">
+          <span class="sr-only">Cargando...</span>
         </div>
-        </div>
-  
-      <!-- Acciones/Actions -->
-      <button type="cancel" class="btn btn-danger boton" style="width: 100px;">Cancelar</button>
-      <!-- <button type="submit" class="btn btn-success">Subir</button> -->
-      <a class="btn btn-info btn-block" style="width: 100px;" type="submit">Actualizar</a>
-      
-    </form>
-  
+        <a style="color: green; display:none;" id="succesLabel">&nbsp; Archivo cargado con exito.</a>
+        <br>
+        <a style="color: grey;">&nbsp; * Tamaño máximo del archivo 50MB.</a>
+      </div>
+    </div>
   </div>
-  
-  
+
+
+
+
+
+  </form>
+  <!-- Acciones/Actions -->
+  <button [routerLink]="['/']" type="cancel" class="btn btn-danger boton" style="width: 100px;">Cancelar</button>
+  <a type="submit" (click)="updateNote()" class="btn btn-warning btn-block" style="width: 100px;" >Actualizar</a>
+  <span class="texto">(*) Campos obligatorios</span>
+
+</div>
+
+<!-- Delete Attached Modal -->
+<div class="modal fade" id="deleteAttachedFile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background:rgba(255, 99, 71, .4);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar adjunto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Seguro quieres eliminar el archivo?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" (click)="deleteFileStack()" data-bs-dismiss="modal">Si</button>
+      </div>
+    </div>
+  </div>
+</div>

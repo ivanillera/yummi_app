@@ -1,10 +1,10 @@
 export class Comment {
-    creator: string;
+    commentCreator: string;
     content: string;
     date: Date;
 
-    constructor(creator:string, content: string, date:Date){
-        this.creator = creator;
+    constructor(commentCreator:string, content: string, date:Date){
+        this.commentCreator = commentCreator;
         this.content = content;
         this.date = date;
     }
