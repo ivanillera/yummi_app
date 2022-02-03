@@ -8,11 +8,13 @@
                 </div>
             </div>
             <div class="row justify-content-left">
+                <!-- 
                 <div class="col-md-1 mb-3 mb-md-0 ">
 
                 </div>
+                -->
                 <div class="col col-lg-4">
-                    <select class="form-select form-control form-control-lg categoryfilter" [(ngModel)] = "filterCategory">
+                    <select class="form-select form-control form-control-lg categoryfilter" [(ngModel)] = "filterCategory" id="filterCategory">
                         <option disabled selected value="" style="color: grey;">Buscar por categoría</option>
                         <option value=""> Mostrar todo </option>
                         <option value="Trabajo Práctico">Trabajo Práctico</option>
@@ -93,6 +95,17 @@
                         <option value="Proyecto">Proyecto</option>
                     </select>
                 </div>
+                <div class="col col-lg-4">
+                    <select class="form-select form-control form-control-lg categoryfilter" [(ngModel)] = "filterCareer">
+                        <option disabled selected value="" style="color: grey;">Buscar por carrera</option>
+                        <option value=""> Mostrar todo </option>
+                        <option value="Ing. en Sistemas de información">Ing. en Sistemas de Información</option>
+                        <option value="Ing. Química">Ing. Química</option>
+                        <option value="Ing. Eléctrica">Ing. Eléctrica</option>
+                        <option value="Ing. Mecánica">Ing. Mecánica</option>
+                        <option value="Básicas">Básicas </option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
@@ -111,16 +124,20 @@
                                 <th class="text-center"><span>Fecha</span></th>
                                 <th class="text-center"><span>Materia</span></th>
                                 <th class="text-center"><span>Carrera</span></th>
+                                <!-- 
                                 <th class="text-center"><span> </span></th>
                                 <th class="text-center"><span> &nbsp;</span></th>
                                 <th class="text-center">&nbsp;</th>
+                                -->
+                                <th class="text-center">&nbsp;<button type="button" class="btn btn-primary" style="padding: 0.2rem; margin-bottom: 0.5rem;" (click)="sortByCalification()"><i class="fas fa-sort"></i></button></th>
+                                <th class="text-center">&nbsp;<button type="button" class="btn btn-primary" style="padding: 0.2rem; margin-bottom: 0.5rem;" (click)="sortByComments()"><i class="fas fa-sort"></i></button></th>
                             </tr>
                         </thead>
                         <tbody>
 
 
                         
-                        <tr *ngFor="let note of noteService.notes.reverse() | filter:filterPost | categoryFilter:filterCategory">
+                        <tr *ngFor="let note of noteService.notes.reverse() | filter:filterPost | categoryFilter:filterCategory | subjectFilter:filterSubject | careerFilter:filterCareer | paginate: { itemsPerPage: 10, currentPage: p }">
 
                             <td class="text-center">
                                 <a class="" > {{ note.category }}</a>
@@ -167,23 +184,7 @@
                     </table>
                 </div>
                 <div class="row">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                          <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
+                    <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente" class="paginatorCSS buscador"></pagination-controls>
                 </div>
             </div>
         </div>

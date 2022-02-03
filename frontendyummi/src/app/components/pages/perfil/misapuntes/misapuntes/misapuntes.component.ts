@@ -17,6 +17,7 @@ export class MisapuntesComponent implements OnInit {
   tokenInfo: any;
   tokenId: any;
   userData: any;
+  p: number = 1;
 
   constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, ) { }
   ngOnInit(): void {

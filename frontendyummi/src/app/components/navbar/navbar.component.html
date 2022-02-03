@@ -44,10 +44,10 @@
                       <div class="card-body">
                           <form (submit)="signIn()">
                               <div class="form-group">
-                                  <input type="text" [(ngModel)]="user.mail" name="mail" class="form-control" placeholder="Email" required autofocus>
+                                  <input id="mailInput" type="text" [(ngModel)]="user.mail" name="mail" class="form-control" placeholder="Email" required autofocus>
                               </div>
                               <div class="form-group" style="margin-top:1rem;">
-                                  <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Contraseña" required>
+                                  <input id="pwInput" type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Contraseña" required>
                               </div>
                               <div class="btn" style="margin-top: 1rem; margin-left: 25px;">
                               <button type="submit" class="btn btn-info btn-block"> 

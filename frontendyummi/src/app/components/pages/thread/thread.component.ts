@@ -19,10 +19,15 @@ export class ThreadComponent implements OnInit {
   filterPost='';
   filterCategory='';
   filterSubject='';
+  filterCareer='';
+  sortCalification: boolean = true;
+  sortComment: boolean = true;
+  calification: any;
   tokenInfo: any;
   tokenId: any;
   userData: any;
   userName: any;
+  p: number = 1;
 
   constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, ) { }
 
@@ -30,13 +35,43 @@ export class ThreadComponent implements OnInit {
     this.getNotes();
   }
 
+
+
   getNotes() {
+
     this.noteService.getNotes().subscribe(
       res => {
         this.noteService.notes = res;
       },
       err => console.error(err)
     )
+  }
+
+  sortByCalification(){
+    const filterCategory = (<HTMLInputElement>document.getElementById('filterCategory')).value;  
+    console.log(filterCategory); 
+    (<HTMLInputElement>document.getElementById('filterCategory')).value = "";
+    console.log((<HTMLInputElement>document.getElementById('filterCategory')).value);
+    if (this.sortCalification){
+      this.noteService.notes.sort((note1,noteX) => note1.calification.length - noteX.calification.length);
+      this.sortCalification = false;
+    } else {
+      this.noteService.notes.sort((note1,noteX) => note1.calification.length < noteX.calification.length ? 1 : -1);
+      this.sortCalification = true;
+    }
+
+    (<HTMLInputElement>document.getElementById('filterCategory')).value = filterCategory;
+
+  }
+
+  sortByComments(){
+    if (this.sortComment){
+      this.noteService.notes.sort((note1,noteX) => note1.comments.length - noteX.comments.length);
+      this.sortComment = false;
+    } else {
+      this.noteService.notes.sort((note1,noteX) => note1.comments.length < noteX.comments.length ? 1 : -1);
+      this.sortComment = true;
+    }
   }
 
   deleteNote(id:string){

@@ -1,16 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'subjectFilter'
+  name: 'careerFilter'
 })
-export class SubjectFilterPipe implements PipeTransform {
+export class CareerFilterPipe implements PipeTransform {
 
   transform(value: any, arg: any): any {
     if(arg.length < 3) return value;
     const resultPosts = [];
     for(const post of value){
       // || post.subject.toLowerCase().indexOf(arg.toLowerCase()) > -1
-      if (post.subject.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+      if (post.career.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
         resultPosts.push(post);
       };
     };

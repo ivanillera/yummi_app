@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 declare var $ : any;
 
 @Component({
@@ -15,7 +16,7 @@ export class NavbarComponent implements OnInit {
     password: ''
   }
 
-  constructor(public authService:AuthService, private router: Router) { }
+  constructor(public authService:AuthService, private router: Router, private toastr: ToastrService) { }
   
   ngOnInit(): void {
   }
@@ -30,6 +31,9 @@ export class NavbarComponent implements OnInit {
           this.closeModal('#sesionModal');
         },
         err => {
+          this.toastr.error('Usuario y/o contraseña invalidos', 'Tuvimos un problema :(');
+          document.getElementById('mailInput')?.classList.add('is-invalid');
+          document.getElementById('pwInput')?.classList.add('is-invalid');
           console.log(err);
         }
       ) 

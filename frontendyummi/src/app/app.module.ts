@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import { FilestackModule } from '@filestack/angular';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { UrlsafePipe } from './pipes/urlsafe.pipe';
 import { CategoryFilterPipe } from './pipes/category-filter.pipe';
 import { SubjectFilterPipe } from './pipes/subject-filter.pipe';
+import { CareerFilterPipe } from './pipes/career-filter.pipe';
 
 
 
@@ -48,7 +50,8 @@ import { SubjectFilterPipe } from './pipes/subject-filter.pipe';
     FilterPipe,
     UrlsafePipe,
     CategoryFilterPipe,
-    SubjectFilterPipe
+    SubjectFilterPipe,
+    CareerFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { SubjectFilterPipe } from './pipes/subject-filter.pipe';
     ToastrModule.forRoot({
       positionClass: 'toast-top-right'
     }),
-    AngularEditorModule
+    AngularEditorModule,
+    NgxPaginationModule
   ],
   providers: [
     AuthGuard,
