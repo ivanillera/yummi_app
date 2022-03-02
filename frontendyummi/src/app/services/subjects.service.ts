@@ -9,7 +9,7 @@ import { EMPTY, Observable } from 'rxjs';
 })
 export class SubjectsService {
 
-  URL_API = 'http://localhost:4000/api/subjects/';
+  URL_API = 'api/subjects/';
 
   subjects: Subject[] = [];
 

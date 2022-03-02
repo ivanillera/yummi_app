@@ -1,9 +1,16 @@
 .container{
     background: white;
-    position:center;
+    position: relative;
     padding: 40px;
     border-radius: 15px;
     margin: 10px;
+    min-height: 100%;  
+}
+
+.logo{
+    font-family: 'Urbanist', sans-serif;
+    font-size: 40px;
+    position: absolute;
 }
 
 .contenidoHTML{

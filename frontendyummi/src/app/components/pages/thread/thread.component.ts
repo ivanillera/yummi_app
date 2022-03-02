@@ -5,6 +5,7 @@ import { NotesService } from '../../../services/notes.service';
 import { UsersService} from '../../../services/users.service';
 import { AuthService } from '../../../services/auth.service';
 import jwt_decode from 'jwt-decode';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-thread',
@@ -29,21 +30,24 @@ export class ThreadComponent implements OnInit {
   userName: any;
   p: number = 1;
 
-  constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, ) { }
+  constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, private location: Location) { }
 
   ngOnInit(): void {
     this.getNotes();
   }
 
-
+  back() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
 
   getNotes() {
-
     this.noteService.getNotes().subscribe(
       res => {
         this.noteService.notes = res;
+        this.noteService.notes = this.noteService.notes.reverse(); 
+        console.log(res);
       },
-      err => console.error(err)
+      err => {console.error(err);}
     )
   }
 

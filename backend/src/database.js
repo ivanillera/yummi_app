@@ -6,12 +6,13 @@ const {GridFsStorage} = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const methodOverride = require('method-override');
 
-const mongoURI = 'mongodb+srv://yummiadmin:1234@yummidb.rh4jc.mongodb.net/yummiDB?retryWrites=true&w=majority'
+const mongoURI = 'mongodb+srv://yummi:yummi@cluster0.jpx40.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose
     .connect(mongoURI, {
         useUnifiedTopology: true,
         useNewUrlParser: true,
+        useCreateIndex: true,
         useFindAndModify: false
     })
     .then(db => console.log('DB is connected'))

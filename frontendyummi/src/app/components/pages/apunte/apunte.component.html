@@ -4,6 +4,10 @@
 
 
 <div class="container">
+    <a style="color: black; text-decoration: none; margin-bottom: 1.1rem;" class="logo" routerLink="/apuntes"> 
+        <i class="fa fa-arrow-left"></i> 
+    </a>
+    
     <div class="titulo"> {{ note.name }} </div>
     <div class="titulo"> {{ note.subject }} - {{ note.category }}</div>
 
@@ -52,7 +56,7 @@
     <div *ngIf = "note.comments.length === 0" >
         No hay comentarios para este apunte.
     </div>
-    <div *ngFor="let comment of note.comments.reverse()" class="comentario">
+    <div *ngFor="let comment of note.comments" class="comentario">
         <hr>
                 <div class="nombre" >
                     {{ comment.commentCreator }}

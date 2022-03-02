@@ -121,6 +121,7 @@ export class EditarApunteComponent implements OnInit {
       res => {
         this.note = res;
         this.htmlContent = this.note.content;
+        this.shortLink = this.note.attached;
         console.log('Nota: ', this.note);
         },
       err => {console.log(err);}

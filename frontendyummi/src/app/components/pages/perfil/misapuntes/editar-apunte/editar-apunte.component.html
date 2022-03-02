@@ -7,6 +7,7 @@
     <!-- Tema/Name -->
       <div class="form-group">
         <label for="exampleFormControlInput1" class="form-label titulo">Título (*)</label>
+        <a style="color: grey; font-style: italic; font-size: 0.9rem">&nbsp; (Mínimo de 10 caracteres de longitud)</a>
         <input type="text" value="{{ note.name }}" class="form-control " id="name" name="name" placeholder="Ingrese el tema de su apunte..." formControlName="name" (blur)="CheckValidator('name')"> 
 
       </div>
@@ -15,11 +16,11 @@
       <label for="exampleFormControlInput1" class="form-label titulo">Carrera (*)</label>
       <select value="{{ note.career }}" class="form-select" name="career" formControlName="career" id="career" (blur)="CheckValidator('career')">
         <option disabled>Selecciona tu Carrera</option>
-        <option >Ing. en Sistemas de Información</option>
-        <option >Ing. Química</option>
-        <option >Ing. Eléctrica</option>
-        <option >Ing. Mecánica</option>
-        <option >Basicas </option>
+        <option value="Ing. en Sistemas de información">Ing. en Sistemas de Información</option>
+        <option value="Ing. Química">Ing. Química</option>
+        <option value="Ing. Eléctrica">Ing. Eléctrica</option>
+        <option value="Ing. Mecánica">Ing. Mecánica</option>
+        <option value="Básicas">Básicas </option>
       </select>
     </div>
     

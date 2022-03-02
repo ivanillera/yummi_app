@@ -1,3 +1,9 @@
+.logo{
+    font-family: 'Urbanist', sans-serif;
+    font-size: 40px;
+    position: absolute;
+}
+
 .paginatorCSS {
     background: white;
     -moz-border-radius: 0.3rem;

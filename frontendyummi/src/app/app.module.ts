@@ -11,6 +11,7 @@ import { FilestackModule } from '@filestack/angular';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import {NgxPaginationModule} from 'ngx-pagination';
 
+
 //Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -29,6 +30,7 @@ import { UrlsafePipe } from './pipes/urlsafe.pipe';
 import { CategoryFilterPipe } from './pipes/category-filter.pipe';
 import { SubjectFilterPipe } from './pipes/subject-filter.pipe';
 import { CareerFilterPipe } from './pipes/career-filter.pipe';
+import { CreatorPipe } from './pipes/creator.pipe';
 
 
 
@@ -51,7 +53,8 @@ import { CareerFilterPipe } from './pipes/career-filter.pipe';
     UrlsafePipe,
     CategoryFilterPipe,
     SubjectFilterPipe,
-    CareerFilterPipe
+    CareerFilterPipe,
+    CreatorPipe
   ],
   imports: [
     BrowserModule,

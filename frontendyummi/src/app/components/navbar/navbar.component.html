@@ -3,6 +3,7 @@
 
 <header class="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
       <a class="navbar-brand logo h1 font-weight-bold mb-4 text-white" routerLink = "/" href="#">Yummi</a>
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -11,6 +12,7 @@
           <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
             <form class="d-flex">
               <button class="btn btn-outline-light buscar" type="button" data-bs-toggle="modal" data-bs-target="#sesionModal">Iniciar sesión</button>
+              <button class="btn btn-outline-light buscar" type="button" style="margin-left: 1rem;"><a routerLink = "/signup" style="color: inherit; text-decoration: none;">Registrarse</a></button>
             </form>
 
 

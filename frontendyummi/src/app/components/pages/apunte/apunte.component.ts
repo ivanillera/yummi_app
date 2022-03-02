@@ -52,19 +52,6 @@ export class ApunteComponent implements OnInit {
   SRC_FILE: any;
   sanitizer: any;
 
-  // addComment(){
-  //   // Crear un objeto comentario
-  //   const comment: Comment = {
-  //     content: this.commentContent,
-  //     creator: this.commentCreator,
-  //     date: this.commentDate
-  //   }
-  //   // Agregar objeto comentario al array
-  //   this.listComments.push(comment);
-  //   // Reset input
-  //   this.commentContent = '';
-
-  // }
   constructor(
     public commentService: CommentsService, 
     private activatedRoute: ActivatedRoute, 
@@ -72,6 +59,7 @@ export class ApunteComponent implements OnInit {
     private authService: AuthService,
     private userService: UsersService,
     private toastr: ToastrService,
+    private router: Router,
     private formBuilder:FormBuilder 
     ) {
       this.commentForm = this.formBuilder.group({
@@ -83,34 +71,23 @@ export class ApunteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.loadImages()
-    this.getUserData()
-    console.log(this.id);
     this.notesService.getNote(this.id).subscribe(
       res => {
         this.note = res;
         console.log('Nota: ', this.note);
+        this.note.comments = this.note.comments.reverse();
         },
       err => {console.log(err);}
     );
-    this.liked = this.note.calification.includes(this.tokenId)
-    console.log('liked: ', this.liked);
-    (<HTMLInputElement> document.getElementById("buttonComment")).disabled = true;
+    this.getUserData();
+    console.log(this.id);
+    if (this.tokenId !== null){
+      this.liked = this.note.calification.includes(this.tokenId);
+      console.log('liked: ', this.liked);
+      (<HTMLInputElement> document.getElementById("buttonComment")).disabled = true;
+    }
+
   }
-
-
-
-  async loadImages(){
-    const response = await fetch('http://localhost:4000/api/files/61c0ebe8f9d18012531e62db').then(response => response.json());
-    this.SRC_FILE = response.filePath;
-    console.log(this.SRC_FILE);
-    const fileElement = document.querySelector('.uopa');
-    fileElement!.innerHTML = '';
-    const img = document.createElement('img');
-    img.src = 'http://localhost:4000/api/files/61c0ebe8f9d18012531e62db/81f8d5aa-b390-4b4f-b375-5598348eb72a.png';
-    img.height = 200;
-    fileElement!.appendChild(img);
-  };
 
   getComments() {
     this.commentService.getComments().subscribe(
@@ -121,26 +98,30 @@ export class ApunteComponent implements OnInit {
     )
   }
 
-
-
   likear(){
-    if (this.note.calification.includes(this.tokenId)) {
-      console.log("Ya likeaste")
-      this.notesService.removerLike(this.note,this.id,this.tokenId).subscribe(
-        res => res,
-        err => console.log(err)
-      )
-      this.liked = false
-      console.log("No likeo, pongo like en: ", this.liked)
+    if (this.tokenId == null) {
+      this.toastr.error('Debes iniciar sesión para poder dar likes!', 'Error');
+      this.router.navigate(['/apuntes']);
+    } else {
+      if (this.note.calification.includes(this.tokenId)) {
+        console.log("Ya likeaste")
+        this.notesService.removerLike(this.note,this.id,this.tokenId).subscribe(
+          res => res,
+          err => console.log(err)
+        )
+        this.liked = false
+        console.log("No likeo, pongo like en: ", this.liked)
+      }
+      else{
+        this.notesService.agregarLike(this.note,this.id,this.tokenId).subscribe(
+          res => res,
+          err => console.log(err)
+        )
+        this.liked = true
+        console.log("Likeo, pongo like en: ", this.liked)
+      }
     }
-    else{
-      this.notesService.agregarLike(this.note,this.id,this.tokenId).subscribe(
-        res => res,
-        err => console.log(err)
-      )
-      this.liked = true
-      console.log("Likeo, pongo like en: ", this.liked)
-    }
+
     this.notesService.getNote(this.id).subscribe(
       res => {
         this.note = res;
@@ -170,7 +151,7 @@ export class ApunteComponent implements OnInit {
 
         },
         err => {
-          console.log(err);
+          this.toastr.info('Si te interesa este apunte y quiere comentar y/o likear, registrate y podras hacerlo!','Info');
         });
   }
 
@@ -183,20 +164,29 @@ export class ApunteComponent implements OnInit {
   }
 
   addComment(){
-    const COMMENT: Comment = {
-      commentCreator: this.userData.name,
-      content: this.commentForm.get('content')?.value,
-      date: new Date()
-    }
-    console.log(COMMENT);
-    this.notesService.commentNote(this.note, this.id, COMMENT).subscribe(
-      res => {
-        console.log(res)
-      },
-      err => {
-        console.log(err)
+    if (this.tokenId == null) {
+      this.toastr.error('Debes iniciar sesión para poder comentar!', 'Error');
+      this.router.navigate(['/apuntes']);
+    } else {
+      const date = new Date();
+      let textDate = date.toLocaleString('es-AR');
+  
+      const COMMENT: Comment = {
+        commentCreator: this.userData.name,
+        content: this.commentForm.get('content')?.value,
+        date: textDate
       }
-    )
+
+      this.notesService.commentNote(this.note, this.id, COMMENT).subscribe(
+        res => {
+          console.log(res);
+          this.toastr.success('Comentario agregado!');
+        },
+        err => {
+          console.log(err)
+        }
+      )
+    }
   }
 
   resetForm(){

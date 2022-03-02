@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Note } from '../models/Note';
 import { User } from '../models/User';
 import { EMPTY, Observable, throwError } from 'rxjs';
@@ -12,7 +12,7 @@ import { Comment } from '../models/Comment';
 })
 export class NotesService {
 
-  URL_API = 'http://localhost:4000/api/notes/';
+  URL_API = 'api/notes/';
   FILE_API = 'https://file.io';
   
   notes: Note[] = [];
@@ -32,11 +32,14 @@ export class NotesService {
   selectedComment: Comment = {
     commentCreator: '',
     content: '',
-    date: new Date()
+    date: ''
   }
   
   constructor(private http: HttpClient, private toastr: ToastrService) {
+    
   }
+
+  
   
   getNotes() {
     return this.http.get<Note[]>(this.URL_API);
@@ -80,25 +83,13 @@ export class NotesService {
   removerLike(note:Note, id:string, userId: string): Observable<any>{
     const userIndex = note.calification.indexOf(userId)
     let arrayOriginal = note.calification
-    console.log("Pepe")
-    console.log("Entré ", arrayOriginal.splice(userIndex, 1)) // 2nd parameter means remove one item only
     const body = {
       calification: arrayOriginal.splice(userIndex, 1)
     }
-    note.calification = arrayOriginal.splice(userIndex, 1)
+    //note.calification = arrayOriginal.splice(userIndex, 1)
     return this.http.put(this.URL_API + id,body);
   }
-  // agregarLike(note: Note, id: string): Observable<any> {
-  //   const resCalification = note.calification
-  //   const body = {calification: resCalification + 1}
-  //   return this.http.put(this.URL_API + id, body);
-  // }
 
-  // removerLike(note: Note, id: string): Observable<any> {
-  //   const resCalification = note.calification
-  //   const body = {calification: resCalification - 1}
-  //   return this.http.put(this.URL_API + id, body);
-  // }
 
   deleteNote(id: string): Observable<any>{
     return this.http.delete(this.URL_API + id)

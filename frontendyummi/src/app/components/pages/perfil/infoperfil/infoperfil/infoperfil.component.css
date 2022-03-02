@@ -1,3 +1,9 @@
+.logo{
+    font-family: 'Urbanist', sans-serif;
+    font-size: 40px;
+    position: absolute;
+}
+
 .title{
     font-size: 50px;
     text-align: center;

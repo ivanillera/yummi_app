@@ -6,6 +6,8 @@ import { UsersService} from '../../../../../services/users.service';
 import { AuthService } from '../../../../../services/auth.service';
 import jwt_decode from 'jwt-decode';
 import { ThreadComponent } from '../../../thread/thread.component';
+import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-misapuntes',
@@ -19,10 +21,14 @@ export class MisapuntesComponent implements OnInit {
   userData: any;
   p: number = 1;
 
-  constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, ) { }
+  constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, private toastr: ToastrService, private location: Location) { }
   ngOnInit(): void {
     this.getNotes();
     this.getUserData();
+  }
+
+  back() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
 
   getToken(){
@@ -48,25 +54,26 @@ export class MisapuntesComponent implements OnInit {
     this.noteService.getNotes().subscribe(
       res => {
         this.noteService.notes = res;
+        this.noteService.notes = this.noteService.notes.reverse(); 
       },
       err => console.error(err)
     )
   }
 
   deleteNote(id:string){
-    /** 
     this.noteService.deleteNote(id).subscribe(
       res => {
         this.noteService.notes = res;
+        this.toastr.success('Apunte eliminado con exito!','Apunte eliminado')
       },
       err => console.error(err)
-    ) */
+    );
   }
   
   getNote(id: any) {
     this.noteService.getNote(id).subscribe(
       res => {
-        this.noteService.notes = res
+        this.noteService.notes = res;
       }
     )
   }

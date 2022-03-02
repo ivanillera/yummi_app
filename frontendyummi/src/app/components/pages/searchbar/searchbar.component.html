@@ -1,31 +1,5 @@
 <link rel="stylesheet" href="/styles.css"> 
-<!-- <section class="intro">
 
-    <div class="mask d-flex align-items-center h-100">
-        <div class="container ">
-            <div class="card mask-custom p-4 ">
-                <div class="card-body ">
-                    <p class="h1 font-weight-bold mb-4 text-white titulo ">Yummi</p>
-                    <div class="row justify-content-center ">
-                        <div class="col-md-6 mb-3 mb-md-0 ">
-                            <div id="basic " class="form-outline form-white ">
-                                <input type="text " id="form1 " class="form-control form-control-lg " />
-                                <label class="form-label " for="form1 ">¿De cuál materia o tema quieres ver apuntes?</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2 ">
-                            <a class="btn btn-info btn-block btn-lg w-100" type="submit " value="Search" routerLink="/apuntes">Buscar</a>
-                            <a class="btn btn-light btn-block btn-lg w-100" style="margin-top: 15px"  type="submit " value="Search" routerLink="/crear">Subir apunte</a>
-                        </div>
-  
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</section> -->
 <section class="intro">
 
     <div class="mask d-flex align-items-center h-100">
@@ -43,12 +17,11 @@
                     </div>
                     
                     <div class="col">
-                        <button class="btn btn-light btn-block btn-lg w-100"  type="submit " value="Search" routerLink="/crear">Subir apunte</button>
+                        <button class="btn btn-light btn-block btn-lg w-100"  type="submit " value="Search" routerLink="/crear" (click)="checkUser()">Subir apunte</button>
                     </div>
                         
                     </div>
             </div>
         </div>
     </div>
-
 </section>

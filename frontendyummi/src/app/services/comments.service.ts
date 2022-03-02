@@ -10,14 +10,14 @@ import { EMPTY } from 'rxjs';
 })
 export class CommentsService {
 
-  URL_API = 'http://localhost:4000/api/comments';
+  URL_API = 'api/comments/';
 
   comments: Comment[] = [];
 
   selectedComment: Comment = {
     commentCreator: '',
     content: '',
-    date: new Date(),
+    date: '',
   }
   
   constructor(private http: HttpClient) {
