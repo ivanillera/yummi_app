@@ -2,19 +2,19 @@
 <div class="container crear" style="margin-bottom: 5rem;">
 
 
-  <form [formGroup]="noteForm">
-    
-    <!-- Tema/Name -->
-      <div class="form-group">
-        <label for="exampleFormControlInput1" class="form-label titulo">Título (*)</label>
-        <a style="color: grey; font-style: italic; font-size: 0.9rem">&nbsp; (Mínimo de 10 caracteres de longitud)</a>
-        <input type="text" value="{{ note.name }}" class="form-control " id="name" name="name" placeholder="Ingrese el tema de su apunte..." formControlName="name" (blur)="CheckValidator('name')"> 
+    <form [formGroup]="noteForm">
 
-      </div>
-    <!-- Carrera/Career  -->
-    <div class="form-group">
-      <label for="exampleFormControlInput1" class="form-label titulo">Carrera (*)</label>
-      <select value="{{ note.career }}" class="form-select" name="career" formControlName="career" id="career" (blur)="CheckValidator('career')">
+        <!-- Tema/Name -->
+        <div class="form-group">
+            <label for="exampleFormControlInput1" class="form-label titulo">Título (*)</label>
+            <a style="color: grey; font-style: italic; font-size: 0.9rem">&nbsp; (Mínimo de 10 caracteres de longitud)</a>
+            <input type="text" value="{{ note.name }}" class="form-control " id="name" name="name" placeholder="Ingrese el tema de su apunte..." formControlName="name" (blur)="CheckValidator('name')">
+
+        </div>
+        <!-- Carrera/Career  -->
+        <div class="form-group">
+            <label for="exampleFormControlInput1" class="form-label titulo">Carrera (*)</label>
+            <select value="{{ note.career }}" class="form-select" name="career" formControlName="career" id="career" (blur)="CheckValidator('career')">
         <option disabled>Selecciona tu Carrera</option>
         <option value="Ing. en Sistemas de información">Ing. en Sistemas de Información</option>
         <option value="Ing. Química">Ing. Química</option>
@@ -22,12 +22,12 @@
         <option value="Ing. Mecánica">Ing. Mecánica</option>
         <option value="Básicas">Básicas </option>
       </select>
-    </div>
-    
-    <!-- Materia/Subject -->
-    <div class="form-group">
-      <label class="form-label titulo">Materia (*)</label>
-      <select value="{{ note.subject }}" class="form-select" name="subject" formControlName="subject" id="subject" (blur)="CheckValidator('subject')">
+        </div>
+
+        <!-- Materia/Subject -->
+        <div class="form-group">
+            <label class="form-label titulo">Materia (*)</label>
+            <select value="{{ note.subject }}" class="form-select" name="subject" formControlName="subject" id="subject" (blur)="CheckValidator('subject')">
         <option disabled>Selecciona tu materia</option>
         <!-- PRIMERO -->
         <option disabled class="year">Primero</option>
@@ -41,7 +41,7 @@
         <option value="Física I">Física I</option>
         <option value="Análisis Matemático I">Análisis Matemático I</option>
         <option disabled></option>
-        
+
         <!-- SEGUNDO -->
         <option disabled class="year">Segundo</option>
         <option value="Analisis Matematico II">Analisis Matematico II</option>
@@ -91,19 +91,19 @@
         <option value="Laboratorio de Microcontroladores y DSP">Laboratorio de Microcontroladores</option>
         <option value="Proyecto">Proyecto</option>
       </select>
-    </div>
+        </div>
 
-    <!-- Contenido/Content -->
-    <label class="form-label titulo">Contenido (*)</label>
+        <!-- Contenido/Content -->
+        <label class="form-label titulo">Contenido (*)</label>
 
-    <angular-editor [(ngModel)]="htmlContent" formControlName="content" [config]="editorConfig"></angular-editor>
-    
-    <div class="row">
-      <!-- Categoría/Category -->
-      <div class="col-md-4">
-        <label class="form-label titulo" style="margin-top:0.5rem;">Categoría (*) </label>
-        <select value="{{ note.category }}" class="form-select" name="category" formControlName="category" id="category" (blur)="CheckValidator('category')">
-          <option disabled>Selecciona una categoría</option>
+        <angular-editor [(ngModel)]="htmlContent" formControlName="content" [config]="editorConfig"></angular-editor>
+
+        <div class="row">
+            <!-- Tipo de apunte/Category -->
+            <div class="col-md-4">
+                <label class="form-label titulo" style="margin-top:0.5rem;">Tipo de apunte (*) </label>
+                <select value="{{ note.category }}" class="form-select" name="category" formControlName="category" id="category" (blur)="CheckValidator('category')">
+          <option disabled>Selecciona una Tipo de apunte</option>
           <option value="Trabajo Práctico">Trabajo Práctico</option>
           <option value="Laboratorio">Laboratorio</option>
           <option value="Resumen">Resumen</option>
@@ -114,66 +114,66 @@
           <option value="Final">Final</option>
           <option value="Otros"> Otros</option>
         </select>
-      </div>
+            </div>
 
-    <!-- Adjunto/Attached -->
-    <div class="col-md-6">
-      <div class="row">
-        <label class="form-label titulo" style="margin-top:0.5rem;">Adjunto</label>
-        <br>
-        <div *ngIf="note.attached == '' " class="btn-group" role="group" aria-label="Basic mixed styles example">
-          <button type="button" class="btn btn-success" (click)="enableUp()"> Subir archivo <i class="far fa-upload"></i></button>
+            <!-- Adjunto/Attached -->
+            <div class="col-md-6">
+                <div class="row">
+                    <label class="form-label titulo" style="margin-top:0.5rem;">Adjunto</label>
+                    <br>
+                    <div *ngIf="note.attached == '' " class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <button type="button" class="btn btn-success" (click)="enableUp()"> Subir archivo <i class="far fa-upload"></i></button>
+                    </div>
+
+                    <div *ngIf="note.attached !== '' " class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a type="button" class="btn btn-primary" href="{{ note.attached }}" target="_blank">Ver archivo <i class="far fa-file-alt"></i></a>
+                        <button type="button" class="btn btn-success" (click)="enableUp()"> Actualizar archivo <i class="far fa-upload"></i></button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAttachedFile"> Eliminar archivo <i class="far fa-trash-alt"></i></button>
+                    </div>
+                    <br>
+                </div>
+
+                <div class="row" *ngIf="enableUpload">
+                    <label for="formFileLg" class="form-label"></label>
+                    <input type="file" (change)="fileChanged($event)" style="margin-bottom: 5%;" id="attached">
+
+                    <div class="spinner-border text-success" style="display:none;" role="status" id="fileLoading">
+                        <span class="sr-only">Cargando...</span>
+                    </div>
+                    <a style="color: green; display:none;" id="succesLabel">&nbsp; Archivo cargado con exito.</a>
+                    <br>
+                    <a style="color: grey;">&nbsp; * Tamaño máximo del archivo 50MB.</a>
+                </div>
+            </div>
         </div>
 
-        <div *ngIf="note.attached !== '' " class="btn-group" role="group" aria-label="Basic mixed styles example">
-          <a type="button" class="btn btn-primary" href="{{ note.attached }}" target="_blank">Ver archivo <i class="far fa-file-alt"></i></a>
-          <button type="button" class="btn btn-success" (click)="enableUp()"> Actualizar archivo <i class="far fa-upload"></i></button>
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAttachedFile"> Eliminar archivo <i class="far fa-trash-alt"></i></button>
-        </div>
-        <br>
-      </div>
-
-      <div class="row" *ngIf="enableUpload">
-        <label for="formFileLg" class="form-label"></label>
-        <input type="file" (change)="fileChanged($event)" style="margin-bottom: 5%;" id="attached">
-
-        <div class="spinner-border text-success" style="display:none;" role="status" id="fileLoading">
-          <span class="sr-only">Cargando...</span>
-        </div>
-        <a style="color: green; display:none;" id="succesLabel">&nbsp; Archivo cargado con exito.</a>
-        <br>
-        <a style="color: grey;">&nbsp; * Tamaño máximo del archivo 50MB.</a>
-      </div>
-    </div>
-  </div>
 
 
 
 
-
-  </form>
-  <!-- Acciones/Actions -->
-  <button [routerLink]="['/']" type="cancel" class="btn btn-danger boton" style="width: 100px;">Cancelar</button>
-  <a type="submit" (click)="updateNote()" class="btn btn-warning btn-block" style="width: 100px;" >Actualizar</a>
-  <span class="texto">(*) Campos obligatorios</span>
+    </form>
+    <!-- Acciones/Actions -->
+    <button [routerLink]="['/']" type="cancel" class="btn btn-danger boton" style="width: 100px;">Cancelar</button>
+    <a type="submit" (click)="updateNote()" class="btn btn-warning btn-block" style="width: 100px;">Actualizar</a>
+    <span class="texto">(*) Campos obligatorios</span>
 
 </div>
 
 <!-- Delete Attached Modal -->
 <div class="modal fade" id="deleteAttachedFile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background:rgba(255, 99, 71, .4);">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Eliminar adjunto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ¿Seguro quieres eliminar el archivo?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button type="button" class="btn btn-danger" (click)="deleteFileStack()" data-bs-dismiss="modal">Si</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar adjunto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Seguro quieres eliminar el archivo?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" (click)="deleteFileStack()" data-bs-dismiss="modal">Si</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

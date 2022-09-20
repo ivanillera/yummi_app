@@ -3,26 +3,26 @@
     <div class="row">
         <div class="buscador" style="margin-bottom: 20px;">
             <div class="row justify-content-center">
-                
+
                 <div class="col-sm-0">
-                    <a style="color: white; text-decoration: none; margin-bottom: 1.1rem;" class="logo" routerLink=".."> 
-                        <i class="fa fa-arrow-left"></i> 
+                    <a style="color: white; text-decoration: none; margin-bottom: 1.1rem;" class="logo" routerLink="..">
+                        <i class="fa fa-arrow-left"></i>
                     </a>
                 </div>
                 <div class="col-md-10 mb-3 mb-md-0 ">
-                        <input type="text " id="form1 " class="form-control form-control-lg" placeholder="Buscar por título" name="filterPost" [(ngModel)]="filterPost">
+                    <input type="text " id="form1 " class="form-control form-control-lg" placeholder="Buscar por título" name="filterPost" [(ngModel)]="filterPost">
                 </div>
 
             </div>
             <div class="row justify-content-left">
-                <!-- 
+                <!--
                 <div class="col-md-1 mb-3 mb-md-0 ">
 
                 </div>
                 -->
                 <div class="col col-lg-4">
-                    <select class="form-select form-control form-control-lg categoryfilter" [(ngModel)] = "filterCategory" id="filterCategory">
-                        <option disabled selected value="" style="color: grey;">Buscar por categoría</option>
+                    <select class="form-select form-control form-control-lg categoryfilter" [(ngModel)]="filterCategory" id="filterCategory">
+                        <option disabled selected value="" style="color: grey;">Buscar por Tipo de apunte</option>
                         <option value=""> Mostrar todo </option>
                         <option value="Trabajo Práctico">Trabajo Práctico</option>
                         <option value="Laboratorio">Laboratorio</option>
@@ -36,7 +36,7 @@
                     </select>
                 </div>
                 <div class="col col-lg-4">
-                    <select class="form-select form-control form-control-lg categoryfilter" [(ngModel)] = "filterSubject">
+                    <select class="form-select form-control form-control-lg categoryfilter" [(ngModel)]="filterSubject">
                         <option disabled selected value="" style="color: grey;">Buscar por Materia</option>
                         <option value=""> Mostrar todo </option>
                         <!-- PRIMERO -->
@@ -51,7 +51,7 @@
                         <option value="Física I">Física I</option>
                         <option value="Análisis Matemático I">Análisis Matemático I</option>
                         <option disabled></option>
-                        
+
                         <!-- SEGUNDO -->
                         <option disabled class="year estiloYear">Segundo</option>
                         <option value="60c80ade70df0f346472ad38">Analisis Matematico II</option>
@@ -62,7 +62,7 @@
                         <option value="Arquitectura de Computadoras">Arquitectura de Computadoras</option>
                         <option value="Paradigmas de la Programación">Paradigmas de la Programación</option>
                         <option value="Probabilidades y Estadística">Probabilidades y Estadística</option>
-                
+
                         <option disabled></option>
                         <!-- TERCERO -->
                         <option disabled class="year estiloYear">Tercero</option>
@@ -76,7 +76,7 @@
                         <option value="Física Acústica">Física Acústica</option>
                         <option value="Seguridad Informática">Seguridad Informática</option>
                         <option value="Economía">Economía</option>
-                
+
                         <option disabled></option>
                         <!-- CUARTO -->
                         <option disabled class="year estiloYear">Cuarto</option>
@@ -103,7 +103,7 @@
                     </select>
                 </div>
                 <div class="col col-lg-4">
-                    <select class="form-select form-control form-control-lg categoryfilter" [(ngModel)] = "filterCareer">
+                    <select class="form-select form-control form-control-lg categoryfilter" [(ngModel)]="filterCareer">
                         <option disabled selected value="" style="color: grey;">Buscar por carrera</option>
                         <option value=""> Mostrar todo </option>
                         <option value="Ing. en Sistemas de información">Ing. en Sistemas de Información</option>
@@ -131,7 +131,7 @@
                                 <th class="text-center"><span>Fecha</span></th>
                                 <th class="text-center"><span>Materia</span></th>
                                 <th class="text-center"><span>Carrera</span></th>
-                                <!-- 
+                                <!--
                                 <th class="text-center"><span> </span></th>
                                 <th class="text-center"><span> &nbsp;</span></th>
                                 <th class="text-center">&nbsp;</th>
@@ -142,49 +142,49 @@
                         </thead>
                         <tbody>
 
-                        <tr *ngFor="let note of noteService.notes.reverse() | filter:filterPost | categoryFilter:filterCategory | subjectFilter:filterSubject | careerFilter:filterCareer | paginate: { itemsPerPage: 6, currentPage: p }">
+                            <tr *ngFor="let note of noteService.notes.reverse() | filter:filterPost | categoryFilter:filterCategory | subjectFilter:filterSubject | careerFilter:filterCareer | paginate: { itemsPerPage: 6, currentPage: p }">
 
-                            <td class="text-center">
-                                <a class="" > {{ note.category }}</a>
-                            </td>
-                            <td class="text">
-                                <a [routerLink]="['/apunte', note._id]"  >{{ note.name }}</a>
-                            </td>
-                            <td class="text-center">    
-                                <a class="" > {{ note.creator.name}} </a>
-                            </td>
-                            <td class="text-center">
-                                <span class="label label-default"> {{note.createdAt.slice(8,10) + "/" + note.createdAt.slice(5,7) + "/" + note.createdAt.slice(0,4)}} </span>
-                            </td>
-                            <td class = "text-center">
-                                <span class="label label-default">{{ note.subject }}</span>
-                            </td>
-                            <td class = "text-center">
-                                <span class="label label-default">{{ note.career }}</span>
-                            </td>
-                            <td class = "text-center" >
-                                <i class="fas fa-heart"></i>
-                                <span class="nroLikes"> {{ note.calification.length}} </span>
+                                <td class="text-center">
+                                    <a class=""> {{ note.category }}</a>
+                                </td>
+                                <td class="text">
+                                    <a [routerLink]="['/apunte', note._id]">{{ note.name }}</a>
+                                </td>
+                                <td class="text-center">
+                                    <a class=""> {{ note.creator.name}} </a>
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-default"> {{note.createdAt.slice(8,10) + "/" + note.createdAt.slice(5,7) + "/" + note.createdAt.slice(0,4)}} </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-default">{{ note.subject }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-default">{{ note.career }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <i class="fas fa-heart"></i>
+                                    <span class="nroLikes"> {{ note.calification.length}} </span>
 
 
-                            </td>
-                            <td class = "text-center" >
-                                <i class="fas fa-comments"></i>
-                                <span class="nroLikes"> {{ note.comments.length}} </span>
-                            </td>
-                            
-                            <td style="text-align: end;">
-                                <!-- <a href="/apuntes" (click)=deleteNote(note._id) class="table-link danger">
+                                </td>
+                                <td class="text-center">
+                                    <i class="fas fa-comments"></i>
+                                    <span class="nroLikes"> {{ note.comments.length}} </span>
+                                </td>
+
+                                <td style="text-align: end;">
+                                    <!-- <a href="/apuntes" (click)=deleteNote(note._id) class="table-link danger">
                                     <span class="fa-stack">
                                     <i class="fa fa-square fa-stack-2x"></i>
                                     <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                 </span>
                                 </a> -->
-                            </td>
-                        </tr>
-                        
-                            
-                        
+                                </td>
+                            </tr>
+
+
+
                         </tbody>
                     </table>
                 </div>
