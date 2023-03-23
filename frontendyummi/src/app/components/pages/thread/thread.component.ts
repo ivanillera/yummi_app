@@ -6,6 +6,9 @@ import { UsersService} from '../../../services/users.service';
 import { AuthService } from '../../../services/auth.service';
 import jwt_decode from 'jwt-decode';
 import { Location } from '@angular/common';
+import {CareerFilterPipe} from '../../../pipes/career-filter.pipe';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-thread',
@@ -30,7 +33,7 @@ export class ThreadComponent implements OnInit {
   userName: any;
   p: number = 1;
 
-  constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, private location: Location) { }
+  constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, public location: Location) { }
 
   ngOnInit(): void {
     this.getNotes();
@@ -44,10 +47,11 @@ export class ThreadComponent implements OnInit {
     this.noteService.getNotes().subscribe(
       res => {
         this.noteService.notes = res;
-        this.noteService.notes = this.noteService.notes.reverse(); 
-        console.log(res);
+          this.noteService.notes = this.noteService.notes.reverse(); 
+          console.log(res);
       },
-      err => {console.error(err);}
+      err => {console.error(err);
+      }
     )
   }
 
@@ -106,24 +110,6 @@ export class ThreadComponent implements OnInit {
         this.noteService.notes = res
       }
     )
-  }
-
-
-  // Falta implementación
-
-  agregarApunte(){
-    // Crear un objeto tarea
-    const apunte: Apunte = {
-      titulo : this.tituloApunte,
-      creador : 'Creador',
-      fecha : 'Fecha',
-      materia : 'Materia',
-      calificacion : 3,
-    }
-    // Agregar objeto tarea al array
-    this.listApuntes.push(apunte);
-    // Resetear formulario
-    this.tituloApunte = ''
   }
 
   getDecodedAccessToken(token: string): any {

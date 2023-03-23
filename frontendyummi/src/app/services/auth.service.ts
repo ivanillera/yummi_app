@@ -8,7 +8,11 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private URL = 'api/users';
-  constructor(private http: HttpClient, private router: Router) {  }
+  user = {
+    mail: '',
+    password: ''
+  }
+  constructor(public http: HttpClient, public router: Router) {  }
   
   signUp(user: any){
     return this.http.post<any>(this.URL + '/signup', user);

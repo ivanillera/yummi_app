@@ -1,16 +1,51 @@
 <link rel="stylesheet" href="/styles.css"> 
 
-<section class="intro">
+<section class="intro"> 
+    <!-- Button trigger Welcome modal -->
+    <button type="button" id="welcomeModalButton" [hidden]="true" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#welcomeModal"></button>
+    
+    <!-- Welcome Modal -->
+    <div class="modal fade " id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 style="font-family: 'Urbanist';">Yummi: Bienvenido!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div> -->
+            
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="https://www.linkpicture.com/q/Yummi-Logo.png" width="150rem" height="150rem" alt="Yummilogo">
+                    </div>
+                    <div class="col-md-8">
+                        <p style="margin:0;display:inline;float:left">Hola! Bienvenido a  </p>
+                        <p style="display:inline;float:left;font-family: 'Urbanist';margin-left: 0.2rem;"> Yummi</p> 
+                        <p style="margin:0;display:inline;float:left">Una plataforma para compartir tus apuntes y material de estudio de la universidad.</p>
+                        <!-- <p style="margin:0;display:inline;float:left">Vas a poder encontrar todo lo relacionado con tus clases: resúmenes, trabajos prácticos, exámenes y más.</p>     -->
+                    </div>
+                </div>
+                <div class="row" style="padding:10px;">
+                    <p>En Yummi, nos preocupamos por la calidad del material que compartimos, por lo que pedimos estar logueado para poder subir apuntes y así garantizar que todos los recursos sean de confianza.</p>
+                    <p>De todas formas puedes ver apuntes subidos por otros usuarios como usuario invitado!</p>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Entendido!</button>
+            </div>
+        </div>
+        </div>
+    </div>
+  
 
     <div class="mask d-flex align-items-center h-100">
         <div class="container ">
             <div class="card mask-custom p-4 ">
                 <div class="card-body ">
                     <p class="h1 font-weight-bold mb-4 text-white titulo ">Yummi</p>
-  
-
                 </div>
-            
+
                 <div class="row" style="margin:20px;">
                     <div class="col">
                         <button class="btn btn-info btn-block btn-lg w-100" type="submit " value="Search" routerLink="/apuntes">Ver apuntes</button>
@@ -25,3 +60,4 @@
         </div>
     </div>
 </section>
+

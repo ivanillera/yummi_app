@@ -9,8 +9,7 @@ export class SubjectFilterPipe implements PipeTransform {
     if(arg.length < 3) return value;
     const resultPosts = [];
     for(const post of value){
-      // || post.subject.toLowerCase().indexOf(arg.toLowerCase()) > -1
-      if (post.subject.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+      if (post.subject.toLowerCase().indexOf(arg.toString().toLowerCase()) > -1) {
         resultPosts.push(post);
       };
     };

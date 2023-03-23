@@ -12,6 +12,7 @@ import { Note } from '../../../../../models/Note';
 import jwt_decode from 'jwt-decode';
 import { FilestackService } from '@filestack/angular';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
@@ -83,20 +84,20 @@ export class EditarApunteComponent implements OnInit {
     category: [],
     comments: []
   }
+  notesService: any;
 
  	constructor(
-    private noteService: NotesService, 
+    public noteService: NotesService, 
     private activatedRoute: ActivatedRoute,
     private formBuilder:FormBuilder, 
     private authService: AuthService, 
-    private userService: UsersService,
+    public userService: UsersService,
     public subjectsService: SubjectsService,
     public fileService: FilesService,
-    private toastr: ToastrService,
-    private filestackService: FilestackService,
+    public toastr: ToastrService,
+    public filestackService: FilestackService,
     private router: Router,
     ){
-
     this.noteForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(75)]],
       career: ['', Validators.required],
@@ -114,6 +115,7 @@ export class EditarApunteComponent implements OnInit {
 	}
 
   ngOnInit(){
+    
     // API KEY
     this.filestackService.init('AvHvKEsxS4i2EoPKAkTaez'); 
     this.getUserData();
@@ -134,7 +136,9 @@ export class EditarApunteComponent implements OnInit {
   }
 
   fileChanged(e:any) {
-    (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "none";
+    if(<HTMLInputElement> document.getElementById("succesLabel")){
+      (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "none";
+    }
     this.file = e.target.files[0];
     console.log(this.file);
     if (this.file.size > 50000000){
@@ -153,7 +157,9 @@ export class EditarApunteComponent implements OnInit {
 
   postFileStack(){
     this.loading = document.getElementById('fileLoading');
-    this.loading!.style.display = "block";
+    if (this.loading){
+      this.loading!.style.display = "block";
+    }
     return new Promise((resolve, reject) => {
       this.filestackService.upload(this.file)
       .subscribe(res => {
@@ -191,16 +197,23 @@ export class EditarApunteComponent implements OnInit {
   }
 
   getUserData(){
-    this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
-    this.tokenId = this.tokenInfo._id;
-    this.userData = this.userService.getUser(this.tokenId)
-        .subscribe(res => {
-          this.userData = res
-          //this.userName = this.userData.name;
-        },
-        err => {
-          console.log(err);
-        });
+    try{
+      this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
+      this.tokenId = this.tokenInfo._id;
+  
+      this.userData = this.userService.getUser(this.tokenId)
+          .subscribe(res => {
+            this.userData = res
+            //this.userName = this.userData.name;
+  
+          },
+          err => {
+            console.log(err);
+          });
+    }catch(Error){
+      console.log('Usuario Invitado');
+    }
+
   }
 
   getSubjects() {
@@ -212,9 +225,9 @@ export class EditarApunteComponent implements OnInit {
     )
   }
 
-  typeSubject(){
-    this.subjectId = (<HTMLInputElement>document.getElementById('subjectId')).value;   
-  }
+  // typeSubject(){
+  //   this.subjectId = (<HTMLInputElement>document.getElementById('subjectId')).value;   
+  // }
 
   CheckValidator(name:string){
     if (this.noteForm.get(name)?.valid){
@@ -292,8 +305,5 @@ export class EditarApunteComponent implements OnInit {
     }
   }
 
-}
-function security(arg0: string, security: any) {
-  throw new Error('Function not implemented.');
 }
 

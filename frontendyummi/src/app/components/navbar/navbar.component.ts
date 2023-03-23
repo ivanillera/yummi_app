@@ -16,8 +16,9 @@ export class NavbarComponent implements OnInit {
     mail: '',
     password: ''
   }
+  activeChange: any;
 
-  constructor(public authService:AuthService, private router: Router, private toastr: ToastrService) { }
+  constructor(public authService:AuthService, public router: Router, public toastr: ToastrService) { }
   
   ngOnInit(): void {
   }

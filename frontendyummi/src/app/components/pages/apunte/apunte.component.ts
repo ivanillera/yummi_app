@@ -16,7 +16,6 @@ import {ToastrService} from 'ngx-toastr';
 import { FilestackService } from '@filestack/angular';
 
 
-
 @Component({
   selector: 'app-apunte',
   templateUrl: './apunte.component.html',
@@ -58,8 +57,8 @@ export class ApunteComponent implements OnInit {
     public notesService: NotesService,
     private authService: AuthService,
     private userService: UsersService,
-    private toastr: ToastrService,
-    private router: Router,
+    public toastr: ToastrService,
+    public router: Router,
     private formBuilder:FormBuilder 
     ) {
       this.commentForm = this.formBuilder.group({
@@ -142,17 +141,23 @@ export class ApunteComponent implements OnInit {
   }
 
   getUserData(){
-    this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
-    this.tokenId = this.tokenInfo._id;
-    this.userData = this.userService.getUser(this.tokenId)
-        .subscribe(res => {
-          this.userData = res
-          //this.userName = this.userData.name;
+    try{
+      this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
+      this.tokenId = this.tokenInfo._id;
+  
+      this.userData = this.userService.getUser(this.tokenId)
+          .subscribe(res => {
+            this.userData = res
+            //this.userName = this.userData.name;
+  
+          },
+          err => {
+            this.toastr.info('Si te interesa este apunte y quiere comentar y/o likear, registrate y podras hacerlo!','Info');
+          });
+    }catch(Error){
+      console.log('Usuario Invitado');
+    }
 
-        },
-        err => {
-          this.toastr.info('Si te interesa este apunte y quiere comentar y/o likear, registrate y podras hacerlo!','Info');
-        });
   }
 
   unlockCommentButton(){
@@ -181,9 +186,6 @@ export class ApunteComponent implements OnInit {
         res => {
           console.log(res);
           this.toastr.success('Comentario agregado!');
-        },
-        err => {
-          console.log(err)
         }
       )
     }
@@ -191,6 +193,17 @@ export class ApunteComponent implements OnInit {
 
   resetForm(){
     this.commentForm.reset()
+  }
+
+  savePage() {
+    const pageHtml = document.documentElement.outerHTML;
+    const blob = new Blob([pageHtml], { type: 'text/html' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'apunte.html';
+    link.click();
+    window.URL.revokeObjectURL(url);
   }
 
 }

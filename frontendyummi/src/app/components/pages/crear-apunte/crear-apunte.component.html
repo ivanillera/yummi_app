@@ -94,7 +94,7 @@
 
         <!-- Contenido/Content -->
         <label class="form-label titulo">Contenido (*)</label>
-        <angular-editor formControlName="content" [config]="editorConfig"></angular-editor>
+        <angular-editor formControlName="content" [config]="editorConfig" ngDefaultControl></angular-editor>
 
         <div class="row">
             <!-- Tipo de apunte/Category -->
@@ -138,7 +138,8 @@
     </form>
     <!-- Acciones/Actions -->
     <button [routerLink]="['/']" type="cancel" class="btn btn-danger boton" style="width: 100px;">Cancelar</button>
-    <a type="submit" (click)="addNote()" class="btn btn-info btn-block" style="width: 100px;">Subir</a>
-    <span class="texto">(*) Campos obligatorios</span>
+    <span class="texto"> &nbsp; (*) Campos obligatorios</span>
+    <a type="submit" (click)="addNote()" class="btn btn-info btn-block boton" style="width: 100px;position:absolute; right:9rem;">Subir</a>
+    
 
 </div>

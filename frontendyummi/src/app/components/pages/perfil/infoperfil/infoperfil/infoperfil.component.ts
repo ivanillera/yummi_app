@@ -23,18 +23,23 @@ export class InfoperfilComponent implements OnInit {
   }
 
   getUserData(){
-    this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
-    this.tokenId = this.tokenInfo._id;
-    this.userData = this.userService.getUser(this.tokenId)
-        .subscribe(res => {
-          this.userData = res
-          //this.userName = this.userData.name;
+    try{
+      this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
+      this.tokenId = this.tokenInfo._id;
+  
+      this.userData = this.userService.getUser(this.tokenId)
+          .subscribe(res => {
+            this.userData = res  
+          },
+          err => {
+            console.log(err);
+          });
+    }catch(Error){
+      console.log('Usuario Invitado');
+    } 
 
-        },
-        err => {
-          console.log(err);
-        });
   }
+
   getDecodedAccessToken(token: string): any {
     try{
         return jwt_decode(token);

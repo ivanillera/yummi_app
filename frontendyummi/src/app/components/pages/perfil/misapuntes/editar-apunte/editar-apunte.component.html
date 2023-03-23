@@ -96,7 +96,7 @@
         <!-- Contenido/Content -->
         <label class="form-label titulo">Contenido (*)</label>
 
-        <angular-editor [(ngModel)]="htmlContent" formControlName="content" [config]="editorConfig"></angular-editor>
+        <angular-editor [(ngModel)]="htmlContent" formControlName="content" [config]="editorConfig" ngDefaultControl></angular-editor>
 
         <div class="row">
             <!-- Tipo de apunte/Category -->
@@ -137,7 +137,7 @@
                     <label for="formFileLg" class="form-label"></label>
                     <input type="file" (change)="fileChanged($event)" style="margin-bottom: 5%;" id="attached">
 
-                    <div class="spinner-border text-success" style="display:none;" role="status" id="fileLoading">
+                    <div id="fileLoading" style="display: none;" class="spinner-border text-success"  role="status" >
                         <span class="sr-only">Cargando...</span>
                     </div>
                     <a style="color: green; display:none;" id="succesLabel">&nbsp; Archivo cargado con exito.</a>

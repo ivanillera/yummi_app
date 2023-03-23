@@ -10,15 +10,18 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SearchbarComponent implements OnInit {
 
-  constructor(public authService: AuthService, private toastr: ToastrService) { 
+  constructor(public authService: AuthService, public toastr: ToastrService) { 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(localStorage.getItem('token') == null) {
+      document.getElementById("welcomeModalButton")!.click();
+    }
+  }
 
   checkUser(){
     if (this.authService.loggedIn() == false){
       this.toastr.error('Necesitas iniciar sesión para poder subir un apunte','Tuvimos un problema :(');
     }
-
   }
 }

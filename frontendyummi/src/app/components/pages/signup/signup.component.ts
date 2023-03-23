@@ -21,9 +21,9 @@ export class SignupComponent implements OnInit {
   users: any;
   legajos: string[] = [];
   mails: string[] = [];
+  validator = true;
 
-
-  constructor(private authService: AuthService, private router: Router, private userService: UsersService, private toastr: ToastrService) { }
+  constructor(public authService: AuthService, public router: Router, public userService: UsersService, private toastr: ToastrService) { }
 
   async ngOnInit(){
 
@@ -49,18 +49,13 @@ export class SignupComponent implements OnInit {
     })
   }
 
-  checkValidator(name:string){
-
-  }
-
   signUp(){
-    var validator = true;
 
     this.legajos.forEach(legajo => {
       if (legajo == this.user.legajo){
         this.toastr.error('Este legajo ya se encuentra registrado', 'Tuvimos un problema :(');
         document.getElementById('legajo')?.classList.add('is-invalid');
-        validator = false;
+        this.validator = false;
       }
     })
 
@@ -68,10 +63,10 @@ export class SignupComponent implements OnInit {
       if (mail == this.user.mail){
         this.toastr.error('Este correo electrónico ya se encuentra registrado', 'Tuvimos un problema :(');
         document.getElementById('email')?.classList.add('is-invalid');
-        validator = false;
+        this.validator = false;
       }
     })
-    if (validator){
+    if (this.validator){
       this.authService.signUp(this.user)
       .subscribe(
         res => {

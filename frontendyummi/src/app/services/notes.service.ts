@@ -35,12 +35,8 @@ export class NotesService {
     date: ''
   }
   
-  constructor(private http: HttpClient, private toastr: ToastrService) {
-    
-  }
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
-  
-  
   getNotes() {
     return this.http.get<Note[]>(this.URL_API);
   }
@@ -60,7 +56,16 @@ export class NotesService {
       comments:  actualComments.concat(comment)
     }
     note.comments = actualComments.concat(comment)
-
+    note.comments.reverse();
+    note.comments.sort((a: Comment, b: Comment) => {
+      if (a.date > b.date) {
+        return -1;
+      } else if (a.date < b.date) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
     return this.http.put(this.URL_API + id, body);
   }
 
@@ -68,7 +73,7 @@ export class NotesService {
     return this.http.put(this.URL_API + id, note);
   }
   // getCommentsOf(id:string):Observable<any>{
-  //   console.log('getCommentsOf tira ', this.http.get<Comment[]>(this.URL_API + id))
+  //   console.log('getCommentsOf tira ', this.http.get<Comment[]>(thhttps://cdn.filestackcontent.com/ZTrHPBnmR3ONsUi9M3XXis.URL_API + id))
   //   return this.http.get<Comment[]>(this.URL_API + id)
   // }
 

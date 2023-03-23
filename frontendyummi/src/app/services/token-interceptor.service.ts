@@ -6,6 +6,9 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class TokenInterceptorService implements HttpInterceptor{
+  counter(counter: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private authService: AuthService) { }
 

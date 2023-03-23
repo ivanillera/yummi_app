@@ -73,14 +73,14 @@ export class CrearApunteComponent implements OnInit {
   arrayPrueba:any;
 
  	constructor(
-    private noteService: NotesService, 
+    public noteService: NotesService, 
     private formBuilder:FormBuilder, 
     private authService: AuthService, 
     private userService: UsersService,
     public subjectsService: SubjectsService,
     public fileService: FilesService,
-    private toastr: ToastrService,
-    private filestackService: FilestackService,
+    public toastr: ToastrService,
+    public filestackService: FilestackService,
     private router: Router,
     ){
     this.noteForm = this.formBuilder.group({
@@ -106,7 +106,9 @@ export class CrearApunteComponent implements OnInit {
   }
 
   fileChanged(e:any) {
-    (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "none";
+    if(<HTMLInputElement> document.getElementById("succesLabel")){
+      (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "none";
+    }
     this.file = e.target.files[0];
     console.log(this.file);
     if (this.file.size > 50000000){
@@ -124,7 +126,9 @@ export class CrearApunteComponent implements OnInit {
 
   postFileStack(){
     this.loading = document.getElementById('fileLoading');
-    this.loading!.style.display = "block";
+    if(this.loading){
+      this.loading!.style.display = "block";
+    }
     return new Promise((resolve, reject) => {
       this.filestackService.upload(this.file)
       .subscribe(res => {
@@ -137,16 +141,23 @@ export class CrearApunteComponent implements OnInit {
   }
 
   getUserData(){
-    this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
-    this.tokenId = this.tokenInfo._id;
-    this.userData = this.userService.getUser(this.tokenId)
-        .subscribe(res => {
-          this.userData = res
-          //this.userName = this.userData.name;
-        },
-        err => {
-          console.log(err);
-        });
+    try{
+      this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
+      this.tokenId = this.tokenInfo._id;
+  
+      this.userData = this.userService.getUser(this.tokenId)
+          .subscribe(res => {
+            this.userData = res
+            //this.userName = this.userData.name;
+  
+          },
+          err => {
+            this.toastr.info('Si te interesa este apunte y quiere comentar y/o likear, registrate y podras hacerlo!','Info');
+          });
+    }catch(Error){
+      console.log('Usuario Invitado');
+    }
+
   }
 
   getSubjects() {

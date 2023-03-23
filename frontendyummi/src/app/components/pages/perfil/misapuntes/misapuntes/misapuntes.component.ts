@@ -21,7 +21,7 @@ export class MisapuntesComponent implements OnInit {
   userData: any;
   p: number = 1;
 
-  constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, private toastr: ToastrService, private location: Location) { }
+  constructor(public noteService: NotesService, public userService: UsersService,  private authService: AuthService, private toastr: ToastrService, public location: Location) { }
   ngOnInit(): void {
     this.getNotes();
     this.getUserData();
@@ -38,15 +38,23 @@ export class MisapuntesComponent implements OnInit {
   }
 
   getUserData(){
-    this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
-    this.tokenId = this.tokenInfo._id;
-    this.userData = this.userService.getUser(this.tokenId)
-        .subscribe(res => {
-          this.userData = res
-        },
-        err => {
-          console.log(err);
-        });
+    try{
+      this.tokenInfo = this.getDecodedAccessToken(JSON.stringify(this.authService.getToken()));
+      this.tokenId = this.tokenInfo._id;
+  
+      this.userData = this.userService.getUser(this.tokenId)
+          .subscribe(res => {
+            this.userData = res
+            //this.userName = this.userData.name;
+  
+          },
+          err => {
+            console.log(err);
+          });
+    }catch(Error){
+      console.log('Usuario Invitado');
+    }
+
   }
 
   

@@ -10,7 +10,7 @@ export class CareerFilterPipe implements PipeTransform {
     const resultPosts = [];
     for(const post of value){
       // || post.subject.toLowerCase().indexOf(arg.toLowerCase()) > -1
-      if (post.career.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+      if (post.career.toLowerCase().indexOf(arg.toString().toLowerCase()) > -1) {
         resultPosts.push(post);
       };
     };
