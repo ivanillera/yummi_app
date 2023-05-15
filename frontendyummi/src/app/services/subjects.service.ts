@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from '../models/Subject';
-import { User } from '../models/User';
-import { EMPTY, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class SubjectsService {
 
-  URL_API = 'api/subjects/';
+    URL_API = 'api/subjects/';
 
-  subjects: Subject[] = [];
+    subjects: Subject[] = [];
 
-  constructor(private http: HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
-  getSubjects() {
-    return this.http.get<Subject[]>(this.URL_API);
-  }
+    getSubjects(): Observable<Subject[]> {
+    	return this.http.get<Subject[]>(this.URL_API);
+    }
 
 }

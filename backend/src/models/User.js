@@ -1,5 +1,5 @@
 
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema({
     name: {type: String, required:true},
@@ -10,9 +10,8 @@ const userSchema = new Schema({
 }, {
     timestamps: true,
     versionKey: false
-})
+});
 
-module.exports = model('User', userSchema)
-
+module.exports = model('User', userSchema);
 
 

@@ -21,28 +21,37 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-
-        // "@angular-eslint/directive-selector": [
-        //   "error",
-        //   {
-        //     "type": "attribute",
-        //     "prefix": "app",
-        //     "style": "camelCase",
-        //   }
-        // ],
-        // "@angular-eslint/component-selector": [
-        //   "error",
-        //   {
-        //     "type": "element",
-        //     "prefix": "app",
-        //     "style": "kebab-case"
-        //   }
-        // ],
-        // "quotes": ["error", "single"],
-        // "semi": ["error", "always"],
-        // "@typescript-eslint/no-explicit-any": ["error", { "fixToUnknown": true }],
-        // "curly": "error",
-        // "no-empty": "error"
+        // Check camelCase
+        "camelcase": ["error", { "properties": "never", "ignoreImports": true }],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "method",
+            "format": ["camelCase"],
+            "leadingUnderscore": "forbid",
+            "filter": {
+              "regex": "^_[a-z].*",
+              "match": false
+            }
+          }
+        ],
+        //Requiere la especificación explícita de tipos de retorno de funciones y métodos públicos.
+        "@typescript-eslint/explicit-module-boundary-types": "error",
+        //Detecta y muestra advertencias para variables no utilizadas, incluyendo parámetros de función.
+        "@typescript-eslint/no-unused-vars":"error",
+        //Prohibir el uso de require en lugar de import en módulos TypeScript.
+        "@typescript-eslint/no-var-requires": "error",
+        //Desalienta el uso de espacios de nombres (namespace) y promueve el uso de módulos y la organización modular.
+        "@typescript-eslint/no-namespace": "error",
+        //Fomenta el uso de propiedades de solo lectura (readonly) en objetos y arreglos cuando sea posible para evitar mutaciones no deseadas.
+        "@typescript-eslint/prefer-readonly": "warn",
+        //Solo permite el uso de identación por tab.
+        "indent": ["error", 4],
+        "no-trailing-spaces":"error",
+        "no-multiple-empty-lines":"error",
+        "semi":"error",
+        "capitalized-comments":"error",
+        "max-depth": ["error", 4]
       }
     },
     {

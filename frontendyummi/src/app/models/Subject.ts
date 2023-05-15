@@ -3,8 +3,8 @@ export class Subject{
     professor: string;
 
     constructor(name: string, professor: string){
-        this.name = name;
-        this.professor = professor;
+    	this.name = name;
+    	this.professor = professor;
     }
 }
 

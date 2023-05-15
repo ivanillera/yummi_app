@@ -9,45 +9,45 @@ import { ToastrModule } from 'ngx-toastr';
 import { SearchbarComponent } from './searchbar.component';
 
 describe('SearchbarComponent', () => {
-  let component: SearchbarComponent;
-  let fixture: ComponentFixture<SearchbarComponent>;
+    let component: SearchbarComponent;
+    let fixture: ComponentFixture<SearchbarComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        ToastrModule.forRoot(),
-        BrowserModule,
-        ReactiveFormsModule,
-        RouterTestingModule,
-        FilestackModule,
-        ],
-      declarations: [ SearchbarComponent ]
-    })
-    .compileComponents();
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [
+                HttpClientTestingModule,
+                ToastrModule.forRoot(),
+                BrowserModule,
+                ReactiveFormsModule,
+                RouterTestingModule,
+                FilestackModule,
+            ],
+            declarations: [ SearchbarComponent ]
+        })
+            .compileComponents();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SearchbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(SearchbarComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 
-  it('should check user', () => {
-    let user = component.authService.user;
-    user.mail = 'test@postman.com';
-    user.password = 'test';
-    component.authService.signIn(user);
+    it('should check user', () => {
+        let user = component.authService.user;
+        user.mail = 'test@postman.com';
+        user.password = 'test';
+        component.authService.signIn(user);
 
-    const spy1 = spyOn(component.authService, 'loggedIn');
-    spy1.and.returnValue(false);
-    component.checkUser();
-    expect(spy1).toHaveBeenCalled();
+        const spy1 = spyOn(component.authService, 'loggedIn');
+        spy1.and.returnValue(false);
+        component.checkUser();
+        expect(spy1).toHaveBeenCalled();
 
-    
-  });
+
+    });
 });

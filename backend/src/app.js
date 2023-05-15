@@ -1,16 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors')
+const cors = require('cors');
 
 const app = express();
 
 const path = require('path');
-const mongoose = require('mongoose');
-
-
-const mongoURI = 'mongodb+srv://yummi:yummi@cluster0.jpx40.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-const ejs = require('ejs');
-
 
 
 // Env Var.
@@ -34,7 +28,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
-
 
 
 module.exports = app;

@@ -32,51 +32,49 @@ import { CareerFilterPipe } from './pipes/career-filter.pipe';
 import { CreatorPipe } from './pipes/creator.pipe';
 
 
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    FooterComponent,
-    SearchbarComponent,
-    ThreadComponent,
-    CrearApunteComponent,
-    PerfilComponent,
-    InfoperfilComponent,
-    MisapuntesComponent,
-    ApunteComponent,
-    EditarApunteComponent,
-    SignupComponent,
-    FilterPipe,
-    UrlsafePipe,
-    CategoryFilterPipe,
-    SubjectFilterPipe,
-    CareerFilterPipe,
-    CreatorPipe
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    AngularEditorModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    FilestackModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-top-right'
-    }),
-    NgxPaginationModule
-  ],
-  providers: [
-    AuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        FooterComponent,
+        SearchbarComponent,
+        ThreadComponent,
+        CrearApunteComponent,
+        PerfilComponent,
+        InfoperfilComponent,
+        MisapuntesComponent,
+        ApunteComponent,
+        EditarApunteComponent,
+        SignupComponent,
+        FilterPipe,
+        UrlsafePipe,
+        CategoryFilterPipe,
+        SubjectFilterPipe,
+        CareerFilterPipe,
+        CreatorPipe
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        AngularEditorModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        FilestackModule,
+        ToastrModule.forRoot({
+            positionClass: 'toast-top-right'
+        }),
+        NgxPaginationModule
+    ],
+    providers: [
+        AuthGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptorService,
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const commentSchema = new Schema({
     commentCreator: {type: Schema.ObjectId, ref:'User', required: true},
@@ -7,6 +7,6 @@ const commentSchema = new Schema({
 },{
     timestamps: false,
     versionKey: false
-})
+});
 
-module.exports = model('Comment', commentSchema)
+module.exports = model('Comment', commentSchema);

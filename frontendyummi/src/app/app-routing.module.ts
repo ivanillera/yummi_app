@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { ApunteComponent } from './components/pages/apunte/apunte.component';
 import { CrearApunteComponent } from './components/pages/crear-apunte/crear-apunte.component';
 import { InfoperfilComponent } from './components/pages/perfil/infoperfil/infoperfil/infoperfil.component';
@@ -13,50 +12,50 @@ import { ThreadComponent } from './components/pages/thread/thread.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  {
-    path:'', component:SearchbarComponent
-  },
-  {
-    path: '*', redirectTo: ''
-  },
-  {
-    path:'apuntes', component:ThreadComponent
-  },
-  {
-    path:'apunte/:id', component:ApunteComponent
-  },
-  {
-    path:'perfil', 
-    component: PerfilComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path:'crear',
-    component: CrearApunteComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path:'perfil/misapuntes',
-    component: MisapuntesComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path:'perfil/info',
-    component:InfoperfilComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path:'perfil/editarapunte/:id', 
-    component:EditarApunteComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path:'signup', component:SignupComponent
-  }
+    {
+        path:'', component:SearchbarComponent
+    },
+    {
+        path: '*', redirectTo: ''
+    },
+    {
+        path:'apuntes', component:ThreadComponent
+    },
+    {
+        path:'apunte/:id', component:ApunteComponent
+    },
+    {
+        path:'perfil',
+        component: PerfilComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path:'crear',
+        component: CrearApunteComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path:'perfil/misapuntes',
+        component: MisapuntesComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path:'perfil/info',
+        component:InfoperfilComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path:'perfil/editarapunte/:id',
+        component:EditarApunteComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path:'signup', component:SignupComponent
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

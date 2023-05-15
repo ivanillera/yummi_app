@@ -7,10 +7,10 @@ export class User{
     notes: [Note];
 
     constructor(name:string, mail:string, password:string, legajo:string, notes:[Note]){
-        this.name = name;
-        this.mail = mail;
-        this.password = password;
-        this.legajo = legajo;
-        this.notes = notes;
+    	this.name = name;
+    	this.mail = mail;
+    	this.password = password;
+    	this.legajo = legajo;
+    	this.notes = notes;
     }
 }

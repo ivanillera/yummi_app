@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const noteSchema = new Schema({
     name: {type: String, required:true},
@@ -13,6 +13,6 @@ const noteSchema = new Schema({
 },{
     timestamps: true,
     versionKey: false
-})
+});
 
-module.exports = model('Note', noteSchema)
+module.exports = model('Note', noteSchema);

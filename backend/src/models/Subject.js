@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const subjectSchema = new Schema({
     name: {type: String, required:true},
@@ -6,6 +6,6 @@ const subjectSchema = new Schema({
 }, {
     timestamps: false,
     versionKey: false
-})
+});
 
-module.exports = model('Subject', subjectSchema)
+module.exports = model('Subject', subjectSchema);

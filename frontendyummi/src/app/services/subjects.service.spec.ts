@@ -5,18 +5,18 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SubjectsService } from './subjects.service';
 
 describe('SubjectsService', () => {
-  let service: SubjectsService;
+    let service: SubjectsService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                HttpClientTestingModule,
+                RouterTestingModule]
+        });
+        service = TestBed.inject(SubjectsService);
     });
-    service = TestBed.inject(SubjectsService);
-  });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
 });

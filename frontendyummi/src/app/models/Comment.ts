@@ -4,8 +4,8 @@ export class Comment {
     date: string;
 
     constructor(commentCreator:string, content: string, date:string){
-        this.commentCreator = commentCreator;
-        this.content = content;
-        this.date = date;
+    	this.commentCreator = commentCreator;
+    	this.content = content;
+    	this.date = date;
     }
 }
