@@ -11,7 +11,6 @@ import { FilestackModule } from '@filestack/angular';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import {NgxPaginationModule} from 'ngx-pagination';
 
-
 //Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -61,13 +60,13 @@ import { CreatorPipe } from './pipes/creator.pipe';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    AngularEditorModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FilestackModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right'
     }),
-    AngularEditorModule,
     NgxPaginationModule
   ],
   providers: [

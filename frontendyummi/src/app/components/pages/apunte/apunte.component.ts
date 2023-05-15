@@ -100,7 +100,7 @@ export class ApunteComponent implements OnInit {
   likear(){
     if (this.tokenId == null) {
       this.toastr.error('Debes iniciar sesión para poder dar likes!', 'Error');
-      this.router.navigate(['/apuntes']);
+      //this.router.navigate(['/apuntes']);
     } else {
       if (this.note.calification.includes(this.tokenId)) {
         console.log("Ya likeaste")
@@ -171,7 +171,7 @@ export class ApunteComponent implements OnInit {
   addComment(){
     if (this.tokenId == null) {
       this.toastr.error('Debes iniciar sesión para poder comentar!', 'Error');
-      this.router.navigate(['/apuntes']);
+      //this.router.navigate(['/apuntes']);
     } else {
       const date = new Date();
       let textDate = date.toLocaleString('es-AR');

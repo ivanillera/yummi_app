@@ -121,7 +121,7 @@
                 <div class="row">
                     <label class="form-label titulo" style="margin-top:0.5rem;">Adjunto</label>
                     <br>
-                    <div *ngIf="note.attached == '' " class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <div *ngIf="note.attached === '' " class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <button type="button" class="btn btn-success" (click)="enableUp()"> Subir archivo <i class="far fa-upload"></i></button>
                     </div>
 

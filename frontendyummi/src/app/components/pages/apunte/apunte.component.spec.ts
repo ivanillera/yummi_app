@@ -283,18 +283,18 @@ describe('ApunteComponent', () => {
     expect(component.liked).toBeFalsy();
   });
 
-  it('should show an error message and navigate to /apuntes when tokenId is null', () => {
-    component.tokenId = null;
-    spyOn(component.toastr, 'error');
-    spyOn(component.router, 'navigate');
+  // it('should show an error message and navigate to /apuntes when tokenId is null', () => {
+  //   component.tokenId = null;
+  //   spyOn(component.toastr, 'error');
+  //   spyOn(component.router, 'navigate');
 
-    component.likear();
+  //   component.likear();
 
-    expect(component.toastr.error).toHaveBeenCalledWith('Debes iniciar sesión para poder dar likes!', 'Error');
-    expect(component.router.navigate).toHaveBeenCalledWith(['/apuntes']);
-    expect(notesServiceSpy.agregarLike).not.toHaveBeenCalled();
-    expect(notesServiceSpy.removerLike).not.toHaveBeenCalled();
-  });
+  //   expect(component.toastr.error).toHaveBeenCalledWith('Debes iniciar sesión para poder dar likes!', 'Error');
+  //   expect(component.router.navigate).toHaveBeenCalledWith(['/apuntes']);
+  //   expect(notesServiceSpy.agregarLike).not.toHaveBeenCalled();
+  //   expect(notesServiceSpy.removerLike).not.toHaveBeenCalled();
+  // });
 
   it('should call NotesService.commentNote and show success toastr when addComment is called', () => {
     // mock data

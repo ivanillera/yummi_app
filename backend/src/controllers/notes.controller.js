@@ -10,7 +10,7 @@ noteCtrl.getNotes = async (req, res) => {
 noteCtrl.createNote = async (req, res) => {
     const newNote = new Note(req.body)
     await newNote.save()
-    res.send({ message: 'Note created' })
+    res.send({ message: 'Note created', note: newNote.toJSON() })
 }
 
 
@@ -24,8 +24,6 @@ noteCtrl.editNote = async (req, res) => {
     await Note.findByIdAndUpdate(req.params.id, req.body)
     res.json({status: 'Note Updated'})
 }
-
-
 
 noteCtrl.deleteNote = async (req, res) => {
     await Note.findByIdAndDelete(req.params.id)

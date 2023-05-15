@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {UsersService} from '../../../services/users.service'
 
 @Component({
@@ -6,12 +6,9 @@ import {UsersService} from '../../../services/users.service'
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent implements OnInit {
+export class PerfilComponent  {
 
   constructor(private UsersService: UsersService) { }
-
-  ngOnInit(): void {
-  }
 
   perfil=true;
   apuntes=false;

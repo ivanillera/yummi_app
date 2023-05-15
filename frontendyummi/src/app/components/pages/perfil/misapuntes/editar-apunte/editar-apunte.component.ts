@@ -147,9 +147,14 @@ export class EditarApunteComponent implements OnInit {
       e.target.value = null;
     }else{
       this.postFileStack().then((res) => {
-        this.loading!.style.display = "none";
+        this.loading = document.getElementById('fileLoading');
+        if(this.loading){
+          this.loading!.style.display = "none";
+        }
         this.toastr.success('Archivo cargado con exito.');
-        (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "block";
+        if(<HTMLInputElement> document.getElementById("succesLabel")){
+          (<HTMLInputElement> document.getElementById("succesLabel")).style.display = "block";
+        }
         
       })
     }
